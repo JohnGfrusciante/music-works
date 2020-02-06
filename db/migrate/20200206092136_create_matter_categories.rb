@@ -1,4 +1,4 @@
-class CreateMatterCategories < ActiveRecord::Migration[5.2]
+class CreateMatterCategories < ActiveRecord::Migration[5.0]
   def change
     create_table :matter_categories do |t|
       t.string :name,               null: false
