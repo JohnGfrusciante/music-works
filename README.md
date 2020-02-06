@@ -12,8 +12,9 @@
 |password|integer|null: false|
 |tel|string|null: false|
 |birth|date|null: false|
-|prefecture|integer|null: false|
-|introduction|text|null: false|
+|status|integer|null: false|
+|prefecture|integer||
+|introduction|text||
 |performance|text||
 |portfolio|text||
 ### Association
@@ -34,7 +35,7 @@
 |image|text||
 |name|string|null: false|
 |biography|text|null: false|
-|activity_history||
+|activity_history|text|
 |activity_place|string||
 |email|string|null: false|
 |sound_source|text||
@@ -57,10 +58,10 @@
 |Column|Type|Options|
 |------|----|-------|
 |musician_id|references|null: false, foreign_key: true|
-|block_user_id|references|null: false, foreign_key: true|
+|user_id|references|null: false, foreign_key: true|
 ### Association
 - belongs_to :musician
-- belongs_to :block_user,class_name: “User”
+- belongs_to :user
 
 
 ## Matters Table
