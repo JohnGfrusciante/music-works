@@ -1,0 +1,16 @@
+%h1
+  music-worksのTOPページです。
+%div
+  - if user_signed_in?
+    %div
+      こんにちは
+      = current_user.name
+      様
+      %br
+      = link_to "ログアウト", destroy_user_session_path, method: :delete
+  - else
+    %ul
+      %li
+        = link_to "新規会員登録", '/users/sign_up'
+      %li
+        = link_to "ログイン", '/users/sign_in'
