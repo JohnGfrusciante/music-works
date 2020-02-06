@@ -1,4 +1,4 @@
-class CreateBlocks < ActiveRecord::Migration[5.2]
+class CreateBlocks < ActiveRecord::Migration[5.0]
   def change
     create_table :blocks do |t|
       t.references :musician,             null: false, foreign_key: true

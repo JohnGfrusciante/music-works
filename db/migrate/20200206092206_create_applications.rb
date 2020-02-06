@@ -1,4 +1,4 @@
-class CreateApplications < ActiveRecord::Migration[5.2]
+class CreateApplications < ActiveRecord::Migration[5.0]
   def change
     create_table :applications do |t|
       t.references :matter,             null: false, foreign_key: true
