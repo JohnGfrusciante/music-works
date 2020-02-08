@@ -22,7 +22,6 @@ class Users::RegistrationsController < Devise::RegistrationsController
   end
 
   def done
-    @user = User.new(session["devise.regist_data"]["user"])
     session["devise.regist_data"]["user"]["prefecture"] = params[:user][:prefecture]
     session["devise.regist_data"]["user"]["introduction"] = params[:user][:introduction]
     session["devise.regist_data"]["user"]["performance"] = params[:user][:performance]
