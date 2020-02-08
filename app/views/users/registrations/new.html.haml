@@ -1,21 +1,64 @@
-%h2 Sign up
-= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f|
-  = render "devise/shared/error_messages", resource: resource
-  .field
-    = f.label :email
-    %br/
-    = f.email_field :email, autofocus: true, autocomplete: "email"
-  .field
-    = f.label :password
-    - if @minimum_password_length
-      %em
-        (#{@minimum_password_length} characters minimum)
-    %br/
-    = f.password_field :password, autocomplete: "new-password"
-  .field
-    = f.label :password_confirmation
-    %br/
-    = f.password_field :password_confirmation, autocomplete: "new-password"
+%h2 会員情報入力フォーム
+= form_for(@user, url: performance_path) do |f|
+  = render "devise/shared/error_messages", resource: @user
+
+  .name
+    .name__title
+      お名前(全角)
+    .name__required
+      必須
+  = f.text_field :name, autofocus: true, autocomplete: "name", placeholder: "例)山田太郎" ,class: 'name-form'
+
+  .name_kana
+    .name_kana__title
+      お名前カナ(全角)
+    .name_kana__required
+      必須
+  = f.text_field :name_kana, autofocus: true, autocomplete: "name_kana", placeholder: "例)ヤマダタロウ" ,class: 'name_kana-form'
+
+  .email
+    .email__title
+      メールアドレス
+    .email__required
+      必須
+  = f.email_field :email, autocomplete: "email", placeholder: "PC・携帯どちらでも可"
+
+
+  .password
+    .password__title
+      パスワード(半角英数字)
+    .password__required
+      必須
+  = f.password_field :password, autocomplete: "new-password", placeholder: "6文字以上の半角英数字"
+
+
+  .tel
+    .tel__title
+      携帯電話の番号
+    .tel__required
+      必須
+  = f.text_field :tel, autofocus: true, autocomplete: "tel", placeholder: "携帯電話の番号を入力"
+
+
+  .birthday
+    .birthday__title
+      生年月日
+    .birthday__required
+      必須
+  .birthday__select-form
+    != sprintf(f.date_select(:birthday, prefix:'user', with_css_classes:'XXXXX', prompt:"--", use_month_numbers:true, start_year:Time.now.year, end_year:1900, date_separator:'%s'),'年','月')+'日'
+
+  .status
+    .status__title
+      会員情報の公開設定
+    .status__required
+      必須
+  .status__select-form
+    = f.select :status, User.statuses.keys, {promt: "---"}
+
+
   .actions
-    = f.submit "Sign up"
-= render "users/shared/links"
+    = f.submit "次へ"
+
+
+-# = render "users/shared/links"

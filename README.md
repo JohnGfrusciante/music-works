@@ -5,13 +5,12 @@
 ## Users Table
 |Column|Type|Options|
 |------|----|-------|
-|image|text||
 |name|string|null: false|
 |name_kana|string|null: false|
 |email|string|null: false|
 |password|integer|null: false|
 |tel|string|null: false|
-|birth|date|null: false|
+|birthday|date|null: false|
 |status|integer|null: false|
 |prefecture|integer||
 |introduction|text||

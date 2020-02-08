@@ -116,16 +116,16 @@ ActiveRecord::Schema.define(version: 2020_02_06_092345) do
   end
 
   create_table "users", id: :integer, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
-    t.text "image"
-    t.string "email", default: "", null: false
-    t.string "encrypted_password", default: "", null: false
     t.string "name", null: false
     t.string "name_kana", null: false
+    t.string "email", default: "", null: false
+    t.string "encrypted_password", default: "", null: false
     t.string "tel", null: false
-    t.date "birth", null: false
+    t.date "birthday", null: false
     t.integer "status", null: false
     t.integer "prefecture"
     t.text "introduction"
+    t.text "performance"
     t.text "portfolio"
     t.string "reset_password_token"
     t.datetime "reset_password_sent_at"

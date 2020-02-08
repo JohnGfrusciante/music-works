@@ -1,0 +1,39 @@
+%h2 活動実績入力フォーム
+※お仕事をご希望の方やクリエイターの方は、以下の項目(任意)をご入力ください。
+%br
+※会員登録のみ、または、お仕事のご依頼のみをご希望の方は何も入力せず、「会員登録する」のボタンをクリックしてください。
+
+
+= form_for(@user, url: done_path) do |f|
+  = render "devise/shared/error_messages", resource: @user
+
+
+  .prefecture
+    .prefecture__title
+      都道府県
+  .prefecture__select-form
+    = f.select :prefecture, User.prefectures.keys, {promt: "---"}
+
+
+  .introduction
+    .introduction__title
+      自己紹介
+  = f.text_field :introduction, autofocus: true, autocomplete: "introduction", placeholder: "200文字程度で自己紹介文をご入力ください" ,class: 'introduction-form'
+
+  .performance
+    .performance__title
+      活動実績
+  = f.text_field :performance, autofocus: true, autocomplete: "performance", placeholder: "これまでの活動実績をご入力ください" ,class: 'performance-form'
+
+  .portfolio
+    .portfolio__title
+      ポートフォリオなどの参考URL
+  = f.url_field :portfolio, autofocus: true, autocomplete: "portfolio", placeholder: "" ,class: 'portfolio-form'
+
+
+  .actions
+    = f.submit "会員登録する"
+
+
+-# = render "users/shared/links"
+
