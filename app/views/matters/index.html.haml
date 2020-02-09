@@ -7,7 +7,9 @@
       = current_user.name
       様
       %br
-      = link_to "ログアウト", destroy_user_session_path, method: :delete
+      = link_to "ログアウト", destroy_user_session_path, method: :delete, class: ''
+      %br
+      = link_to "アーティストプロフィールを作成する", new_musician_path
   - else
     %ul
       %li

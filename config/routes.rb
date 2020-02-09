@@ -12,6 +12,8 @@ Rails.application.routes.draw do
     end
     root to: "matters#index"
 
-    resources :matters
+    resources :musicians, except: [:destroy] do
+      resources :matters, except: [:destroy]
+    end
 
 end
