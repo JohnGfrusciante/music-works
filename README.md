@@ -113,7 +113,7 @@
 |matter_category_id|references|null: false, foreign_key: true|
 ### Association
 - belongs_to :user
-- belongs_to :Matter_category
+- belongs_to :matter_category
 
 
 ## Likes Table
