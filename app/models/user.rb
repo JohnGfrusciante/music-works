@@ -5,6 +5,17 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
          validates :name, :name_kana, :tel, :birthday, :status ,presence: true
          validates :tel, uniqueness: true
+         has_many :likes
+         has_many :liked_matters, through: :likes, source: :matter
+         has_many :applications
+         has_many :chats
+         has_many :messages
+         has_many :matter_categoryies, through: :tags
+         has_many :tags
+         has_one :block
+         has_one :musician
+
+
   enum status: {
     公開:1,非公開:2
   }, _prefix: true
