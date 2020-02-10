@@ -87,13 +87,13 @@ ActiveRecord::Schema.define(version: 2020_02_06_092345) do
   end
 
   create_table "musicians", id: :integer, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
-    t.text "image"
+    t.string "image"
     t.string "name", null: false
     t.text "biography", null: false
     t.text "activity_history", null: false
     t.text "activity_place", null: false
     t.string "email", null: false
-    t.text "sound_source"
+    t.string "sound_source"
     t.text "homepage"
     t.text "twitter"
     t.text "facebook"
