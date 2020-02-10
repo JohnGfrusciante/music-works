@@ -3,17 +3,7 @@ class MusiciansController < ApplicationController
   end
 
   def new
-    @user_id = current_user.id
-    if @user_id.present?
-      # redirect_to root_path
-      # ===ここからテスト用記述===================================
       @musician = Musician.new
-      # テスト用記述は、アーティスト登録終了後に削除し、redirect_to root_path のコメントアウトを外してください。
-      # また、musician.brのモデルファイルの validates :user_id, uniqueness: true のコメントアウトも外してください。
-      # ===ここまでテスト用記述===================================
-    else
-      @musician = Musician.new
-    end
   end
 
   def create

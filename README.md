@@ -31,13 +31,13 @@
 ## Musicians Table
 |Column|Type|Options|
 |------|----|-------|
-|image|text||
+|image|string||
 |name|string|null: false|
 |biography|text|null: false|
 |activity_history|text|
 |activity_place|string||
 |email|string|null: false|
-|sound_source|text||
+|sound_source|string||
 |homepage|text||
 |twitter|text||
 |facebook|text||
