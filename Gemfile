@@ -86,6 +86,8 @@ gem 'devise'
 # Carrierwave Introduce
 gem 'carrierwave'
 gem 'mini_magick'
+gem 'carrierwave-audio'
+gem 'ruby-sox'
 
 gem 'pry-rails'
 gem 'fog-aws'
