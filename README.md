@@ -37,11 +37,15 @@
 |activity_history|text|
 |activity_place|string||
 |email|string|null: false|
-|sound_source|string||
+<!-- |sound_source|string|| -->
 |homepage|text||
+|youtube|text||
+|spotify|text||
+|apple_music|text||
 |twitter|text||
 |facebook|text||
-|other_link|text||
+|otherlink_title|text||
+|otherlink_url|text||
 |live_info|text||
 |office|string||
 |user_id|references|null: false, foreign_key: true|

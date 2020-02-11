@@ -7,11 +7,14 @@ class CreateMusicians < ActiveRecord::Migration[5.0]
       t.text :activity_history,               null: false
       t.text :activity_place,               null: false
       t.string :email,               null: false
-      t.string :sound_source
       t.text :homepage
+      t.text :youtube
+      t.text :spotify
+      t.text :apple_music
       t.text :twitter
       t.text :facebook
-      t.text :other_link
+      t.string :otherlink_title
+      t.text :otherlink_url
       t.text :live_info
       t.string :office
       t.references :user,             null: false, foreign_key: true

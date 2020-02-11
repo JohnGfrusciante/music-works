@@ -53,20 +53,10 @@
 
   .email
     .email__title
-      連絡用メールアドレス
+      問い合わせメールアドレス
     .email__required
       必須
   = f.email_field :email, autocomplete: "email", placeholder: "連絡用のメールアドレスを入力してください"
-  %br
-  %br
-
-
-  .sound
-    .sound__title
-      ・アーティスト音源ファイル
-    .sound__norequired
-      任意
-  = f.file_field :sound_source, class: ''
   %br
   %br
 
@@ -77,6 +67,36 @@
     .homepage__norequired
       任意
   = f.url_field :homepage, autofocus: true, autocomplete: "homepage", placeholder: "" ,class: ''
+  %br
+  %br
+
+
+  .youtube
+    .youtube__title
+      ・YouTubeリンク
+    .youtube__norequired
+      任意
+  = f.url_field :youtube, autofocus: true, autocomplete: "youtube", placeholder: "" ,class: ''
+  %br
+  %br
+
+
+  .spotify
+    .spotify__title
+      ・Spotifyリンク
+    .spotify__norequired
+      任意
+  = f.url_field :spotify, autofocus: true, autocomplete: "spotify", placeholder: "" ,class: ''
+  %br
+  %br
+
+
+  .apple-music
+    .apple-music__title
+      ・Apple Musicリンク
+    .apple-music__norequired
+      任意
+  = f.url_field :apple_music, autofocus: true, autocomplete: "apple_music", placeholder: "" ,class: ''
   %br
   %br
 
@@ -106,7 +126,8 @@
       ・その他リンク
     .other-link__norequired
       任意
-  = f.text_field :other_link, autofocus: true, autocomplete: "other_link", placeholder: "" ,class: ''
+  = f.text_field :otherlink_title, autofocus: true, autocomplete: "otherlink_title", placeholder: "リンクのタイトルを入力" ,class: ''
+  = f.url_field :otherlink_url, autofocus: true, autocomplete: "otherlink_url", placeholder: "リンクのURLを入力" ,class: ''
   %br
   %br
 

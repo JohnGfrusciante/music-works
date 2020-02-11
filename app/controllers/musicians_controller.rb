@@ -20,7 +20,7 @@ class MusiciansController < ApplicationController
 
   private
   def musician_params
-    params.require(:musician).permit(:image, :name, :biography, :activity_history, :activity_place, :email, :sound_source, :homepage, :twitter, :facebook, :other_link, :live_info, :office).merge(user_id: current_user.id)
+    params.require(:musician).permit(:image, :name, :biography, :activity_history, :activity_place, :email, :homepage, :youtube, :spotify, :apple_music, :twitter, :facebook, :otherlink_title, :otherlink_url, :live_info, :office).merge(user_id: current_user.id)
   end
 
 end
