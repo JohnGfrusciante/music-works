@@ -1,0 +1,156 @@
+%h2 アーティストプロフィール編集フォーム
+= form_for(@musician, url: "/musicians/#{@musician.id}", method: :put) do |f|
+  = render "devise/shared/error_messages", resource: @musician
+
+  .image
+    .image__title
+      ・アーティスト写真
+    .image__norequired
+      任意
+  = f.file_field :image, class: ''
+  %br
+  %br
+
+
+  .name
+    .name__title
+      ・アーティスト名
+    .name__required
+      必須
+  = f.text_field :name, autofocus: true, autocomplete: "name", placeholder: "アーティスト名を入力してください" ,class: ''
+  %br
+  %br
+
+  .biography
+    .biography__title
+      ・バイオグラフィー
+    .biography__required
+      必須
+  = f.text_field :biography, autofocus: true, autocomplete: "biography", placeholder: "アーティストバイオグラフィーを入力してください" ,class: ''
+  %br
+  %br
+
+
+  .history
+    .history__title
+      ・活動歴
+    .history__required
+      必須
+  = f.text_field :activity_history, autofocus: true, autocomplete: "activity_history", placeholder: "活動歴を入力してください" ,class: ''
+  %br
+  %br
+
+
+  .place
+    .place__title
+      ・活動場所
+    .place__required
+      必須
+  = f.text_field :activity_place, autofocus: true, autocomplete: "activity_place", placeholder: "例）東京都渋谷を中心に活動中" ,class: ''
+  %br
+  %br
+
+
+  .email
+    .email__title
+      問い合わせメールアドレス
+    .email__required
+      必須
+  = f.email_field :email, autocomplete: "email", placeholder: "連絡用のメールアドレスを入力してください"
+  %br
+  %br
+
+
+  .homepage
+    .homepage__title
+      ・アーティストHPリンク
+    .homepage__norequired
+      任意
+  = f.url_field :homepage, autofocus: true, autocomplete: "homepage", placeholder: "" ,class: ''
+  %br
+  %br
+
+
+  .youtube
+    .youtube__title
+      ・YouTubeリンク
+    .youtube__norequired
+      任意
+  = f.url_field :youtube, autofocus: true, autocomplete: "youtube", placeholder: "" ,class: ''
+  %br
+  %br
+
+
+  .spotify
+    .spotify__title
+      ・Spotifyリンク
+    .spotify__norequired
+      任意
+  = f.url_field :spotify, autofocus: true, autocomplete: "spotify", placeholder: "" ,class: ''
+  %br
+  %br
+
+
+  .apple-music
+    .apple-music__title
+      ・Apple Musicリンク
+    .apple-music__norequired
+      任意
+  = f.url_field :apple_music, autofocus: true, autocomplete: "apple_music", placeholder: "" ,class: ''
+  %br
+  %br
+
+
+  .twitter
+    .twitter__title
+      ・Twitterリンク
+    .twitter__norequired
+      任意
+  = f.url_field :twitter, autofocus: true, autocomplete: "twitter", placeholder: "" ,class: ''
+  %br
+  %br
+
+
+  .facebook
+    .facebook__title
+      ・Facebookリンク
+    .facebook__norequired
+      任意
+  = f.url_field :facebook, autofocus: true, autocomplete: "facebook", placeholder: "" ,class: ''
+  %br
+  %br
+
+
+  .other-link
+    .other-link__title
+      ・その他リンク
+    .other-link__norequired
+      任意
+  = f.text_field :otherlink_title, autofocus: true, autocomplete: "otherlink_title", placeholder: "リンクのタイトルを入力" ,class: ''
+  = f.url_field :otherlink_url, autofocus: true, autocomplete: "otherlink_url", placeholder: "リンクのURLを入力" ,class: ''
+  %br
+  %br
+
+
+  .live-info
+    .live-info__title
+      ・ライブ情報
+    .live-info__norequired
+      任意
+  = f.text_field :live_info, autofocus: true, autocomplete: "live_info", placeholder: "" ,class: ''
+  %br
+  %br
+
+
+  .office
+    .office__title
+      ・所属事務所
+    .office__norequired
+      任意
+  = f.text_field :office, autofocus: true, autocomplete: "office", placeholder: "" ,class: ''
+  %br
+  %br
+
+
+  .actions
+    = f.submit "アーティストプロフィールを更新する"

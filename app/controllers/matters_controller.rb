@@ -3,6 +3,7 @@ class MattersController < ApplicationController
 
   def index
     @matters = Matter.all.order("created_at DESC")
+    @musician_user_id = Musician.find_by(user_id: current_user)
   end
 
   def new
