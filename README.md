@@ -37,7 +37,6 @@
 |activity_history|text|
 |activity_place|string||
 |email|string|null: false|
-<!-- |sound_source|string|| -->
 |homepage|text||
 |youtube|text||
 |spotify|text||
