@@ -10,6 +10,8 @@
       = link_to "ログアウト", destroy_user_session_path, method: :delete, class: ''
       %br
       = link_to "アーティストプロフィールを作成する", new_musician_path
+      %br
+      = link_to "案件依頼を作成する", new_matter_path
   - else
     %ul
       %li

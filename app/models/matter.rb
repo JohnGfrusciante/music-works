@@ -4,5 +4,5 @@ class Matter < ApplicationRecord
   has_many :applications
   has_many :chats
   belongs_to :musician
-  belongs_to :matter_category
+  # belongs_to :matter_category
 end

@@ -11,7 +11,7 @@ class CreateMatters < ActiveRecord::Migration[5.0]
       t.text :supplement
       t.integer :status,                 null: false, default: "0"
       t.references :musician,             null: false, foreign_key: true
-      t.references :matter_category,             null: false, foreign_key: true
+      # t.references :matter_category,             null: false, foreign_key: true
       t.timestamps
     end
   end
