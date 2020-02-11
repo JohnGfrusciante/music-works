@@ -18,3 +18,29 @@
         = link_to "新規会員登録", '/users/sign_up'
       %li
         = link_to "ログイン", '/users/sign_in'
+
+%br
+%br
+%ul.matters-list
+  - @matters.each do |matter|
+    %li.matters-list__content
+      .matters-list__content__title
+        案件名：
+        = matter.title
+      .matters-list__content__reward
+        = matter.reward
+        円
+      .matters-list__content__deadline
+        応募締切日：
+        = matter.deadline
+      - if matter.start.present?
+        .matters-list__content__start
+          業務開始予定日：
+          = matter.start
+      .matters-list__content__end
+        業務終了予定日(希望納期)：
+        = matter.end
+      .show
+        = link_to "詳細を確認する", "/matters/#{matter.id}", method: :get
+    %br
+

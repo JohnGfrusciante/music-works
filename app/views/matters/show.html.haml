@@ -1,0 +1,35 @@
+案件詳細ページです。
+%br
+■案件名：
+= @matter.title
+%br
+■お支払い金額：
+= @matter.reward
+円
+%br
+■応募受付終了日：
+= @matter.deadline
+%br
+■業務開始予定日：
+- if @matter.start.present?
+  = @matter.start
+- else
+  指定はありません。
+%br
+■業務開始終了日(希望納期)：
+= @matter.end
+%br
+■業務内容：
+= @matter.content
+%br
+■お支払い方法：
+- if @matter.payment.present?
+  = @matter.payment
+- else
+  指定はありません。
+%br
+■補足情報：
+- if @matter.supplement.present?
+  = @matter.supplement
+- else
+  指定はありません。

@@ -1,5 +1,8 @@
 class MattersController < ApplicationController
+  before_action :set_matter, only: [:edit, :show]
+
   def index
+    @matters = Matter.all.order("created_at DESC")
   end
 
   def new
@@ -12,6 +15,7 @@ class MattersController < ApplicationController
   end
 
   def show
+    
   end
 
   def edit
@@ -23,6 +27,10 @@ class MattersController < ApplicationController
   private
   def matter_params
     params.require(:matter).permit(:title, :reward, :deadline, :start, :end, :content, :payment, :supplement, :status).merge(musician_id: current_user.musician.id)
+  end
+
+  def set_matter
+    @matter = Matter.find(params[:id])
   end
 
 end
