@@ -1,0 +1,85 @@
+アーティストプロフィールページです。
+%br
+- if current_user.id = @musician.user_id
+  = link_to "案件依頼を作成する", new_matter_path
+  %br
+  = link_to "アーティストプロフィールを編集する", "/musicians/#{@musician.id}/edit"
+%br
+= image_tag @musician.image.url, class: '', width: '300'
+%br
+■アーティスト名：
+= @musician.name
+%br
+■バイオグラフィー：
+= @musician.biography
+%br
+■活動歴：
+= @musician.activity_history
+%br
+■活動場所：
+= @musician.activity_place
+%br
+■連絡用メールアドレス：
+%a{ href: "mailto:#{@musician.email}"} #{@musician.email}
+%br
+■アーティストHP：
+- if @musician.homepage.present?
+  %a{ href: "#{@musician.homepage}", target: "_blank"} #{@musician.homepage}
+- else
+  情報はありません。
+%br
+■YouTube：
+- if @musician.youtube.present?
+  %a{ href: "#{@musician.youtube}", target: "_blank"} #{@musician.youtube}
+- else
+  情報はありません。
+%br
+■Spotify：
+- if @musician.spotify.present?
+  %a{ href: "#{@musician.spotify}", target: "_blank"} #{@musician.spotify}
+- else
+  情報はありません。
+%br
+■Apple Music：
+- if @musician.apple_music.present?
+  %a{ href: "#{@musician.apple_music}", target: "_blank"} #{@musician.apple_music}
+- else
+  情報はありません。
+%br
+■Twitter：
+- if @musician.twitter.present?
+  %a{ href: "#{@musician.twitter}", target: "_blank"} #{@musician.twitter}
+- else
+  情報はありません。
+%br
+■Facebook：
+- if @musician.facebook.present?
+  %a{ href: "#{@musician.facebook}", target: "_blank"} #{@musician.facebook}
+- else
+  情報はありません。
+%br
+
+■その他リンク：
+- if @musician.otherlink_title.present?
+  =@musician.otherlink_title
+  ：
+  %a{ href: "#{@musician.otherlink_url}", target: "_blank"} #{@musician.otherlink_url}
+- else
+  情報はありません。
+%br
+■Live Info：
+- if @musician.live_info.present?
+  = @musician.live_info
+- else
+  情報はありません。
+%br
+■所属事務所：
+- if @musician.office.present?
+  = @musician.office
+- else
+  情報はありません。
+%br
+
+
+
+= link_to "TOPページへ戻る", root_path

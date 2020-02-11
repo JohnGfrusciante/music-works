@@ -9,9 +9,13 @@
       %br
       = link_to "ログアウト", destroy_user_session_path, method: :delete, class: ''
       %br
-      = link_to "アーティストプロフィールを作成する", new_musician_path
-      %br
-      = link_to "案件依頼を作成する", new_matter_path
+      - if @musician_user_id.present?
+        = link_to "アーティストページへ", "/musicians/#{current_user.musician.id}", method: :get
+        %br
+      - else
+        = link_to "アーティストプロフィールを作成する", new_musician_path
+        %br
+      -# = link_to "案件依頼を作成する", new_matter_path
   - else
     %ul
       %li
@@ -25,8 +29,7 @@
   - @matters.each do |matter|
     %li.matters-list__content
       .matters-list__content__title
-        案件名：
-        = matter.title
+        = link_to "案件名：#{matter.title}", "/matters/#{matter.id}", method: :get
       .matters-list__content__reward
         = matter.reward
         円
@@ -41,6 +44,6 @@
         業務終了予定日(希望納期)：
         = matter.end
       .show
-        = link_to "詳細を確認する", "/matters/#{matter.id}", method: :get
+        -# = link_to "詳細を確認する", "/matters/#{matter.id}", method: :get
     %br
 
