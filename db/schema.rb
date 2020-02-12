@@ -92,6 +92,7 @@ ActiveRecord::Schema.define(version: 2020_02_06_092345) do
     t.text "activity_place", null: false
     t.string "email", null: false
     t.text "homepage"
+    t.string "sound_source"
     t.text "youtube"
     t.text "spotify"
     t.text "apple_music"

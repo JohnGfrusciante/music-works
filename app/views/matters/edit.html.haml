@@ -1,0 +1,90 @@
+%h2 案件依頼編集フォーム
+= form_for(@matter, url: "/matters/#{@matter.id}", method: :put) do |f|
+  = render "devise/shared/error_messages", resource: @matter
+
+  .title
+    .title__title
+      ・案件名
+    .title__required
+      必須
+  = f.text_field :title, autofocus: true, autocomplete: "title", placeholder: "" ,class: ''
+  %br
+  %br
+
+
+  .reward
+    .reward__title
+      ・お支払い金額
+    .reward__required
+      必須
+  = f.text_field :reward, autofocus: true, autocomplete: "reward", placeholder: "半角数字で入力してください" ,class: ''
+  円
+  %br
+  %br
+
+
+  .deadline
+    .deadline__title
+      ・応募受付締切
+    .deadline__required
+      必須
+  != sprintf(f.date_select(:deadline, prefix:'matter', with_css_classes:'XXXXX', prompt:"--", use_month_numbers:true, start_year:Time.now.year, end_year:2020, date_separator:'%s'),'年','月')+'日'
+  %br
+  %br
+
+
+  .start
+    .start__title
+      ・業務開始予定日
+    .start__norequired
+      任意
+  != sprintf(f.date_select(:start, prefix:'matter', with_css_classes:'XXXXX', prompt:"--", use_month_numbers:true, start_year:Time.now.year, end_year:2020, date_separator:'%s'),'年','月')+'日'
+  %br
+  %br
+
+
+  .end
+    .end__title
+      ・業務終了予定日(希望納品日)
+    .end__required
+      必須
+  != sprintf(f.date_select(:end, prefix:'matter', with_css_classes:'XXXXX', prompt:"--", use_month_numbers:true, start_year:Time.now.year, end_year:2020, date_separator:'%s'),'年','月')+'日'
+  %br
+  %br
+
+
+  .content
+    .content__title
+      ・業務内容
+    .content__required
+      必須
+  = f.text_field :content, autofocus: true, autocomplete: "content", placeholder: "" ,class: ''
+  %br
+  %br
+
+
+  .payment
+    .payment__title
+      ・お支払い方法
+    .payment__norequired
+      任意
+  = f.text_field :payment, autofocus: true, autocomplete: "payment", placeholder: "" ,class: ''
+  %br
+  %br
+
+
+  .supplement
+    .supplement__title
+      ・補足情報
+    .supplement__norequired
+      任意
+  = f.text_field :supplement, autofocus: true, autocomplete: "supplement", placeholder: "" ,class: ''
+  %br
+  %br
+
+
+  .actions
+    = f.submit "案件依頼を更新する"
+
+
+= link_to "TOPページへ戻る", root_path

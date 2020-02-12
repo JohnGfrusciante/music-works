@@ -16,13 +16,15 @@ class MattersController < ApplicationController
   end
 
   def show
-    
+    @musician_user_id = Musician.find_by(user_id: current_user)
   end
 
   def edit
   end
 
   def update
+    @matter_edit = Matter.find_by(id: params[:id])
+    @matter_edit.update(matter_params)
   end
 
   private

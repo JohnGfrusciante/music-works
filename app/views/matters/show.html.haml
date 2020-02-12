@@ -1,5 +1,12 @@
 案件詳細ページです。
 %br
+- if user_signed_in? and @musician_user_id.present?
+  - if current_user.musician.id == @matter.musician_id
+    = link_to "案件依頼内容を編集する", "/matters/#{@matter.id}/edit"
+    %br
+■案件依頼アーティスト：
+= link_to "#{@matter.musician.name}", "/musicians/#{@matter.musician.id}"
+%br
 ■案件名：
 = @matter.title
 %br
