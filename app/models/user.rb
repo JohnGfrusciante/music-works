@@ -31,4 +31,8 @@ class User < ApplicationRecord
     福岡県:40,佐賀県:41,長崎県:42,熊本県:43,大分県:44,宮崎県:45,鹿児島県:46,沖縄県:47,
     その他:99
   }, _prefix: true
+
+  def already_applied?(matter)
+    self.applications.exists?(matter_id: matter.id)
+  end
 end
