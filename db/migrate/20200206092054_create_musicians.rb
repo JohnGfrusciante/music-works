@@ -8,6 +8,7 @@ class CreateMusicians < ActiveRecord::Migration[5.0]
       t.text :activity_place,               null: false
       t.string :email,               null: false
       t.text :homepage
+      t.string :sound_source
       t.text :youtube
       t.text :spotify
       t.text :apple_music
