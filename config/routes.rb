@@ -16,6 +16,8 @@ Rails.application.routes.draw do
       # resources :matters, except: [:new, :create, :destroy]
     end
 
-    resources :matters, only: [:new, :create, :show, :edit, :update]
+    resources :matters, only: [:new, :create, :show, :edit, :update] do
+      resources :applications, only: [:create, :destroy]
+    end
 
 end

@@ -41,4 +41,18 @@
 - else
   指定はありません。
 %br
+- if user_signed_in?
+  - unless current_user.already_applied?(@matter)
+    = link_to "この仕事に応募する", "/matters/#{@matter.id}/applications", method: :post
+    %br
+  - else
+    ※この案件は既に応募済みです。
+    %br
+    = link_to "応募を取り消す", "/matters/#{@matter.id}/applications/#{@matter.id}", method: :delete
+    %br
+- else
+  お仕事のご応募には、会員登録が必要です。
+  %br
+  = link_to "新規会員登録はこちら", '/users/sign_up'
+  %br
 = link_to "TOPページへ戻る", root_path
