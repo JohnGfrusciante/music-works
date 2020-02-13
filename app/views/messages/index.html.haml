@@ -1,3 +1,18 @@
-メッセージ画面です。
+チャット画面です。
 %br
+案件名：
+= @chat.matter.title
+%br
+質問ユーザー：
+= @chat.user.name
+%br
+依頼アーティスト：
+= link_to "#{@chat.matter.musician.name}", "/musicians/#{@chat.matter.musician.id}", target: blank?
+%br
+
+
+
 = link_to "TOPページへ戻る", root_path
+
+
+
