@@ -42,8 +42,17 @@
   指定はありません。
 %br
 - if user_signed_in?
-  = link_to "案件内容をチャットで質問する", "/matters/#{@matter.id}/chats", method: :post
-  %br
+  - if @chat_user_id.present?
+    ※既にチャットルームが存在します。
+    %br
+    = link_to "チャット質問ページへ", "/matters/#{@matter.id}/chats/#{@chat.id}/messages", method: :get
+    %br
+  - elsif @musician_user_id.present? and current_user.musician.id == @matter.musician_id
+    ※案件依頼ユーザーのためチャット質問はできません。
+    %br
+  - else
+    = link_to "案件内容をチャットで質問する", "/matters/#{@matter.id}/chats", method: :post
+    %br
   - if current_user.already_applied?(@matter)
     ※この案件は既に応募済みです。
     %br

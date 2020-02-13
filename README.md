@@ -146,7 +146,6 @@
 |------|----|-------|
 |content|text|null: false|
 |user_id|references|null: false, foreign_key: true|
-|musician_id|references|null: false, foreign_key: true|
 |chat_id|references|null: false, foreign_key: true|
 |status|integer|null: false|
 ### Association
