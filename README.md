@@ -134,7 +134,6 @@
 |------|----|-------|
 |matter_id|references|null: false, foreign_key: true|
 |user_id|references|null: false, foreign_key: true|
-|musician_id|references|null: false, foreign_key: true|
 ### Association
 - has_many :messages
 - belongs_to :matter
@@ -149,6 +148,7 @@
 |user_id|references|null: false, foreign_key: true|
 |musician_id|references|null: false, foreign_key: true|
 |chat_id|references|null: false, foreign_key: true|
+|status|integer|null: false|
 ### Association
 - belongs_to :user
 - belongs_to :musician
