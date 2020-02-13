@@ -5,7 +5,7 @@
     = link_to "案件依頼内容を編集する", "/matters/#{@matter.id}/edit"
     %br
 ■案件依頼アーティスト：
-= link_to "#{@matter.musician.name}", "/musicians/#{@matter.musician.id}"
+= link_to "#{@matter.musician.name}", "/musicians/#{@matter.musician.id}", target: blank?
 %br
 ■案件名：
 = @matter.title

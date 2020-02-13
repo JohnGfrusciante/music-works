@@ -18,7 +18,9 @@ class MattersController < ApplicationController
   def show
     @musician_user_id = Musician.find_by(user_id: current_user)
     @chat_user_id = Chat.find_by(matter_id: @matter, user_id: current_user)
-    @chat = Chat.find(params[:id])
+    if user_signed_in?
+      @chat = Chat.find_by(matter_id: @matter.id, user_id: current_user.id)
+    end
   end
 
   def edit
