@@ -73,13 +73,11 @@ ActiveRecord::Schema.define(version: 2020_02_06_092345) do
   create_table "messages", id: :integer, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.text "content", null: false
     t.integer "user_id", null: false
-    t.integer "musician_id", null: false
     t.integer "chat_id", null: false
     t.integer "status", default: 0, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["chat_id"], name: "index_messages_on_chat_id"
-    t.index ["musician_id"], name: "index_messages_on_musician_id"
     t.index ["user_id"], name: "index_messages_on_user_id"
   end
 
@@ -147,7 +145,6 @@ ActiveRecord::Schema.define(version: 2020_02_06_092345) do
   add_foreign_key "likes", "users"
   add_foreign_key "matters", "musicians"
   add_foreign_key "messages", "chats"
-  add_foreign_key "messages", "musicians"
   add_foreign_key "messages", "users"
   add_foreign_key "musicians", "users"
   add_foreign_key "tags", "matter_categories"
