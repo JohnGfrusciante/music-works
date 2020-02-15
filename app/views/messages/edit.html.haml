@@ -1,7 +1,6 @@
 メッセージ編集フォーム
 
 %h2 【質問入力フォーム】
--# = form_for(@message, url: "/matters/#{@matter.id}/chats/#{@chat.id}/messages", method: :put) do |f|
 = form_for(@message, url: "/matters/#{@matter.id}/chats/#{@chat.id}/messages/#{@message.id}", method: :put) do |f|
   = render "devise/shared/error_messages", resource: @message
 
