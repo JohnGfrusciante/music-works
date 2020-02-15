@@ -9,8 +9,35 @@
 依頼アーティスト：
 = link_to "#{@chat.matter.musician.name}", "/musicians/#{@chat.matter.musician.id}", target: blank?
 %br
+%br
 
 
+%ul.messages-list
+  - @messages.each do |message|
+    - if @chat.id == message.chat_id
+      %li.messages-list__content
+        .messages-list__content--nema
+          = message.user.name
+        .messages-list__content--created-time
+          = message.created_at.strftime("%Y年%m月%d日 %H時%M分")
+        .messages-list__content--content
+          = message.content
+        %br
+
+
+
+%br
+%br
+%h2 【質問入力フォーム】
+= form_for(@message, url: "/matters/#{@matter.id}/chats/#{@chat.id}/messages", method: :post) do |f|
+  = render "devise/shared/error_messages", resource: @message
+
+  = f.text_field :content, autofocus: true, autocomplete: "content", placeholder: "" ,class: ''
+
+  .actions
+  = f.submit "質問を投稿する"
+  %br
+  %br
 
 = link_to "TOPページへ戻る", root_path
 
