@@ -5,7 +5,7 @@ class MessagesController < ApplicationController
 
   def index
     @message = Message.new
-    @messages = Message.all.order("created_at DESC")
+    @messages = Message.where(chat_id: @chat.id).order("created_at DESC")
   end
 
   def create

@@ -14,20 +14,18 @@
 
 %ul.messages-list
   - @messages.each do |message|
-    - if @chat.id == message.chat_id
-      %li.messages-list__content
-        .messages-list__content--nema
-          = message.user.name
-        .messages-list__content--created-time
-          = message.created_at.strftime("%Y年%m月%d日 %H時%M分")
-        .messages-list__content--content
-          = message.content
-        .messages-list__content--edit
-          = link_to "編集", "/matters/#{@matter.id}/chats/#{@chat.id}/messages/#{message.id}/edit"
-        .messages-list__content--delete
-          = link_to "削除", "/matters/#{@matter.id}/chats/#{@chat.id}/messages/#{message.id}", method: :delete
-        %br
-
+    %li.messages-list__content
+      .messages-list__content--nema
+        = message.user.name
+      .messages-list__content--created-time
+        = message.created_at.strftime("%Y年%m月%d日 %H時%M分")
+      .messages-list__content--content
+        = message.content
+      .messages-list__content--edit
+        = link_to "編集", "/matters/#{@matter.id}/chats/#{@chat.id}/messages/#{message.id}/edit"
+      .messages-list__content--delete
+        = link_to "削除", "/matters/#{@matter.id}/chats/#{@chat.id}/messages/#{message.id}", method: :delete
+      %br
 
 
 %br

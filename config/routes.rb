@@ -13,7 +13,7 @@ Rails.application.routes.draw do
     root to: "matters#index"
 
     resources :musicians, except: [:destroy] do
-      # resources :matters, except: [:new, :create, :destroy]
+      resources :musician_matterslists, only: [:index]
     end
 
     resources :matters, only: [:new, :create, :show, :edit, :update] do

@@ -2,12 +2,17 @@
 %br
 - if user_signed_in?
   - if current_user.id == @musician.user_id
-    = link_to "案件依頼を作成する", new_matter_path
+    = link_to "★ 案件依頼を作成する", new_matter_path
     %br
-    = link_to "アーティストプロフィールを編集する", "/musicians/#{@musician.id}/edit"
-%br
-= image_tag @musician.image.url, class: '', width: '300'
-%br
+    = link_to "★ アーティストプロフィールを編集する", "/musicians/#{@musician.id}/edit"
+    %br
+    = link_to "★ 依頼を出した案件の一覧", "/musicians/#{@musician.id}/musician_matterslists"
+    %br
+
+
+.artist-image
+  = image_tag @musician.image.url, class: '', width: '300'
+
 ■アーティスト名：
 = @musician.name
 %br
