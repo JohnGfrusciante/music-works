@@ -8,9 +8,16 @@ Rails.application.routes.draw do
       post 'performance', to: 'users/registrations#performance'
       get 'done', to: 'users/registrations#done'
       post 'done', to: 'users/registrations#done'
+      get 'edit_user', to: 'users/registrations#edit_user'
+      post 'edit_user', to: 'users/registrations#edit_user'
+      get 'update_user', to: 'users/registrations#update_user'
+      put 'update_user', to: 'users/registrations#update_user'
       get 'logout', to: "users#logout"
     end
     root to: "matters#index"
+
+
+    resources :mypages, except: [:destroy]
 
     resources :musicians, except: [:destroy] do
       resources :musician_matterslists, only: [:index]

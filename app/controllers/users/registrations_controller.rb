@@ -31,6 +31,16 @@ class Users::RegistrationsController < Devise::RegistrationsController
     sign_in(:user, @user)
   end
 
+
+  def edit_user
+    @user = User.find_by(id: current_user.id)
+  end
+
+  def update_user
+    @user = User.find_by(id: current_user.id)
+    @user.update!(user_params)
+  end
+
   # POST /resource
   # def create
   #   super
@@ -66,6 +76,14 @@ class Users::RegistrationsController < Devise::RegistrationsController
   def configure_sign_up_params
     devise_parameter_sanitizer.permit(:sign_up, keys: [:attribute])
   end
+
+
+  private
+  def user_params
+    params.require(:user).permit(:name, :name_kana, :email, :tel, :birthday, :status, :prefecture, :introduction, :performance, :portfolio)
+  end
+
+
 
   # If you have extra params to permit, append them to the sanitizer.
   # def configure_account_update_params
