@@ -11,7 +11,10 @@
 
 
 .artist-image
-  = image_tag @musician.image.url, class: '', width: '300'
+  - if @musician.image.present?
+    = image_tag @musician.image.url, class: '', width: '300'
+  - else
+    アーティスト写真の登録はありません。
 
 ■アーティスト名：
 = @musician.name
