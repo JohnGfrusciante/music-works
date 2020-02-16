@@ -18,6 +18,7 @@ Rails.application.routes.draw do
 
 
     resources :mypages, except: [:destroy]
+    resources :applications_lists, only: [:index]
 
     resources :musicians, except: [:destroy] do
       resources :musician_matterslists, only: [:index]

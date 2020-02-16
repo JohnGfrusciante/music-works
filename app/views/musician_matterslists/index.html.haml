@@ -6,5 +6,9 @@
       .matters-list__content__title
         = link_to "案件名：#{matter.title}", "/matters/#{matter.id}", method: :get
 
+- if @matters.blank?
+  ※まだ案件の依頼は出していません。
+  %br
+
 %br
 = link_to "TOPページへ戻る", root_path
