@@ -1,0 +1,22 @@
+案件依頼アーティストとのチャットリスト
+%br
+%br
+
+%ul.chat-list
+  - @chat_lists.each do |chat_list|
+    %li.chat-list__content
+      .chat-list__content__title
+        = link_to "案件名：#{chat_list.matter.title}", "/matters/#{chat_list.matter.id}/chats/#{chat_list.id}/messages", method: :get
+        %br
+        依頼アーティスト：
+        = chat_list.matter.musician.name
+        %br
+        %br
+
+
+- if @chat_lists.blank?
+  ※チャット質問は、まだ行われておりません。
+
+%br
+%br
+= link_to "TOPページへ戻る", root_path

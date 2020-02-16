@@ -1,11 +1,22 @@
 応募した案件の一覧
 %br
+%br
 
 %ul.applications-list
   - @applications.each do |application|
     %li.applications-list__content
       .applications-list__content__title
         = link_to "案件名：#{application.matter.title}", "/matters/#{application.matter.id}", method: :get
+        %br
+        依頼アーティスト：
+        = application.matter.musician.name
+        %br
+        応募締切日：
+        = application.matter.end
+        %br
+        %br
+
+
 
 - if @applications.blank?
   ※まだ応募した案件はありません。
