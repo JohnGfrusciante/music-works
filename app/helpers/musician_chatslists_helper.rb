@@ -1,0 +1,2 @@
+module MusicianChatslistsHelper
+end
