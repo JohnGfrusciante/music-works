@@ -14,7 +14,7 @@
         %br
         応募者：
         - Application.where(matter_id: matter.id).each do |application|
-          = link_to "#{application.user.name}", "/matters/#{matter.id}/applications/#{application.id}/applied_users"
+          = link_to "#{application.user.name}", "/matters/#{matter.id}/applications/#{application.id}/applied_users", target: blank?
           |
         %br
         %br

@@ -6,15 +6,20 @@
   - @chat_lists.each do |chat_list|
     %li.artist-chatlist__content
       .artist-chatlist__content__title
-        = link_to "案件名：#{chat_list.matter.title}", "/matters/#{chat_list.matter.id}/chats/#{chat_list.id}/messages", method: :get
+        = link_to "案件名：#{chat_list.matter.title}", "/matters/#{chat_list.matter.id}/chats/#{chat_list.id}/reply_messages", method: :get
         %br
-        ユーザー名：
+        質問者：
         = chat_list.user.name
         %br
-        最新の投稿：
-        - @last_messages.each do |last_message|
-          - if last_message.chat_id == chat_list.id
-            = last_message.content
+        【投稿内容】
+        %br
+        - @messages.each do |message|
+          - if message.chat_id == chat_list.id
+            = message.user.name
+            ：
+            = message.content
+            = message.created_at.strftime("%Y年%m月%d日 %H時%M分")
+            %br
         %br
         %br
 
