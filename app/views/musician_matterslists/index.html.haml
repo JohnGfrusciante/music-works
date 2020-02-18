@@ -1,10 +1,23 @@
 依頼を出した案件の一覧
+%br
+%br
 
 %ul.matters-list
   - @matters.each do |matter|
     %li.matters-list__content
       .matters-list__content__title
         = link_to "案件名：#{matter.title}", "/matters/#{matter.id}", method: :get
+        %br
+        応募結果：
+        = Application.where(matter_id: matter.id).count
+        件
+        %br
+        応募者：
+        - Application.where(matter_id: matter.id).each do |application|
+          = link_to "#{application.user.name}", "/matters/#{matter.id}/applications/#{application.id}/applied_users"
+          |
+        %br
+        %br
 
 - if @matters.blank?
   ※まだ案件の依頼は出していません。
