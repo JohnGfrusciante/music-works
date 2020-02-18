@@ -32,6 +32,7 @@ Rails.application.routes.draw do
       end
       resources :chats, only: [:create] do
         resources :messages, except: [:show]
+        resources :reply_messages, except: [:show]
       end
     end
 

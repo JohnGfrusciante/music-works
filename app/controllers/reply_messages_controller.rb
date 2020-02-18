@@ -1,4 +1,4 @@
-class MessagesController < ApplicationController
+class ReplyMessagesController < ApplicationController
 
   before_action :set_matter, only: [:index, :create, :edit, :update, :destroy]
   before_action :set_chat, only: [:index, :create, :edit, :update, :destroy]
@@ -11,7 +11,7 @@ class MessagesController < ApplicationController
   def create
     @message = Message.new(message_params)
     @message.save!
-    redirect_to controller: :messages, action: :index
+    redirect_to controller: :reply_messages, action: :index
   end
 
   def edit
@@ -21,14 +21,15 @@ class MessagesController < ApplicationController
   def update
     message_edit = Message.find(params[:id])
     message_edit.update(message_params)
-    redirect_to controller: :messages, action: :index
+    redirect_to controller: :reply_messages, action: :index
   end
 
   def destroy
     message = Message.find(params[:id])
     message.destroy
-    redirect_to controller: :messages, action: :index
+    redirect_to controller: :reply_messages, action: :index
   end
+
 
 
   private
@@ -41,8 +42,7 @@ class MessagesController < ApplicationController
   end
 
   def set_chat
-    @chat = Chat.find_by(matter_id: @matter.id, user_id: current_user.id)
+    @chat = Chat.find(params[:chat_id])
   end
 
 end
-

@@ -1,4 +1,5 @@
-質問ユーザー用チャット
+アーティスト返信用チャット
+
 %br
 案件名：
 = @chat.matter.title
@@ -7,7 +8,7 @@
 = @chat.user.name
 %br
 依頼アーティスト：
-= link_to "#{@chat.matter.musician.name}", "/musicians/#{@chat.matter.musician.id}", target: blank?
+= @chat.matter.musician.name
 %br
 %br
 
@@ -17,35 +18,32 @@
     %li.messages-list__content
       .messages-list__content--nema
         - if message.user_id == current_user.id
-          = message.user.name
-        - else
           = message.user.musician.name
+        - else
+          = message.user.name
       .messages-list__content--created-time
         = message.created_at.strftime("%Y年%m月%d日 %H時%M分")
       .messages-list__content--content
         = message.content
       - if message.user_id == current_user.id
         .messages-list__content--edit
-          = link_to "編集", "/matters/#{@matter.id}/chats/#{@chat.id}/messages/#{message.id}/edit"
+          = link_to "編集", "/matters/#{@matter.id}/chats/#{@chat.id}/reply_messages/#{message.id}/edit"
         .messages-list__content--delete
-          = link_to "削除", "/matters/#{@matter.id}/chats/#{@chat.id}/messages/#{message.id}", method: :delete
+          = link_to "削除", "/matters/#{@matter.id}/chats/#{@chat.id}/reply_messages/#{message.id}", method: :delete
       %br
 
 
 %br
 %br
-%h2 【質問入力フォーム】
-= form_for(@message, url: "/matters/#{@matter.id}/chats/#{@chat.id}/messages", method: :post) do |f|
+%h2 【返信入力フォーム】
+= form_for(@message, url: "/matters/#{@matter.id}/chats/#{@chat.id}/reply_messages", method: :post) do |f|
   = render "devise/shared/error_messages", resource: @message
 
   = f.text_field :content, autofocus: true, autocomplete: "content", placeholder: "" ,class: ''
 
   .actions
-  = f.submit "質問を投稿する"
+  = f.submit "返信を投稿する"
   %br
   %br
 
 = link_to "TOPページへ戻る", root_path
-
-
-
