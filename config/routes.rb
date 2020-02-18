@@ -27,7 +27,9 @@ Rails.application.routes.draw do
     end
 
     resources :matters, only: [:new, :create, :show, :edit, :update] do
-      resources :applications, only: [:create, :destroy]
+      resources :applications, only: [:create, :destroy] do
+        resources :applied_users, only: [:index]
+      end
       resources :chats, only: [:create] do
         resources :messages, except: [:show]
       end
