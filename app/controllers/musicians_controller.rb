@@ -2,7 +2,7 @@ class MusiciansController < ApplicationController
   before_action :set_musician, only: [:edit, :show, :update]
 
   def index
-    
+
   end
 
   def new
@@ -15,7 +15,10 @@ class MusiciansController < ApplicationController
   end
 
   def show
-    
+    @chat = Chat.where(matter_id: current_user.musician.matters.ids)
+    @messages = Message.where(chat_id: @chat.ids)
+    @not_musician_messages = @messages.where.not(user_id: current_user.id)
+    @unread_messages = @not_musician_messages.where(status: 0)
   end
 
   def edit

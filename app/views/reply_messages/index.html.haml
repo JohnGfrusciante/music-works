@@ -30,6 +30,12 @@
           = link_to "編集", "/matters/#{@matter.id}/chats/#{@chat.id}/reply_messages/#{message.id}/edit"
         .messages-list__content--delete
           = link_to "削除", "/matters/#{@matter.id}/chats/#{@chat.id}/reply_messages/#{message.id}", method: :delete
+      - else
+        .messages-list__content--read
+          - if message.status == 0
+            = link_to "既読にする", "/matters/#{@matter.id}/chats/#{@chat.id}/reply_messages/#{message.id}/already_read", method: :put
+          - else
+            = link_to "未読にする", "/matters/#{@matter.id}/chats/#{@chat.id}/reply_messages/#{message.id}/unread", method: :put
       %br
 
 
@@ -39,11 +45,17 @@
 = form_for(@message, url: "/matters/#{@matter.id}/chats/#{@chat.id}/reply_messages", method: :post) do |f|
   = render "devise/shared/error_messages", resource: @message
 
-  = f.text_field :content, autofocus: true, autocomplete: "content", placeholder: "" ,class: ''
+  = f.text_field :content, autocomplete: "content", placeholder: "" ,class: ''
 
   .actions
   = f.submit "返信を投稿する"
   %br
   %br
 
+
+%br
+= link_to "アーティスト用チャット一覧ページへ戻る", musician_chatslists_path
+%br
+= link_to "アーティストページへ戻る", musician_path(id: current_user.musician.id)
+%br
 = link_to "TOPページへ戻る", root_path

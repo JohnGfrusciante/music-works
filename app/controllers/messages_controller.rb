@@ -31,10 +31,26 @@ class MessagesController < ApplicationController
   end
 
 
+  def already_read
+    message = Message.find(params[:message_id])
+    message.status = 1
+    message.save!
+    redirect_to controller: :messages, action: :index
+  end
+
+  def unread
+    message = Message.find(params[:message_id])
+    message.status = 0
+    message.save!
+    redirect_to controller: :messages, action: :index
+  end
+
+
   private
   def message_params
     params.require(:message).permit(:content, :status).merge(user_id: current_user.id, chat_id: @chat.id)
   end
+
 
   def set_matter
     @matter = Matter.find(params[:matter_id])
@@ -45,4 +61,3 @@ class MessagesController < ApplicationController
   end
 
 end
-

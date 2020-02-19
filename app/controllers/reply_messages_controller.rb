@@ -30,6 +30,19 @@ class ReplyMessagesController < ApplicationController
     redirect_to controller: :reply_messages, action: :index
   end
 
+  def already_read
+    message = Message.find(params[:reply_message_id])
+    message.status = 1
+    message.save!
+    redirect_to controller: :reply_messages, action: :index
+  end
+
+  def unread
+    message = Message.find(params[:reply_message_id])
+    message.status = 0
+    message.save!
+    redirect_to controller: :reply_messages, action: :index
+  end
 
 
   private
@@ -46,3 +59,4 @@ class ReplyMessagesController < ApplicationController
   end
 
 end
+
