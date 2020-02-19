@@ -40,6 +40,9 @@ Rails.application.routes.draw do
           put 'unread', to: 'reply_messages#unread'
         end
       end
+      collection do
+        get 'search'
+      end
     end
 
 end
