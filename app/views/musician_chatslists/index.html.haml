@@ -7,6 +7,9 @@
     %li.artist-chatlist__content
       .artist-chatlist__content__title
         = link_to "案件名：#{chat_list.matter.title}", "/matters/#{chat_list.matter.id}/chats/#{chat_list.id}/reply_messages", method: :get
+        - @unread_messages.find do |unread_message|
+          - if unread_message.chat.id == chat_list.id
+            ※未読のメッセージがあります。
         %br
         質問者：
         = chat_list.user.name
@@ -15,7 +18,10 @@
         %br
         - @messages.each do |message|
           - if message.chat_id == chat_list.id
-            = message.user.name
+            - if message.user_id == current_user.id
+              = message.user.musician.name
+            - else
+              = message.user.name
             ：
             = message.content
             = message.created_at.strftime("%Y年%m月%d日 %H時%M分")

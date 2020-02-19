@@ -31,8 +31,14 @@ Rails.application.routes.draw do
         resources :applied_users, only: [:index]
       end
       resources :chats, only: [:create] do
-        resources :messages, except: [:show]
-        resources :reply_messages, except: [:show]
+        resources :messages, except: [:show] do
+          put 'already_read', to: 'messages#already_read'
+          put 'unread', to: 'messages#unread'
+        end
+        resources :reply_messages, except: [:show] do
+          put 'already_read', to: 'reply_messages#already_read'
+          put 'unread', to: 'reply_messages#unread'
+        end
       end
     end
 

@@ -9,6 +9,8 @@
     = link_to "★ 依頼を出した案件の一覧", "/musicians/#{@musician.id}/musician_matterslists"
     %br
     = link_to "★ アーティスト用チャット一覧ページ", "/musician_chatslists"
+    - if @unread_messages.present?
+      ※未読のメッセージがあります。
     %br
 
 
@@ -90,7 +92,6 @@
 - else
   情報はありません。
 %br
-
 
 
 = link_to "TOPページへ戻る", root_path
