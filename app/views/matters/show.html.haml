@@ -40,6 +40,7 @@
   = @matter.supplement
 - else
   指定はありません。
+
 %br
 - if user_signed_in?
   - if @chat_user_id.present?
@@ -53,18 +54,24 @@
   - else
     = link_to "案件内容をチャットで質問する", "/matters/#{@matter.id}/chats", method: :post
     %br
-  - if current_user.already_applied?(@matter)
-    ※この案件は既に応募済みです。
-    %br
-    = link_to "応募を取り消す", "/matters/#{@matter.id}/applications/#{@matter.id}", method: :delete
-    %br
-  - else
-    - if @musician_user_id.present? and current_user.musician.id == @matter.musician_id
-      ※案件依頼ユーザーのため応募できません。
+
+  - if @matter.deadline > @deadline
+    - if current_user.already_applied?(@matter)
+      ※この案件は既に応募済みです。
+      %br
+      = link_to "応募を取り消す", "/matters/#{@matter.id}/applications/#{@matter.id}", method: :delete
       %br
     - else
-      = link_to "この仕事に応募する", "/matters/#{@matter.id}/applications", method: :post
-      %br
+      - if @musician_user_id.present? and current_user.musician.id == @matter.musician_id
+        ※案件依頼ユーザーのため応募できません。
+        %br
+      - else
+        = link_to "この仕事に応募する", "/matters/#{@matter.id}/applications", method: :post
+        %br
+  - else
+    ※この案件は受付を締め切りました。
+    %br
+
 - else
   ※お仕事のご応募には、会員登録が必要です。
   %br
