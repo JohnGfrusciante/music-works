@@ -58,7 +58,7 @@
       ・業務内容
     .content__required
       必須
-  = f.text_field :content, autofocus: true, autocomplete: "content", placeholder: "" ,class: ''
+  = f.text_area :content, autofocus: true, autocomplete: "content", placeholder: "" ,class: ''
   %br
   %br
 
@@ -68,7 +68,7 @@
       ・お支払い方法
     .payment__norequired
       任意
-  = f.text_field :payment, autofocus: true, autocomplete: "payment", placeholder: "" ,class: ''
+  = f.text_field :payment, autofocus: true, autocomplete: "payment", placeholder: "例）銀行振込、現金でのお支払い" ,class: ''
   %br
   %br
 
@@ -78,7 +78,7 @@
       ・補足情報
     .supplement__norequired
       任意
-  = f.text_field :supplement, autofocus: true, autocomplete: "supplement", placeholder: "" ,class: ''
+  = f.text_area :supplement, autofocus: true, autocomplete: "supplement", placeholder: "" ,class: ''
   %br
   %br
 

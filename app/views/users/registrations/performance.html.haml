@@ -18,12 +18,12 @@
   .introduction
     .introduction__title
       自己紹介
-  = f.text_field :introduction, autofocus: true, autocomplete: "introduction", placeholder: "200文字程度で自己紹介文をご入力ください" ,class: 'introduction-form'
+  = f.text_area :introduction, autofocus: true, autocomplete: "introduction", placeholder: "200文字程度で自己紹介文をご入力ください" ,class: 'introduction-form'
 
   .performance
     .performance__title
       活動実績
-  = f.text_field :performance, autofocus: true, autocomplete: "performance", placeholder: "これまでの活動実績をご入力ください" ,class: 'performance-form'
+  = f.text_area :performance, autofocus: true, autocomplete: "performance", placeholder: "これまでの活動実績をご入力ください" ,class: 'performance-form'
 
   .portfolio
     .portfolio__title
@@ -34,6 +34,4 @@
   .actions
     = f.submit "会員登録する"
 
-
--# = render "users/shared/links"
 

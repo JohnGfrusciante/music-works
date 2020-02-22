@@ -15,10 +15,14 @@ class MusiciansController < ApplicationController
   end
 
   def show
-    @chat = Chat.where(matter_id: current_user.musician.matters.ids)
-    @messages = Message.where(chat_id: @chat.ids)
-    @not_musician_messages = @messages.where.not(user_id: current_user.id)
-    @unread_messages = @not_musician_messages.where(status: 0)
+    if user_signed_in?
+      if current_user.musician.present?
+        @chat = Chat.where(matter_id: current_user.musician.matters.ids)
+        @messages = Message.where(chat_id: @chat.ids)
+        @not_musician_messages = @messages.where.not(user_id: current_user.id)
+        @unread_messages = @not_musician_messages.where(status: 0)
+      end
+    end
   end
 
   def edit

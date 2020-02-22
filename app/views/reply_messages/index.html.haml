@@ -24,7 +24,7 @@
       .messages-list__content--created-time
         = message.created_at.strftime("%Y年%m月%d日 %H時%M分")
       .messages-list__content--content
-        = message.content
+        = safe_join(message.content.split("\n"),tag(:br))
       - if message.user_id == current_user.id
         .messages-list__content--edit
           = link_to "編集", "/matters/#{@matter.id}/chats/#{@chat.id}/reply_messages/#{message.id}/edit"
@@ -45,10 +45,10 @@
 = form_for(@message, url: "/matters/#{@matter.id}/chats/#{@chat.id}/reply_messages", method: :post) do |f|
   = render "devise/shared/error_messages", resource: @message
 
-  = f.text_field :content, autocomplete: "content", placeholder: "" ,class: ''
+  = f.text_area :content, autocomplete: "content", placeholder: "" ,class: ''
 
   .actions
-  = f.submit "返信を投稿する"
+  = f.submit "投稿する"
   %br
   %br
 

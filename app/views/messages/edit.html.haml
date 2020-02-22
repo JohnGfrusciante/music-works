@@ -4,7 +4,7 @@
 = form_for(@message, url: "/matters/#{@matter.id}/chats/#{@chat.id}/messages/#{@message.id}", method: :put) do |f|
   = render "devise/shared/error_messages", resource: @message
 
-  = f.text_field :content, autofocus: true, autocomplete: "content", placeholder: "" ,class: ''
+  = f.text_area :content, autofocus: true, autocomplete: "content", placeholder: "" ,class: ''
 
   .actions
   = f.submit "投稿内容を更新する"

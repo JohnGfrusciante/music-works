@@ -26,7 +26,7 @@
       ・バイオグラフィー
     .biography__required
       必須
-  = f.text_field :biography, autofocus: true, autocomplete: "biography", placeholder: "アーティストバイオグラフィーを入力してください" ,class: ''
+  = f.text_area :biography, autofocus: true, autocomplete: "biography", placeholder: "アーティストバイオグラフィーを入力してください" ,class: ''
   %br
   %br
 
@@ -36,7 +36,7 @@
       ・活動歴
     .history__required
       必須
-  = f.text_field :activity_history, autofocus: true, autocomplete: "activity_history", placeholder: "活動歴を入力してください" ,class: ''
+  = f.text_area :activity_history, autofocus: true, autocomplete: "activity_history", placeholder: "活動歴を入力してください" ,class: ''
   %br
   %br
 
@@ -46,7 +46,7 @@
       ・活動場所
     .place__required
       必須
-  = f.text_field :activity_place, autofocus: true, autocomplete: "activity_place", placeholder: "例）東京都渋谷を中心に活動中" ,class: ''
+  = f.text_area :activity_place, autofocus: true, autocomplete: "activity_place", placeholder: "例）東京都渋谷を中心に活動中" ,class: ''
   %br
   %br
 
