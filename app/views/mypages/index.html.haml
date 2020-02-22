@@ -73,7 +73,7 @@
     ■ 自己紹介
   .introduction__content
     - if @user.introduction.present?
-      = @user.introduction
+      = safe_join(@user.introduction.split("\n"),tag(:br))
     - else
       登録されていません。
 %br
@@ -84,7 +84,7 @@
     ■ 活動実績
   .performance__content
     - if @user.performance.present?
-      = @user.performance
+      = safe_join(@user.performance.split("\n"),tag(:br))
     - else
       登録されていません。
 %br

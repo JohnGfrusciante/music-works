@@ -4,40 +4,51 @@
   - if current_user.musician.id == @matter.musician_id
     = link_to "案件依頼内容を編集する", "/matters/#{@matter.id}/edit"
     %br
+
 ■案件依頼アーティスト：
 = link_to "#{@matter.musician.name}", "/musicians/#{@matter.musician.id}", target: blank?
 %br
+
 ■案件名：
 = @matter.title
 %br
+
 ■お支払い金額：
 = @matter.reward
 円
 %br
+
 ■応募受付終了日：
 = @matter.deadline
 %br
+
 ■業務開始予定日：
 - if @matter.start.present?
   = @matter.start
 - else
   指定はありません。
 %br
+
 ■業務開始終了日(希望納期)：
 = @matter.end
 %br
+
 ■業務内容：
-= @matter.content
 %br
+= safe_join(@matter.content.split("\n"),tag(:br))
+%br
+
 ■お支払い方法：
 - if @matter.payment.present?
   = @matter.payment
 - else
   指定はありません。
 %br
+
 ■補足情報：
+%br
 - if @matter.supplement.present?
-  = @matter.supplement
+  = safe_join(@matter.supplement.split("\n"),tag(:br))
 - else
   指定はありません。
 

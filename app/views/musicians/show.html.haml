@@ -23,48 +23,60 @@
 ■アーティスト名：
 = @musician.name
 %br
+
 ■バイオグラフィー：
-= @musician.biography
 %br
+= safe_join(@musician.biography.split("\n"),tag(:br))
+%br
+
 ■活動歴：
-= @musician.activity_history
 %br
+= safe_join(@musician.activity_history.split("\n"),tag(:br))
+%br
+
 ■活動場所：
 = @musician.activity_place
 %br
+
 ■連絡用メールアドレス：
 %a{ href: "mailto:#{@musician.email}"} #{@musician.email}
 %br
+
 ■アーティストHP：
 - if @musician.homepage.present?
   %a{ href: "#{@musician.homepage}", target: "_blank"} #{@musician.homepage}
 - else
   情報はありません。
 %br
+
 ■YouTube：
 - if @musician.youtube.present?
   %a{ href: "#{@musician.youtube}", target: "_blank"} #{@musician.youtube}
 - else
   情報はありません。
 %br
+
 ■Spotify：
 - if @musician.spotify.present?
   %a{ href: "#{@musician.spotify}", target: "_blank"} #{@musician.spotify}
 - else
   情報はありません。
 %br
+
 ■Apple Music：
 - if @musician.apple_music.present?
   %a{ href: "#{@musician.apple_music}", target: "_blank"} #{@musician.apple_music}
 - else
   情報はありません。
 %br
+
 ■Twitter：
 - if @musician.twitter.present?
   %a{ href: "#{@musician.twitter}", target: "_blank"} #{@musician.twitter}
 - else
   情報はありません。
 %br
+
 ■Facebook：
 - if @musician.facebook.present?
   %a{ href: "#{@musician.facebook}", target: "_blank"} #{@musician.facebook}
