@@ -36,21 +36,22 @@
 
 %ul.matters-list
   - @matters.each do |matter|
-    %li.matters-list__content
-      .matters-list__content__title
-        = link_to "案件名：#{matter.title}", "/matters/#{matter.id}", method: :get
-      .matters-list__content__reward
-        = matter.reward
-        円
-      .matters-list__content__deadline
-        応募締切日：
-        = matter.deadline
-      - if matter.start.present?
-        .matters-list__content__start
-          業務開始予定日：
-          = matter.start
-      .matters-list__content__end
-        業務終了予定日(希望納期)：
-        = matter.end
+    - if matter.deadline > @deadline
+      %li.matters-list__content
+        .matters-list__content__title
+          = link_to "案件名：#{matter.title}", "/matters/#{matter.id}", method: :get
+        .matters-list__content__reward
+          = matter.reward
+          円
+        .matters-list__content__deadline
+          応募締切日：
+          = matter.deadline
+        - if matter.start.present?
+          .matters-list__content__start
+            業務開始予定日：
+            = matter.start
+        .matters-list__content__end
+          業務終了予定日(希望納期)：
+          = matter.end
 
     %br

@@ -1,5 +1,6 @@
 class MattersController < ApplicationController
   before_action :set_matter, only: [:edit, :show]
+  before_action :set_deadline, only: [:index, :show]
 
   def index
     @matters = Matter.all.order("created_at DESC")
@@ -44,6 +45,10 @@ class MattersController < ApplicationController
 
   def set_matter
     @matter = Matter.find(params[:id])
+  end
+
+  def set_deadline
+    @deadline = Time.zone.now - 1.days
   end
 
 end
