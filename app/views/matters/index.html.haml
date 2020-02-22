@@ -55,6 +55,6 @@
           = matter.end
         .matters-list__content__musician-name
           案件依頼アーティスト：
-          = matter.musician.name
+          = link_to "#{matter.musician.name}", "/musicians/#{matter.musician.id}", target: blank?
 
     %br
