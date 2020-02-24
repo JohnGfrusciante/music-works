@@ -8,6 +8,9 @@
       .applications-list__content__title
         = link_to "案件名：#{application.matter.title}", "/matters/#{application.matter.id}", method: :get
         %br
+        案件カテゴリ：
+        = application.matter.matter_category.name
+        %br
         依頼アーティスト：
         = application.matter.musician.name
         %br

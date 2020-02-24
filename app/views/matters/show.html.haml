@@ -5,6 +5,20 @@
     = link_to "案件依頼内容を編集する", "/matters/#{@matter.id}/edit"
     %br
 
+
+- if user_signed_in?
+  - if current_user.already_liked?(@matter)
+    = link_to "この仕事のブックマークを取り消す", "/matters/#{@matter.id}/likes/#{@matter.id}", method: :delete
+    %br
+  - else
+    - if @musician_user_id.present? and current_user.musician.id == @matter.musician_id
+      ※案件依頼ユーザーのためブックマークはできません。
+      %br
+    - else
+      = link_to "この仕事をブックマークする", "/matters/#{@matter.id}/likes", method: :post
+      %br
+
+
 ■案件依頼アーティスト：
 = link_to "#{@matter.musician.name}", "/musicians/#{@matter.musician.id}", target: blank?
 %br

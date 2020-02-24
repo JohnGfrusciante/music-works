@@ -19,6 +19,7 @@ Rails.application.routes.draw do
 
     resources :mypages, except: [:destroy]
     resources :applications_lists, only: [:index]
+    resources :likes, only: [:index]
     resources :user_chatslists, only: [:index]
     resources :musician_chatslists, only: [:index]
 
@@ -27,6 +28,7 @@ Rails.application.routes.draw do
     end
 
     resources :matters, only: [:new, :create, :show, :edit, :update] do
+      resources :likes, only: [:create, :destroy]
       resources :applications, only: [:create, :destroy] do
         resources :applied_users, only: [:index]
       end
