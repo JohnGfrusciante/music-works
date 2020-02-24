@@ -28,9 +28,16 @@
 %br
 
 %div
+  ■キーワードで検索
   = form_with(url: search_matters_path, local: true, method: :get, class: "search-form") do |f|
     = f.text_field :search_word, autocomplete: "content", placeholder: "案件を検索する" ,class: 'search-input'
     = f.submit "検索"
+%div
+  ■案件カテゴリで検索
+  = form_with(url: category_search_matters_path, local: true, method: :get, class: "search-form") do |f|
+    = f.collection_select :matter_category_id, MatterCategory.all, :id, :name, prompt: "カテゴリを選択してください"
+    = f.submit "検索"
+
 
 %br
 
@@ -40,7 +47,11 @@
       %li.matters-list__content
         .matters-list__content__title
           = link_to "案件名：#{matter.title}", "/matters/#{matter.id}", method: :get
+        .matters-list__content__category
+          案件カテゴリ：
+          = matter.matter_category.name
         .matters-list__content__reward
+          お支払い金額：
           = matter.reward
           円
         .matters-list__content__deadline
