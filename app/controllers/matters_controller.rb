@@ -37,10 +37,13 @@ class MattersController < ApplicationController
     @matter_searchs = Matter.search(params[:search_word])
   end
 
+  def category_search
+    @matter_category_searchs = Matter.where(matter_category_id: params[:matter_category_id])
+  end
 
   private
   def matter_params
-    params.require(:matter).permit(:title, :reward, :deadline, :start, :end, :content, :payment, :supplement, :status).merge(musician_id: current_user.musician.id)
+    params.require(:matter).permit(:title, :reward, :deadline, :start, :end, :content, :payment, :supplement, :status, :matter_category_id).merge(musician_id: current_user.musician.id)
   end
 
   def set_matter

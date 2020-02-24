@@ -12,6 +12,16 @@
   %br
 
 
+  .title
+    .category__title
+      ・案件カテゴリ
+    .category__required
+      必須
+  = f.collection_select :matter_category_id, MatterCategory.all, :id, :name, prompt: "カテゴリを選択してください"
+  %br
+  %br
+
+
   .reward
     .reward__title
       ・お支払い金額

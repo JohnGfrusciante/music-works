@@ -1,6 +1,6 @@
 検索結果
 %br
-= @matter_searchs.count
+= @matter_category_searchs.count
 件がヒットしました。
 %br
 
@@ -17,7 +17,7 @@
 %br
 
 %ul.matters-list
-  - @matter_searchs.each do |matter|
+  - @matter_category_searchs.each do |matter|
     %li.matters-list__content
       .matters-list__content__title
         = link_to "案件名：#{matter.title}", "/matters/#{matter.id}", method: :get
