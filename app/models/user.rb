@@ -35,4 +35,9 @@ class User < ApplicationRecord
   def already_applied?(matter)
     self.applications.exists?(matter_id: matter.id)
   end
+
+  def already_liked?(matter)
+    self.likes.exists?(matter_id: matter.id)
+  end
+
 end
