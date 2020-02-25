@@ -12,7 +12,7 @@
         = like.matter.matter_category.name
         %br
         依頼アーティスト：
-        = like.matter.musician.name
+        = link_to "#{like.matter.musician.name}", "/musicians/#{like.matter.musician.id}", target: blank?
         %br
         応募締切日：
         = like.matter.end
