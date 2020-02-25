@@ -12,7 +12,7 @@
         = application.matter.matter_category.name
         %br
         依頼アーティスト：
-        = application.matter.musician.name
+        = link_to "#{application.matter.musician.name}", "/musicians/#{application.matter.musician.id}", target: blank?
         %br
         応募締切日：
         = application.matter.end
