@@ -6,7 +6,7 @@
     %br
     = link_to "★ アーティストプロフィールを編集する", "/musicians/#{@musician.id}/edit"
     %br
-    = link_to "★ 依頼を出した案件の一覧", "/musicians/#{@musician.id}/musician_matterslists"
+    = link_to "★ 案件の応募結果", "/musicians/#{@musician.id}/musician_matterslists"
     %br
     = link_to "★ アーティスト用チャット一覧ページ", "/musician_chatslists"
     - if @unread_messages.present?
@@ -105,5 +105,32 @@
   情報はありません。
 %br
 
+- if @matters.present?
+  %br
+  ★アーティストの依頼案件一覧
+  %br
+  %ul.matters-list
+    - @matters.each do |matter|
+      %li.matters-list__content
+        .matters-list__content__title
+          = link_to "案件名：#{matter.title}", "/matters/#{matter.id}", method: :get
+          %br
+          案件カテゴリ：
+          = matter.matter_category.name
+          %br
+          お支払い金額：
+          = matter.reward
+          円
+          %br
+          依頼アーティスト：
+          = link_to "#{matter.musician.name}", "/musicians/#{matter.musician.id}", target: blank?
+          %br
+          応募締切日：
+          = matter.end
+          %br
+          %br
 
+
+
+%br
 = link_to "TOPページへ戻る", root_path
