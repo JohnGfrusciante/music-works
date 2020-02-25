@@ -69,3 +69,6 @@
           = link_to "#{matter.musician.name}", "/musicians/#{matter.musician.id}", target: blank?
 
     %br
+
+  = paginate @matters
+  

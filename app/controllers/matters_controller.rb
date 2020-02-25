@@ -2,8 +2,10 @@ class MattersController < ApplicationController
   before_action :set_matter, only: [:edit, :show]
   before_action :set_deadline, only: [:index, :show]
 
+  PER = 3
+
   def index
-    @matters = Matter.all.order("created_at DESC")
+    @matters = Matter.page(params[:page]).per(PER).order("created_at DESC")
     @musician_user_id = Musician.find_by(user_id: current_user)
   end
 
