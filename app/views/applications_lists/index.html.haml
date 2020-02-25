@@ -11,6 +11,10 @@
         案件カテゴリ：
         = application.matter.matter_category.name
         %br
+        お支払い金額：
+        = application.matter.reward
+        円
+        %br
         依頼アーティスト：
         = link_to "#{application.matter.musician.name}", "/musicians/#{application.matter.musician.id}", target: blank?
         %br
