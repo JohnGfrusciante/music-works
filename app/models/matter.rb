@@ -7,10 +7,9 @@ class Matter < ApplicationRecord
   belongs_to :matter_category
   def self.search(search)
     if search
-      Matter.where(['title LIKE ? OR content LIKE ?', "%#{search}%", "%#{search}%"])
+      Matter.joins(:musician).where(['title LIKE ? OR content LIKE ? OR name LIKE ?', "%#{search}%", "%#{search}%", "%#{search}%"])
     else
       Matter.all
     end
   end
 end
-
