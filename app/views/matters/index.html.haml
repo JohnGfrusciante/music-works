@@ -46,7 +46,7 @@
     - if matter.deadline > @deadline
       %li.matters-list__content
         .matters-list__content__title
-          = link_to "案件名：#{matter.title}", "/matters/#{matter.id}", method: :get
+          = link_to "案件名：#{matter.title}", "/matters/#{matter.id}", method: :get, target: blank?
         .matters-list__content__category
           案件カテゴリ：
           = matter.matter_category.name
@@ -71,4 +71,3 @@
     %br
 
   = paginate @matters
-  

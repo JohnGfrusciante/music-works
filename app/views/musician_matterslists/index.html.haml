@@ -1,4 +1,7 @@
 案件の応募結果
+.breadcrumb
+  - breadcrumb :musician_matterslists
+  = breadcrumbs separator: " &rsaquo; "
 %br
 %br
 
@@ -6,7 +9,7 @@
   - @matters.each do |matter|
     %li.matters-list__content
       .matters-list__content__title
-        = link_to "案件名：#{matter.title}", "/matters/#{matter.id}", method: :get
+        = link_to "案件名：#{matter.title}", "/matters/#{matter.id}", method: :get, target: blank?
         %br
         応募結果：
         = Application.where(matter_id: matter.id).count
@@ -22,6 +25,3 @@
 - if @matters.blank?
   ※まだ案件の依頼は出していません。
   %br
-
-%br
-= link_to "TOPページへ戻る", root_path

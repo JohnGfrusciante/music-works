@@ -1,5 +1,8 @@
 会員マイページ
-%br
+.breadcrumb
+  - breadcrumb :mypage
+  = breadcrumbs separator: " &rsaquo; "
+  %br
 = link_to "会員情報編集ページへ", "/edit_user"
 %br
 = link_to "ブックマークした案件の一覧ページへ", "/likes"
@@ -101,8 +104,3 @@
     - else
       登録されていません。
 %br
-
-
-
-%br
-= link_to "TOPページへ戻る", root_path

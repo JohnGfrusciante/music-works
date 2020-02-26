@@ -1,6 +1,9 @@
 案件依頼アーティストとのチャットリスト
+.breadcrumb
+  - breadcrumb :user_chatslist
+  = breadcrumbs separator: " &rsaquo; "
 %br
-%br
+
 
 %ul.chat-list
   - @chat_lists.each do |chat_list|
@@ -32,8 +35,3 @@
 
 - if @chat_lists.blank?
   ※チャット質問は、まだ行われておりません。
-
-%br
-%br
-= link_to "TOPページへ戻る", root_path
-

@@ -1,4 +1,8 @@
 %h2 アーティストプロフィール編集フォーム
+.breadcrumb
+  - breadcrumb :edit_musician
+  = breadcrumbs separator: " &rsaquo; "
+
 = form_for(@musician, url: "/musicians/#{@musician.id}", method: :put) do |f|
   = render "devise/shared/error_messages", resource: @musician
 

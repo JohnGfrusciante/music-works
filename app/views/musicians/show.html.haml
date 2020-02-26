@@ -2,6 +2,10 @@
 %br
 - if user_signed_in?
   - if current_user.id == @musician.user_id
+    .breadcrumb
+      - breadcrumb :musician
+      = breadcrumbs separator: " &rsaquo; "
+      %br
     = link_to "★ 案件依頼を作成する", new_matter_path
     %br
     = link_to "★ アーティストプロフィールを編集する", "/musicians/#{@musician.id}/edit"
@@ -129,8 +133,3 @@
           = matter.end
           %br
           %br
-
-
-
-%br
-= link_to "TOPページへ戻る", root_path
