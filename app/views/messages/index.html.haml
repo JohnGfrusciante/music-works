@@ -1,4 +1,8 @@
 質問ユーザー用チャット
+.breadcrumb
+  - breadcrumb :user_chatpage
+  = breadcrumbs separator: " &rsaquo; "
+
 %br
 案件名：
 = @chat.matter.title
@@ -48,13 +52,3 @@
 
   .actions
   = f.submit "投稿する"
-  %br
-  %br
-
-
-%br
-= link_to "チャットリスト一覧ページへ戻る", user_chatslists_path
-%br
-= link_to "会員マイページへ戻る", mypages_path
-%br
-= link_to "TOPページへ戻る", root_path

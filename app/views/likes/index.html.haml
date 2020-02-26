@@ -1,12 +1,15 @@
 ブックマークした案件の一覧ページ
+.breadcrumb
+  - breadcrumb :likes_list
+  = breadcrumbs separator: " &rsaquo; "
 %br
-%br
+
 
 %ul.likes-list
   - @likes.each do |like|
     %li.likes-list__content
       .likes-list__content__title
-        = link_to "案件名：#{like.matter.title}", "/matters/#{like.matter.id}", method: :get
+        = link_to "案件名：#{like.matter.title}", "/matters/#{like.matter.id}", method: :get, target: blank?
         %br
         案件カテゴリ：
         = like.matter.matter_category.name
@@ -27,7 +30,3 @@
 
 - if @likes.blank?
   ※まだブックマークした案件はありません。
-
-%br
-%br
-= link_to "TOPページへ戻る", root_path

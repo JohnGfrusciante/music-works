@@ -1,4 +1,8 @@
 会員情報編集フォーム
+.breadcrumb
+  - breadcrumb :edit_user
+  = breadcrumbs separator: " &rsaquo; "
+  %br
 
 = form_for(@user, url: "/update_user", method: :put) do |f|
   = render "devise/shared/error_messages", resource: @user
@@ -75,9 +79,3 @@
 
   .actions
     = f.submit "会員情報を更新する"
-
-
-
-
-%br
-= link_to "TOPページへ戻る", root_path

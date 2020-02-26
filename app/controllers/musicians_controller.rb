@@ -15,7 +15,7 @@ class MusiciansController < ApplicationController
   end
 
   def show
-    @matters = Matter.where(musician_id: @musician.id)
+    @matters = Matter.where(musician_id: @musician.id).order("created_at DESC")
     if user_signed_in?
       if current_user.musician.present?
         @chat = Chat.where(matter_id: current_user.musician.matters.ids)

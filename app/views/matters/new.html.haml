@@ -1,4 +1,8 @@
 %h2 案件依頼 入力フォーム
+.breadcrumb
+  - breadcrumb :new_matter
+  = breadcrumbs separator: " &rsaquo; "
+
 = form_for(@matter, url: matters_path) do |f|
   = render "devise/shared/error_messages", resource: @matter
 
@@ -95,6 +99,3 @@
 
   .actions
     = f.submit "案件依頼を作成する"
-
-
-= link_to "TOPページへ戻る", root_path

@@ -1,4 +1,7 @@
 アーティスト返信用チャット
+.breadcrumb
+  - breadcrumb :musician_chatpage
+  = breadcrumbs separator: " &rsaquo; "
 
 %br
 案件名：
@@ -51,11 +54,3 @@
   = f.submit "投稿する"
   %br
   %br
-
-
-%br
-= link_to "アーティスト用チャット一覧ページへ戻る", musician_chatslists_path
-%br
-= link_to "アーティストページへ戻る", musician_path(id: current_user.musician.id)
-%br
-= link_to "TOPページへ戻る", root_path

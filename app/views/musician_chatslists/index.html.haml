@@ -1,4 +1,7 @@
 アーティスト用チャット一覧ページ
+.breadcrumb
+  - breadcrumb :musician_chatslists
+  = breadcrumbs separator: " &rsaquo; "
 %br
 %br
 
@@ -32,7 +35,3 @@
 
 - if @chat_lists.blank?
   ※チャット質問は、まだ投稿されておりません。
-
-%br
-%br
-= link_to "TOPページへ戻る", root_path
