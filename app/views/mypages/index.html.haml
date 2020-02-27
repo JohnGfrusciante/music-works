@@ -104,3 +104,15 @@
     - else
       登録されていません。
 %br
+
+.skill
+  .skill__title
+    ■ スキル
+  .skill__content
+    - if @tags.present?
+      - @tags.each do |tag|
+        = tag.skill.name
+        |
+    - else
+      登録されていません。
+%br

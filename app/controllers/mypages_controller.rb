@@ -7,6 +7,7 @@ class MypagesController < ApplicationController
     @messages = Message.where(chat_id: @chat.ids)
     @not_user_messages = @messages.where.not(user_id: current_user.id)
     @unread_messages = @not_user_messages.where(status: 0)
+    @tags = Tag.where(user_id: current_user.id)
   end
 
 

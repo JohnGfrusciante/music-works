@@ -10,8 +10,8 @@ class User < ApplicationRecord
          has_many :applications
          has_many :chats
          has_many :messages
-         has_many :matter_categoryies, through: :tags
          has_many :tags
+         has_many :skills, through: :tags
          has_one :block
          has_one :musician
 

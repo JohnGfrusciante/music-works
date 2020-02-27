@@ -64,3 +64,51 @@ MatterCategory.create!(
     }
   ]
 )
+
+
+Skill.create!(
+  [
+    {
+      name: 'WEBデザイン'
+    },
+    {
+      name: '紙デザイン'
+    },
+    {
+      name: 'MV制作'
+    },
+    {
+      name: '撮影(静止画)'
+    },
+    {
+      name: '撮影(動画)'
+    },
+    {
+      name: '動画編集'
+    },
+    {
+      name: 'DTM'
+    },
+    {
+      name: 'ミキシング'
+    },
+    {
+      name: 'マスタリング'
+    },
+    {
+      name: 'PA'
+    },
+    {
+      name: '作詞'
+    },
+    {
+      name: '作曲'
+    },
+    {
+      name: '演奏サポート'
+    },
+    {
+      name: 'イラスト制作'
+    }
+  ]
+)

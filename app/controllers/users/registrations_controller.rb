@@ -11,6 +11,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
   end
 
   def performance
+    @skills = Skill.all
     @user = User.new(sign_up_params)
     session["devise.regist_data"] = {user: @user.attributes}
     session["devise.regist_data"][:user]["password"] = params[:user][:password]
@@ -27,19 +28,36 @@ class Users::RegistrationsController < Devise::RegistrationsController
     session["devise.regist_data"]["user"]["performance"] = params[:user][:performance]
     session["devise.regist_data"]["user"]["portfolio"] = params[:user][:portfolio]
     @user = User.new(session["devise.regist_data"]["user"])
+    @skill_ids = params[:user][:skill_ids]
     @user.save!
     sign_in(:user, @user)
+
+    @skill_ids.each do |skill_id|
+      @tag = Tag.new(skill_id: skill_id, user_id: current_user.id)
+      @tag.save!
+    end
   end
+
 
 
   def edit_user
     @user = User.find_by(id: current_user.id)
+    @skills = Skill.all
   end
 
   def update_user
     @user = User.find_by(id: current_user.id)
     @user.update!(user_params)
+    
+    @old_tags = Tag.where(user_id: current_user.id)
+    @skill_ids = params[:user][:skill_ids]
+
+    if @skill_ids.blank?
+      @old_tags.destroy_all
+    end
   end
+
+
 
   # POST /resource
   # def create
@@ -80,9 +98,8 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
   private
   def user_params
-    params.require(:user).permit(:name, :name_kana, :email, :tel, :birthday, :status, :prefecture, :introduction, :performance, :portfolio)
+    params.require(:user).permit(:name, :name_kana, :email, :tel, :birthday, :status, :prefecture, :introduction, :performance, :portfolio, skill_ids: [])
   end
-
 
 
   # If you have extra params to permit, append them to the sanitizer.
@@ -100,3 +117,4 @@ class Users::RegistrationsController < Devise::RegistrationsController
   #   super(resource)
   # end
 end
+
