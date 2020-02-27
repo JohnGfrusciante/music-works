@@ -76,6 +76,11 @@
       ポートフォリオなどの参考URL
   = f.url_field :portfolio, autofocus: true, autocomplete: "portfolio", placeholder: "" ,class: 'portfolio-form'
 
+  .skill
+    .skill__title
+      スキル(複数選択可)
+  = f.collection_check_boxes :skill_ids, @skills, :id, :name, include_hidden: false do |b|
+    = b.label { b.check_box + b.text }
 
   .actions
     = f.submit "会員情報を更新する"

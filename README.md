@@ -22,8 +22,8 @@
 - has_many :applications
 - has_many :chats
 - has_many :messages
-- has_many :matter_categoryies, through: :tags
 - has_many :tags
+- has_many :skills, through: :tags
 - has_one :block
 - has_one :musician
 
@@ -105,6 +105,13 @@
 |name|string|null: false|
 ### Association
 - has_many :matters
+
+
+## Skills Table
+|Column|Type|Options|
+|------|----|-------|
+|name|string|null: false|
+### Association
 - has_many :users, through: :tags
 - has_many :tags
 
@@ -116,7 +123,7 @@
 |matter_category_id|references|null: false, foreign_key: true|
 ### Association
 - belongs_to :user
-- belongs_to :matter_category
+- belongs_to :skill
 
 
 ## Likes Table

@@ -107,12 +107,18 @@ ActiveRecord::Schema.define(version: 2020_02_06_092345) do
     t.index ["user_id"], name: "index_musicians_on_user_id"
   end
 
-  create_table "tags", id: :integer, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
-    t.integer "user_id", null: false
-    t.integer "matter_category_id", null: false
+  create_table "skills", id: :integer, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.string "name", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["matter_category_id"], name: "index_tags_on_matter_category_id"
+  end
+
+  create_table "tags", id: :integer, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.integer "user_id", null: false
+    t.integer "skill_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["skill_id"], name: "index_tags_on_skill_id"
     t.index ["user_id"], name: "index_tags_on_user_id"
   end
 
@@ -150,6 +156,6 @@ ActiveRecord::Schema.define(version: 2020_02_06_092345) do
   add_foreign_key "messages", "chats"
   add_foreign_key "messages", "users"
   add_foreign_key "musicians", "users"
-  add_foreign_key "tags", "matter_categories"
+  add_foreign_key "tags", "skills"
   add_foreign_key "tags", "users"
 end
