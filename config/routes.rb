@@ -25,7 +25,14 @@ Rails.application.routes.draw do
 
     resources :musicians, except: [:destroy] do
       resources :musician_matterslists, only: [:index]
+
+      resources :tags, only: [:index] do
+        collection do
+          get 'user_search'
+        end
+      end
     end
+
 
     resources :matters, only: [:new, :create, :show, :edit, :update] do
       resources :likes, only: [:create, :destroy]
@@ -47,5 +54,7 @@ Rails.application.routes.draw do
         get 'category_search'
       end
     end
+
+
 
 end

@@ -1,0 +1,52 @@
+ユーザースキル検索結果
+%br
+= @user_skill_searchs.count
+件のユーザーがヒットしました。
+
+%div
+  = form_with(url: user_search_musician_tags_path(@musician), local: true, method: :get, class: "search-form") do |f|
+    = f.collection_select :skill_id, Skill.all, :id, :name, prompt: "スキルを選択してください"
+    = f.submit "検索"
+  %br
+
+%ul.users-list
+  - @user_skill_searchs.each do |tag|
+    %li.users-list__content
+      .users-list__content__name
+        ■氏名：
+        = tag.user.name
+      .users-list__content__birthday
+        ・生年月日：
+        = tag.user.birthday
+      .users-list__content__birthday
+        ・都道府県：
+        = tag.user.prefecture
+      .users-list__content__introduction
+        ・自己紹介
+        %br
+        - if tag.user.introduction.present?
+          = safe_join(tag.user.introduction.split("\n"),tag(:br))
+        - else
+          登録されていません。
+      .users-list__content__performance
+        ・活動実績
+        %br
+        - if tag.user.performance.present?
+          = safe_join(tag.user.performance.split("\n"),tag(:br))
+        - else
+          登録されていません。
+      .users-list__content__performance
+        ・ポートフォリオなどの参考URL：
+        - if tag.user.portfolio.present?
+          %a{ href: "#{tag.user.portfolio}", target: "_blank"} #{tag.user.portfolio}
+        - else
+          登録されていません。
+
+      .users-list__content__skill
+        ・スキル：
+        - tag.user.tags.each do |tag|
+          = tag.skill.name
+          |
+    %br
+
+= link_to "TOPページへ戻る", root_path

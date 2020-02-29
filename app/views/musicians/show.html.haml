@@ -16,6 +16,11 @@
     - if @unread_messages.present?
       ※未読のメッセージがあります。
     %br
+    ★ ユーザースキル検索
+    = form_with(url: user_search_musician_tags_path(@musician), local: true, method: :get, class: "search-form") do |f|
+      = f.collection_select :skill_id, Skill.all, :id, :name, prompt: "スキルを選択してください"
+      = f.submit "検索"
+    %br
 
 
 .artist-image
