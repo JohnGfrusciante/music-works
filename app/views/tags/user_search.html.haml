@@ -1,4 +1,7 @@
 ユーザースキル検索結果
+.breadcrumb
+  - breadcrumb :user_search_tags
+  = breadcrumbs separator: " &rsaquo; "
 %br
 = @user_skill_searchs.count
 件のユーザーがヒットしました。
@@ -54,5 +57,3 @@
         - else
           ※案件依頼を作成すると、ユーザーにオファーを出せます。
     %br
-
-= link_to "TOPページへ戻る", root_path

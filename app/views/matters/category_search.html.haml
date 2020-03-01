@@ -1,4 +1,7 @@
 検索結果
+.breadcrumb
+  - breadcrumb :category_search_matters
+  = breadcrumbs separator: " &rsaquo; "
 %br
 = @matter_category_searchs.count
 件がヒットしました。
@@ -42,5 +45,3 @@
         = link_to "#{matter.musician.name}", "/musicians/#{matter.musician.id}", target: blank?
 
     %br
-
-= link_to "TOPページへ戻る", root_path
