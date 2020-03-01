@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_02_06_092345) do
+ActiveRecord::Schema.define(version: 2020_03_01_035156) do
 
   create_table "applications", id: :integer, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.integer "matter_id", null: false
@@ -107,6 +107,16 @@ ActiveRecord::Schema.define(version: 2020_02_06_092345) do
     t.index ["user_id"], name: "index_musicians_on_user_id"
   end
 
+  create_table "offers", id: :integer, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.integer "user_id", null: false
+    t.integer "matter_id", null: false
+    t.integer "status", default: 0, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["matter_id"], name: "index_offers_on_matter_id"
+    t.index ["user_id"], name: "index_offers_on_user_id"
+  end
+
   create_table "skills", id: :integer, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "name", null: false
     t.datetime "created_at", null: false
@@ -156,6 +166,8 @@ ActiveRecord::Schema.define(version: 2020_02_06_092345) do
   add_foreign_key "messages", "chats"
   add_foreign_key "messages", "users"
   add_foreign_key "musicians", "users"
+  add_foreign_key "offers", "matters"
+  add_foreign_key "offers", "users"
   add_foreign_key "tags", "skills"
   add_foreign_key "tags", "users"
 end

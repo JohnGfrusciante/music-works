@@ -20,6 +20,7 @@
 - has_many :likes
 - has_many :liked_matters, through: :likes, source: :matter
 - has_many :applications
+- has_many :offers
 - has_many :chats
 - has_many :messages
 - has_many :tags
@@ -84,6 +85,7 @@
 - has_many :likes
 - has_many :liked_users, through: :likes, source: :user
 - has_many :applications
+- has_many :offers
 - has_many :chats
 - belongs_to :musician
 - belongs_to :matter_category
@@ -159,3 +161,14 @@
 - belongs_to :user
 - belongs_to :musician
 - belongs_to :chat
+
+
+## Offers Table
+|Column|Type|Options|
+|------|----|-------|
+|user_id|references|null: false, foreign_key: true|
+|matter_id|references|null: false, foreign_key: true|
+|status|integer|null: false|
+### Association
+- belongs_to :user
+- belongs_to :matter

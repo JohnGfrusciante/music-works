@@ -14,8 +14,12 @@ Rails.application.routes.draw do
       put 'update_user', to: 'users/registrations#update_user'
       get 'logout', to: "users#logout"
     end
+
     root to: "matters#index"
 
+    resources :users do
+      resources :offers, only: [:index, :create, :destroy]
+    end
 
     resources :mypages, except: [:destroy]
     resources :applications_lists, only: [:index]
@@ -25,7 +29,6 @@ Rails.application.routes.draw do
 
     resources :musicians, except: [:destroy] do
       resources :musician_matterslists, only: [:index]
-
       resources :tags, only: [:index] do
         collection do
           get 'user_search'

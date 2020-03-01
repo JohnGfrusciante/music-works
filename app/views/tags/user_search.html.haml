@@ -47,6 +47,12 @@
         - tag.user.tags.each do |tag|
           = tag.skill.name
           |
+
+      .users-list__content__offer
+        - if @musician.matters.present?
+          = link_to "このユーザーにオファーを出す", "/users/#{tag.user.id}/offers", method: :get
+        - else
+          ※案件依頼を作成すると、ユーザーにオファーを出せます。
     %br
 
 = link_to "TOPページへ戻る", root_path
