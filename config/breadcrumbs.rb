@@ -96,6 +96,35 @@ crumb :musician_chatpage do
   parent :musician_chatslists
 end
 
+# 案件検索結果ページ(キーワード検索)
+crumb :search_matters do
+  link "検索結果", search_matters_path
+  parent :root
+end
+
+# 案件検索結果ページ(カテゴリ検索)
+crumb :category_search_matters do
+  link "検索結果", category_search_matters_path
+  parent :root
+end
+
+# ユーザースキル検索結果ページ
+crumb :user_search_tags do
+  link "ユーザー検索", user_search_musician_tags_path(current_user.musician.id)
+  parent :musician
+end
+
+# 案件オファーページ
+crumb :offer do
+  link "オファーページ", user_offers_path
+  parent :user_search_tags
+end
+
+# オファーが届いた案件の一覧ページ
+crumb :offered_list do
+  link "オファー一覧ページ", user_offered_lists_path
+  parent :mypage
+end
 
 # crumb :projects do
 #   link "Projects", projects_path

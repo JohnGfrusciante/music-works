@@ -1,4 +1,7 @@
 オファー案件一覧ページ
+.breadcrumb
+  - breadcrumb :offered_list
+  = breadcrumbs separator: " &rsaquo; "
 %br
 %br
 
@@ -29,13 +32,6 @@
             = link_to "未確認に戻す", "/users/#{offer.user.id}/offered_lists/#{offer.id}/unconfirm", method: :put
 
         %br
-        %br
-
-
 
 - if @offers.blank?
   ※オファーが送られた案件はありません。
-
-
-%br
-= link_to "TOPページへ戻る", root_path

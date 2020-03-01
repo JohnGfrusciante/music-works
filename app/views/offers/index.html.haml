@@ -1,4 +1,7 @@
 オファーページ
+.breadcrumb
+  - breadcrumb :offer
+  = breadcrumbs separator: " &rsaquo; "
 
 .user__content
   .user__content__name
@@ -62,8 +65,3 @@
     %br
 - else
   ※オファーを出した案件はありません。
-
-
-%br
-%br
-= link_to "TOPページへ戻る", root_path
