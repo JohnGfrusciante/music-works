@@ -3,15 +3,19 @@
   - breadcrumb :mypage
   = breadcrumbs separator: " &rsaquo; "
   %br
-= link_to "会員情報編集ページへ", "/edit_user"
+= link_to "■会員情報編集ページへ", "/edit_user"
 %br
-= link_to "ブックマークした案件の一覧ページへ", "/likes"
+= link_to "■ブックマークした案件の一覧ページへ", "/likes"
 %br
-= link_to "応募した案件の一覧ページへ", "/applications_lists"
+= link_to "■応募した案件の一覧ページへ", "/applications_lists"
 %br
-= link_to "質問を送ったチャットの一覧ページへ", "/user_chatslists"
+= link_to "■質問を送ったチャットの一覧ページへ", "/user_chatslists"
 - if @unread_messages.present?
   ※未読のメッセージがあります。
+%br
+= link_to "■オファーが届いた案件の一覧ページへ", "/users/#{@user.id}/offered_lists"
+- if @unconfirm_offers.present?
+  ※未確認のオファーがあります。
 %br
 %br
 

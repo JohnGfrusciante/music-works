@@ -1,0 +1,2 @@
+module OfferedListsHelper
+end
