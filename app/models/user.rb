@@ -8,6 +8,7 @@ class User < ApplicationRecord
          has_many :likes
          has_many :liked_matters, through: :likes, source: :matter
          has_many :applications
+         has_many :offers
          has_many :chats
          has_many :messages
          has_many :tags

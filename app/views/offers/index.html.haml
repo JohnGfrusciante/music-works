@@ -1,0 +1,69 @@
+オファーページ
+
+.user__content
+  .user__content__name
+    ・氏名：
+    = @user.name
+  .user__content__birthday
+    ・生年月日：
+    = @user.birthday
+  .user__content__birthday
+    ・都道府県：
+    = @user.prefecture
+  .user__content__introduction
+    ・自己紹介
+    %br
+    - if @user.introduction.present?
+      = safe_join(@user.introduction.split("\n"),tag(:br))
+    - else
+      登録されていません。
+  .user__content__performance
+    ・活動実績
+    %br
+    - if @user.performance.present?
+      = safe_join(@user.performance.split("\n"),tag(:br))
+    - else
+      登録されていません。
+  .user__content__performance
+    ・ポートフォリオなどの参考URL：
+    - if @user.portfolio.present?
+      %a{ href: "#{@user.portfolio}", target: "_blank"} #{@user.portfolio}
+    - else
+      登録されていません。
+
+  .user__content__skill
+    ・スキル：
+    - @user.tags.each do |tag|
+      = tag.skill.name
+      |
+
+%br
+.offer-select
+  .offer-select__title
+    オファーを出す案件を選択してください
+  .offer-select__select-box
+    = form_with(url: "/users/#{@user.id}/offers", local: true, method: :post, class: "search-form") do |f|
+      = f.collection_select :matter_id, @matters, :id, :title, prompt: "---"
+      %br
+      = f.submit "この案件でオファーを出す"
+      %br
+
+
+%br
+%br
+このユーザーへのオファー済み案件
+%br
+- if @offers.present?
+  - @offers.each do |offer|
+    ・
+    = offer.matter.title
+    %br
+    = link_to "このオファーを取り消す", "/users/#{@user.id}/offers/#{offer.id}", method: :delete
+    %br
+- else
+  ※オファーを出した案件はありません。
+
+
+%br
+%br
+= link_to "TOPページへ戻る", root_path
