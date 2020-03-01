@@ -19,6 +19,10 @@ Rails.application.routes.draw do
 
     resources :users do
       resources :offers, only: [:index, :create, :destroy]
+      resources :offered_lists, only: [:index] do
+        put 'already_confirmed', to: 'offered_lists#already_confirmed'
+        put 'unconfirm', to: 'offered_lists#unconfirm'
+      end
     end
 
     resources :mypages, except: [:destroy]

@@ -1,0 +1,41 @@
+オファー案件一覧ページ
+%br
+%br
+
+
+%ul.offers-list
+  - @offers.each do |offer|
+    %li.offers-list__content
+      .offers-list__content__title
+        = link_to "案件名：#{offer.matter.title}", "/matters/#{offer.matter.id}", method: :get, target: blank?
+        %br
+        案件カテゴリ：
+        = offer.matter.matter_category.name
+        %br
+        お支払い金額：
+        = offer.matter.reward
+        円
+        %br
+        依頼アーティスト：
+        = link_to "#{offer.matter.musician.name}", "/musicians/#{offer.matter.musician.id}", target: blank?
+        %br
+        応募締切日：
+        = offer.matter.end
+        %br
+        .offers-list__content--confirm
+          - if offer.status == 0
+            = link_to "確認済みにする", "/users/#{offer.user.id}/offered_lists/#{offer.id}/already_confirmed", method: :put
+          - else
+            = link_to "未確認に戻す", "/users/#{offer.user.id}/offered_lists/#{offer.id}/unconfirm", method: :put
+
+        %br
+        %br
+
+
+
+- if @offers.blank?
+  ※オファーが送られた案件はありません。
+
+
+%br
+= link_to "TOPページへ戻る", root_path
