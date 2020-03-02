@@ -69,6 +69,13 @@
   = safe_join(@matter.supplement.split("\n"),tag(:br))
 - else
   指定はありません。
+%br
+
+- if user_signed_in? and @musician_user_id.present?
+  - if current_user.musician.id == @matter.musician_id
+    ■公開設定：
+    = @matter.status
+
 
 %br
 - if user_signed_in?

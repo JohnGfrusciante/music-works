@@ -116,13 +116,18 @@
 
 - if @matters.present?
   %br
-  ★アーティストの依頼案件一覧
+  ★このアーティストの依頼案件一覧
   %br
   %ul.matters-list
     - @matters.each do |matter|
       %li.matters-list__content
         .matters-list__content__title
           = link_to "案件名：#{matter.title}", "/matters/#{matter.id}", method: :get
+          - if user_signed_in?
+            - if current_user.id == @musician.user_id
+              (
+              = matter.status
+              )
           %br
           案件カテゴリ：
           = matter.matter_category.name
@@ -131,10 +136,12 @@
           = matter.reward
           円
           %br
-          依頼アーティスト：
-          = link_to "#{matter.musician.name}", "/musicians/#{matter.musician.id}", target: blank?
-          %br
           応募締切日：
-          = matter.end
+          = matter.deadline
+          %br
+          - if matter.deadline < @deadline
+            ※応募受付は終了しました。
           %br
           %br
+
+= link_to "TOPページへ戻る", root_path

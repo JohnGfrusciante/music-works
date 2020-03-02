@@ -93,6 +93,16 @@
   %br
 
 
+  .status
+    .status__title
+      ・公開設定
+    .status__norequired
+      必須
+  = f.select :status, Matter.statuses.keys, {promt: "---"}
+  %br
+  %br
+
+
   .actions
     = f.submit "案件依頼を更新する"
 

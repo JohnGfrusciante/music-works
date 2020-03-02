@@ -1,11 +1,13 @@
 class MattersController < ApplicationController
   before_action :set_matter, only: [:edit, :show]
-  before_action :set_deadline, only: [:index, :show]
+  before_action :set_deadline, only: [:index, :show, :search, :category_search]
 
-  PER = 3
+  PER = 5
 
   def index
     @matters = Matter.page(params[:page]).per(PER).order("created_at DESC")
+    @release_matters = @matters.where.not(status: 1)
+    @accepting_matters = @release_matters.where("deadline > ?", @deadline)
     @musician_user_id = Musician.find_by(user_id: current_user)
   end
 
@@ -36,11 +38,11 @@ class MattersController < ApplicationController
 
 
   def search
-    @matter_searchs = Matter.search(params[:search_word])
+    @matter_searchs = Matter.search(params[:search_word]).order("created_at DESC")
   end
 
   def category_search
-    @matter_category_searchs = Matter.where(matter_category_id: params[:matter_category_id])
+    @matter_category_searchs = Matter.where(matter_category_id: params[:matter_category_id]).order("created_at DESC")
   end
 
   private

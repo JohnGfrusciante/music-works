@@ -23,7 +23,7 @@
         = link_to "#{offer.matter.musician.name}", "/musicians/#{offer.matter.musician.id}", target: blank?
         %br
         応募締切日：
-        = offer.matter.end
+        = offer.matter.deadline
         %br
         .offers-list__content--confirm
           - if offer.status == 0

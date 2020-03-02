@@ -18,7 +18,7 @@ class User < ApplicationRecord
 
 
   enum status: {
-    公開:1,非公開:2
+    公開:0,非公開:1
   }, _prefix: true
 
   enum prefecture: {
