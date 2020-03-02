@@ -1,5 +1,6 @@
 class MusiciansController < ApplicationController
   before_action :set_musician, only: [:edit, :show, :update]
+  before_action :set_deadline, only: [:show]
 
   def index
 
@@ -40,6 +41,10 @@ class MusiciansController < ApplicationController
 
   def set_musician
     @musician = Musician.find(params[:id])
+  end
+
+  def set_deadline
+    @deadline = Time.zone.now - 1.days
   end
 
 end

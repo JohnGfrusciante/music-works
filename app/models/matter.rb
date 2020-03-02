@@ -6,6 +6,11 @@ class Matter < ApplicationRecord
   has_many :chats
   belongs_to :musician
   belongs_to :matter_category
+
+  enum status: {
+    公開:0,非公開:1
+  }, _prefix: true
+
   def self.search(search)
     if search
       Matter.joins(:musician).where(['title LIKE ? OR content LIKE ? OR name LIKE ?', "%#{search}%", "%#{search}%", "%#{search}%"])
