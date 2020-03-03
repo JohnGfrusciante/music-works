@@ -4,6 +4,7 @@ class CreateMatters < ActiveRecord::Migration[5.0]
       t.string :title,                 null: false
       t.integer :reward,                 null: false
       t.date :deadline,                 null: false
+      t.integer :prefecture,                 null: false
       t.date :start
       t.date :end,                 null: false
       t.text :content,                 null: false

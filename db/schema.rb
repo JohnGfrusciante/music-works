@@ -58,6 +58,7 @@ ActiveRecord::Schema.define(version: 2020_03_01_035156) do
     t.string "title", null: false
     t.integer "reward", null: false
     t.date "deadline", null: false
+    t.integer "prefecture", null: false
     t.date "start"
     t.date "end", null: false
     t.text "content", null: false

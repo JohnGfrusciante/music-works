@@ -43,6 +43,16 @@
   %br
 
 
+  .prefecture
+    .prefecture__title
+      勤務地域(都道府県)
+    .prefecture__required
+      必須
+  = f.select :prefecture, Matter.prefectures.keys, {promt: "---"}
+  %br
+  %br
+
+
   .start
     .start__title
       ・業務開始予定日
