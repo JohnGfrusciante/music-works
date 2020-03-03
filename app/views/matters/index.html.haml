@@ -56,6 +56,9 @@
       .matters-list__content__deadline
         応募締切日：
         = matter.deadline
+      .matters-list__content__prefecture
+        勤務地域(都道府県)：
+        = matter.prefecture
       - if matter.start.present?
         .matters-list__content__start
           業務開始予定日：

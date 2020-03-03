@@ -73,6 +73,7 @@
 |title|string|null: false|
 |reward|integer|null: false|
 |deadline|date|null: false|
+|prefecture|integer||
 |start|date||
 |end|date|null: false|
 |content|text|null: false|

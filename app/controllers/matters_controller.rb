@@ -47,7 +47,7 @@ class MattersController < ApplicationController
 
   private
   def matter_params
-    params.require(:matter).permit(:title, :reward, :deadline, :start, :end, :content, :payment, :supplement, :status, :matter_category_id).merge(musician_id: current_user.musician.id)
+    params.require(:matter).permit(:title, :reward, :deadline, :prefecture, :start, :end, :content, :payment, :supplement, :status, :matter_category_id).merge(musician_id: current_user.musician.id)
   end
 
   def set_matter
