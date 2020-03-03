@@ -50,5 +50,6 @@ test:
 production:
   <<: *default
   database: music-works_production
-  username: music-works
-  password: <%= ENV['MUSIC-WORKS_DATABASE_PASSWORD'] %>
+  username: root
+  password: <%= ENV['DATABASE_PASSWORD'] %>
+  socket: /var/lib/mysql/mysql.sock
