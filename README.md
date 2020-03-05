@@ -57,16 +57,6 @@
 - has_one :block
 
 
-## Blocks Table
-|Column|Type|Options|
-|------|----|-------|
-|musician_id|references|null: false, foreign_key: true|
-|user_id|references|null: false, foreign_key: true|
-### Association
-- belongs_to :musician
-- belongs_to :user
-
-
 ## Matters Table
 |Column|Type|Options|
 |------|----|-------|
