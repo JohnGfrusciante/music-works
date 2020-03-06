@@ -12,7 +12,7 @@ set :repo_url,  'git@github.com:JohnGfrusciante/music-works.git'
 set :linked_dirs, fetch(:linked_dirs, []).push('log', 'tmp/pids', 'tmp/cache', 'tmp/sockets', 'vendor/bundle', 'public/system', 'public/uploads')
 
 set :rbenv_type, :user
-set :rbenv_ruby, '2.5.1' #カリキュラム通りに進めた場合、2.5.1か2.3.1です
+set :rbenv_ruby, '2.5.1' 
 
 # どの公開鍵を利用してデプロイするか
 set :ssh_options, auth_methods: ['publickey'],
@@ -32,3 +32,6 @@ namespace :deploy do
     invoke 'unicorn:restart'
   end
 end
+
+#本番環境で画像ファイルをS3に保存する際に必要な追記
+set :linked_files, fetch(:linked_files, []).push("config/master.key")
