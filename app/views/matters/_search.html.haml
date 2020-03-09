@@ -1,0 +1,19 @@
+.search
+
+  .search__keyword
+    .search__keyword__title
+      ■キーワードで検索
+    .search__keyword__form
+      = form_with(url: search_matters_path, local: true, method: :get, class: "search-form") do |f|
+        = f.text_field :search_word, autocomplete: "content", placeholder: "案件を検索する" ,class: 'search-input'
+        = f.submit "検索"
+
+  .search__category
+    .search__category__title
+      ■案件カテゴリで検索
+    .search__category__form
+      = form_with(url: category_search_matters_path, local: true, method: :get, class: "search-form") do |f|
+        = f.collection_select :matter_category_id, MatterCategory.all, :id, :name, prompt: "カテゴリを選択してください" ,class: 'search-input'
+        = f.submit "検索"
+
+%br

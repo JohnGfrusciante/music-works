@@ -1,77 +1,60 @@
-%h1
-  = link_to root_path do
-    = image_tag "mw_logo.png", alt: "Music Works logo"
-  %br
+.topPage
+
+  = render 'header'
+
+
+  .topPage__upper-link
+    - if user_signed_in?
+      .topPage__upper-link__mypage
+        = link_to "会員マイページへ", mypages_path, method: :get
+        %br
+      .topPage__upper-link__artist-page
+        - if @musician_user_id.present?
+          .topPage__upper-link__artist-page--already-exists
+            = link_to "アーティストページへ", "/musicians/#{current_user.musician.id}", method: :get
+          %br
+        - else
+          .topPage__upper-link__artist-page--new-create
+            = link_to "アーティストプロフィールを作成する", new_musician_path
+        %br
   %br
 
-%div
-  - if user_signed_in?
-    %div
-      こんにちは
-      = current_user.name
-      様
-      %br
-      = link_to "会員マイページへ", mypages_path, method: :get
-      %br
-      - if @musician_user_id.present?
-        = link_to "アーティストページへ", "/musicians/#{current_user.musician.id}", method: :get
-        %br
-      - else
-        = link_to "アーティストプロフィールを作成する", new_musician_path
-        %br
-      = link_to "ログアウト", destroy_user_session_path, method: :delete, class: ''
-      %br
-  - else
+
+  = render 'search'
+
+
+  .topPage__matters-list
     %ul
-      %li
-        = link_to "新規会員登録", '/users/sign_up'
-      %li
-        = link_to "ログイン", '/users/sign_in'
+      - @accepting_matters.each do |matter|
+        %li.topPage__matters-list__content
+          .topPage__matters-list__content__upper
+            .topPage__matters-list__content__upper__title
+              = link_to "#{matter.title}", "/matters/#{matter.id}", method: :get, target: blank?
+            .topPage__matters-list__content__upper__category
+              = matter.matter_category.name
+            .topPage__matters-list__content__upper__reward
+              お支払い金額：
+              = matter.reward
+              円
+            .topPage__matters-list__content__upper__deadline
+              応募締切日：
+              = matter.deadline
+            .topPage__matters-list__content__upper__prefecture
+              勤務地域(都道府県)：
+              = matter.prefecture
 
-%br
+          .topPage__matters-list__content__lower
+            - if matter.start.present?
+              .topPage__matters-list__content__lower__start
+                業務開始予定日：
+                = matter.start
+            .topPage__matters-list__content__lower__end
+              業務終了予定日(希望納期)：
+              = matter.end
+            .topPage__matters-list__content__lower__musician-name
+              案件依頼アーティスト：
+              = link_to "#{matter.musician.name}", "/musicians/#{matter.musician.id}", target: blank?
+        %br
 
-%div
-  ■キーワードで検索
-  = form_with(url: search_matters_path, local: true, method: :get, class: "search-form") do |f|
-    = f.text_field :search_word, autocomplete: "content", placeholder: "案件を検索する" ,class: 'search-input'
-    = f.submit "検索"
-%div
-  ■案件カテゴリで検索
-  = form_with(url: category_search_matters_path, local: true, method: :get, class: "search-form") do |f|
-    = f.collection_select :matter_category_id, MatterCategory.all, :id, :name, prompt: "カテゴリを選択してください"
-    = f.submit "検索"
-
-
-%br
-
-%ul.matters-list
-  - @accepting_matters.each do |matter|
-    %li.matters-list__content
-      .matters-list__content__title
-        = link_to "案件名：#{matter.title}", "/matters/#{matter.id}", method: :get, target: blank?
-      .matters-list__content__category
-        案件カテゴリ：
-        = matter.matter_category.name
-      .matters-list__content__reward
-        お支払い金額：
-        = matter.reward
-        円
-      .matters-list__content__deadline
-        応募締切日：
-        = matter.deadline
-      .matters-list__content__prefecture
-        勤務地域(都道府県)：
-        = matter.prefecture
-      - if matter.start.present?
-        .matters-list__content__start
-          業務開始予定日：
-          = matter.start
-      .matters-list__content__end
-        業務終了予定日(希望納期)：
-        = matter.end
-      .matters-list__content__musician-name
-        案件依頼アーティスト：
-        = link_to "#{matter.musician.name}", "/musicians/#{matter.musician.id}", target: blank?
-    %br
-
-  = paginate @matters
+    .topPage__matters-list__paginate
+      = paginate @matters

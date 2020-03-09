@@ -1,0 +1,22 @@
+.header
+
+  .header__logo
+    = link_to root_path do
+      = image_tag "mw_logo.png", alt: "Music Works logo", class: 'mw-logo'
+
+
+  .header__regist
+    - if user_signed_in?
+      .header__regist--user-name
+        こんにちは
+        = current_user.name
+        様
+      .header__regist--logout
+        = link_to "ログアウト", destroy_user_session_path, method: :delete, class: ''
+
+    - else
+      %ul.header__regist__not-loggedin
+        %li.header__regist__not-loggedin--new-regist
+          = link_to "新規会員登録", '/users/sign_up'
+        %li.header__regist__not-loggedin--login
+          = link_to "ログイン", '/users/sign_in'
