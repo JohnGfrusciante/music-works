@@ -1,0 +1,38 @@
+@mixin background {
+  // height: 13vh;
+  background-color: #d3d3d3;
+}
+
+@mixin header-font {
+  color: $light-blue;
+  font-size: 0.9em;
+  font-weight: bold;
+}
+
+.header {
+  @include background;
+  display: flex;
+  justify-content: space-between;
+  &__logo {
+    margin: auto 0;
+    padding: 1em 1.5em;
+  }
+  &__regist {
+    @include header-font;
+    padding-right: 1.5em;
+    margin: auto 0;
+    a {
+      @include header-font;
+    }
+    &--logout {
+      text-align: right;
+    }
+    &__not-loggedin {
+      display: flex;
+      &--login {
+        text-align: right;
+        margin-left: 1.5em;
+      }
+    }
+  }
+}
