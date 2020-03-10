@@ -1,60 +1,45 @@
-.topPage
+.top-page
 
   = render 'header'
 
-
-  .topPage__upper-link
-    - if user_signed_in?
-      .topPage__upper-link__mypage
-        = link_to "会員マイページへ", mypages_path, method: :get
-        %br
-      .topPage__upper-link__artist-page
-        - if @musician_user_id.present?
-          .topPage__upper-link__artist-page--already-exists
-            = link_to "アーティストページへ", "/musicians/#{current_user.musician.id}", method: :get
-          %br
-        - else
-          .topPage__upper-link__artist-page--new-create
-            = link_to "アーティストプロフィールを作成する", new_musician_path
-        %br
-  %br
+  .top-page__search
+    = render 'search'
 
 
-  = render 'search'
-
-
-  .topPage__matters-list
+  .top-page__matters-list
     %ul
       - @accepting_matters.each do |matter|
-        %li.topPage__matters-list__content
-          .topPage__matters-list__content__upper
-            .topPage__matters-list__content__upper__title
+        %li.top-page__matters-list__content
+          .top-page__matters-list__content__upper
+            .top-page__matters-list__content__upper__title
               = link_to "#{matter.title}", "/matters/#{matter.id}", method: :get, target: blank?
-            .topPage__matters-list__content__upper__category
+            .top-page__matters-list__content__upper__category
               = matter.matter_category.name
-            .topPage__matters-list__content__upper__reward
+            .top-page__matters-list__content__upper__reward
               お支払い金額：
               = matter.reward
               円
-            .topPage__matters-list__content__upper__deadline
+            .top-page__matters-list__content__upper__deadline
               応募締切日：
               = matter.deadline
-            .topPage__matters-list__content__upper__prefecture
+            .top-page__matters-list__content__upper__prefecture
               勤務地域(都道府県)：
               = matter.prefecture
 
-          .topPage__matters-list__content__lower
+          .top-page__matters-list__content__lower
             - if matter.start.present?
-              .topPage__matters-list__content__lower__start
+              .top-page__matters-list__content__lower__start
                 業務開始予定日：
                 = matter.start
-            .topPage__matters-list__content__lower__end
+            .top-page__matters-list__content__lower__end
               業務終了予定日(希望納期)：
               = matter.end
-            .topPage__matters-list__content__lower__musician-name
+            .top-page__matters-list__content__lower__musician-name
               案件依頼アーティスト：
               = link_to "#{matter.musician.name}", "/musicians/#{matter.musician.id}", target: blank?
         %br
 
-    .topPage__matters-list__paginate
+    .top-page__matters-list__paginate
       = paginate @matters
+
+  = render 'footer'

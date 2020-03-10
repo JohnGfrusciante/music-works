@@ -1,0 +1,12 @@
+.top-page {
+  height: 1100px;
+  &__search {
+    position: fixed;
+    top: 11em;
+  }
+  &__matters-list {
+    padding-top: 11em;
+    text-align: center;
+    height: 100%;
+  }
+}

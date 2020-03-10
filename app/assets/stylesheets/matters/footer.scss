@@ -1,0 +1,20 @@
+.footer{
+  color: #fff;
+  background-color: $blue;
+  font-size: 0.9em;
+  padding: 1em;
+  margin-top: 2em;
+  &__lower {
+    text-align: center;
+    &__logo {
+      margin-bottom: 0.5em;
+      img {
+        width: 12em;
+        filter: invert(88%) sepia(61%) saturate(0%) hue-rotate(229deg) brightness(150%) contrast(101%);
+      }
+    }
+    &__copyright {
+      margin: auto 0;
+    }
+  }
+}
