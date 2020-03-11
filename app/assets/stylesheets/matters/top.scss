@@ -1,8 +1,4 @@
 .top-page {
-  // height: 1100px;
-  // height: 100%;
-  // position: relative;
-
   &__search {
     position: fixed;
     top: 12em;
@@ -10,9 +6,6 @@
   &__matters-list {
     padding-top: 12em;
     text-align: center;
-    // height: 1100px;
-  }
-  &__paginate {
-    position: relative;
+    min-height: 100vh;
   }
 }
