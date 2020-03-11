@@ -1,0 +1,49 @@
+@mixin title {
+  color: #fff;
+  border-bottom: solid 1px #fff;
+  display: inline-block;
+  margin-bottom: 5px;
+  font-weight: bold;
+}
+
+
+.search-box {
+  width: 15em;
+  background-color: $blue;
+  font-size: 0.85em;
+  margin-left: 1.5em;
+  padding: 1.5em 1em;
+  border-radius: 0.4em;
+  border: solid 1px $light-gray;
+
+  &__keyword {
+    &__title {
+      @include title;
+    }
+    .search-input {
+      width: 98%;
+      padding-left: 0.2em;
+    }
+    .submit-button {
+      font-size: 1.5em;
+      margin-top: 4px;
+    }
+  }
+
+  &__category {
+    margin-top: 2em;
+    border-top: dotted 2px #fff;
+    padding-top: 2em;
+    &__title {
+      @include title;
+    }
+    select {
+      width: 100%;
+      height: 1.6em;
+    }
+    .submit-button {
+      font-size: 1.5em;
+      margin-top: 4px;
+    }
+  }
+}

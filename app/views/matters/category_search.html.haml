@@ -1,45 +1,66 @@
-検索結果
-.breadcrumb
-  - breadcrumb :category_search_matters
-  = breadcrumbs separator: " &rsaquo; "
-%br
+.search-page
+  = render 'header'
 
-%div
-  ■キーワードで検索
-  = form_with(url: search_matters_path, local: true, method: :get, class: "search-form") do |f|
-    = f.text_field :search_word, autocomplete: "content", placeholder: "案件を検索する" ,class: 'search-input'
-    = f.submit "検索"
-%div
-  ■案件カテゴリで検索
-  = form_with(url: category_search_matters_path, local: true, method: :get, class: "search-form") do |f|
-    = f.collection_select :matter_category_id, MatterCategory.all, :id, :name, prompt: "カテゴリを選択してください"
-    = f.submit "検索"
-%br
+  .breadcrumb
+    - breadcrumb :category_search_matters
+    = breadcrumbs separator: " &rsaquo; "
+  %br
 
-%ul.matters-list
-  - @matter_category_searchs.each do |matter|
-    - if matter.deadline > @deadline
-      %li.matters-list__content
-        .matters-list__content__title
-          = link_to "案件名：#{matter.title}", "/matters/#{matter.id}", method: :get
-        .matters-list__content__category
-          案件カテゴリ：
-          = matter.matter_category.name
-        .matters-list__content__reward
-          = matter.reward
-          円
-        .matters-list__content__deadline
-          応募締切日：
-          = matter.deadline
-        - if matter.start.present?
-          .matters-list__content__start
-            業務開始予定日：
-            = matter.start
-        .matters-list__content__end
-          業務終了予定日(希望納期)：
-          = matter.end
-        .matters-list__content__musician-name
-          案件依頼アーティスト：
-          = link_to "#{matter.musician.name}", "/musicians/#{matter.musician.id}", target: blank?
+  .search-page__search-box
+    = render 'search_box'
 
-      %br
+
+  .search-page__matters-list
+    %ul
+      - @matter_category_searchs.each do |matter|
+        - if matter.deadline > @deadline
+          %li.matters-list__content
+
+            .matters-list__content__left
+              .matters-list__content__left__title
+                = link_to "#{matter.title}", "/matters/#{matter.id}", method: :get, target: blank?
+                .matters-list__content__left__title__category
+                  = icon('fas', 'fas fa-folder')
+                  = matter.matter_category.name
+
+            .matters-list__content__right
+              .matters-list__content__right__upper
+                %p
+                  = icon('fas', 'fas fa-clock')
+                  応募受付：
+                .matters-list__content__right__upper__deadline
+                  = matter.deadline.strftime("%Y年%m月%d日")
+                %p
+                  まで
+              .matters-list__content__right__bottom-line
+
+
+              .matters-list__content__right__middle
+                .matters-list__content__right__middle__reward
+                  = icon('fas', 'fas fa-yen-sign')
+                  = matter.reward
+                .matters-list__content__right__middle__prefecture
+                  = icon('fas', 'fas fa-map-marker-alt')
+                  就業地域：
+                  = matter.prefecture
+              .matters-list__content__right__middle__bottom-line
+
+
+              .matters-list__content__right__lower
+                - if matter.start.present?
+                  .matters-list__content__right__lower__start
+                    = icon('far', 'far fa-calendar-alt')
+                    業務開始予定：
+                    = matter.start.strftime("%Y年%m月%d日")
+                    〜
+                .matters-list__content__right__lower__end
+                  = icon('far', 'far fa-calendar-alt')
+                  業務終了予定(希望納期)：
+                  = matter.end.strftime("%Y年%m月%d日")
+                .matters-list__content__right__lower__bottom-line
+                .matters-list__content__right__lower__musician-name
+                  = icon('fas', 'fas fa-user-alt')
+                  = link_to "#{matter.musician.name}", "/musicians/#{matter.musician.id}", target: blank?
+          %br
+
+  = render 'footer'
