@@ -1,6 +1,7 @@
 class MattersController < ApplicationController
   before_action :set_matter, only: [:edit, :show]
   before_action :set_deadline, only: [:index, :show, :search, :category_search]
+  before_action :set_musician_user_id, only: [:index, :show, :search, :category_search]
 
   PER = 5
 
@@ -8,7 +9,6 @@ class MattersController < ApplicationController
     @matters = Matter.page(params[:page]).per(PER).order("created_at DESC")
     @release_matters = @matters.where.not(status: 1)
     @accepting_matters = @release_matters.where("deadline > ?", @deadline)
-    @musician_user_id = Musician.find_by(user_id: current_user)
   end
 
   def new
@@ -56,6 +56,10 @@ class MattersController < ApplicationController
 
   def set_deadline
     @deadline = Time.zone.now - 1.days
+  end
+
+  def set_musician_user_id
+    @musician_user_id = Musician.find_by(user_id: current_user)
   end
 
 end
