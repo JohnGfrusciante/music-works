@@ -5,7 +5,81 @@
   }
   &__matters-list {
     padding-top: 12em;
-    text-align: center;
     min-height: 100vh;
+    text-align: center;
+    &__content {
+      padding: 1em;
+      border: solid 1px $light-gray;
+      background-color: $very-light-gray;
+      width: 60%;
+      margin: 0 auto;
+      color: $gray;
+      font-size: 0.9em;
+      display: flex;
+      a {
+        color: $blue;
+      }
+      &__left {
+        display: flex;
+        margin: auto 0;
+        border-right: dotted 1px $gray;
+        &__title {
+          font-weight: bold;
+          width: 20em;
+          font-size: 1.1em;
+          &__category {
+            font-size: 0.8em;
+            font-weight: normal;
+            margin-top: 0.5em;
+          }
+        }
+      }
+      &__right {
+        padding: 0 1em;
+        margin: 0 auto;
+        &__upper {
+          display: flex;
+          font-size: 0.9em;
+          &__deadline {
+            font-weight: bold;
+            font-size: 1.1em;
+            color: red;
+          }
+          p {
+            margin-top: 2px;
+          }
+        }
+        &__bottom-line {
+          @include bottom-line;
+          margin: 0.5em 0;
+        }
+        &__middle {
+          display: flex;
+          div {
+            padding-right: 0.5em;
+            margin-right: 0.5em;
+          }
+          &__reward {
+            font-weight: bold;
+            color: red;
+            border-right: dotted 1px $gray;
+          }
+          &__bottom-line {
+            @include bottom-line;
+            margin: 0.5em 0;
+          }
+        }
+        &__lower {
+          text-align: left;
+          &__bottom-line {
+            @include bottom-line;
+            margin: 0.5em 0;
+          }
+          &__musician-name {
+            font-size: 0.9em;
+          }
+        }
+      }
+    }
   }
 }

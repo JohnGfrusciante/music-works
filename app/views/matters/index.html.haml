@@ -10,33 +10,49 @@
     %ul
       - @accepting_matters.each do |matter|
         %li.top-page__matters-list__content
-          .top-page__matters-list__content__upper
-            .top-page__matters-list__content__upper__title
-              = link_to "#{matter.title}", "/matters/#{matter.id}", method: :get, target: blank?
-            .top-page__matters-list__content__upper__category
-              = matter.matter_category.name
-            .top-page__matters-list__content__upper__reward
-              お支払い金額：
-              = matter.reward
-              円
-            .top-page__matters-list__content__upper__deadline
-              応募締切日：
-              = matter.deadline
-            .top-page__matters-list__content__upper__prefecture
-              勤務地域(都道府県)：
-              = matter.prefecture
 
-          .top-page__matters-list__content__lower
-            - if matter.start.present?
-              .top-page__matters-list__content__lower__start
-                業務開始予定日：
-                = matter.start
-            .top-page__matters-list__content__lower__end
-              業務終了予定日(希望納期)：
-              = matter.end
-            .top-page__matters-list__content__lower__musician-name
-              案件依頼アーティスト：
-              = link_to "#{matter.musician.name}", "/musicians/#{matter.musician.id}", target: blank?
+          .top-page__matters-list__content__left
+            .top-page__matters-list__content__left__title
+              = link_to "#{matter.title}", "/matters/#{matter.id}", method: :get, target: blank?
+              .top-page__matters-list__content__left__title__category
+                = icon('fas', 'fas fa-folder')
+                = matter.matter_category.name
+
+          .top-page__matters-list__content__right
+            .top-page__matters-list__content__right__upper
+              %p
+                = icon('fas', 'fas fa-clock')
+                応募受付：
+              .top-page__matters-list__content__right__upper__deadline
+                = matter.deadline.strftime("%Y年%m月%d日")
+              %p
+                まで
+            .top-page__matters-list__content__right__bottom-line
+
+
+            .top-page__matters-list__content__right__middle
+              .top-page__matters-list__content__right__middle__reward
+                = icon('fas', 'fas fa-yen-sign')
+                = matter.reward
+              .top-page__matters-list__content__right__middle__prefecture
+                = icon('fas', 'fas fa-map-marker-alt')
+                就業地域：
+                = matter.prefecture
+            .top-page__matters-list__content__right__middle__bottom-line
+
+
+            .top-page__matters-list__content__right__lower
+              - if matter.start.present?
+                .top-page__matters-list__content__right__lower__start
+                  業務開始予定日：
+                  = matter.start.strftime("%Y年%m月%d日")
+              .top-page__matters-list__content__right__lower__end
+                業務終了予定日(希望納期)：
+                = matter.end.strftime("%Y年%m月%d日")
+              .top-page__matters-list__content__right__lower__bottom-line
+              .top-page__matters-list__content__right__lower__musician-name
+                = icon('fas', 'fas fa-user-alt')
+                = link_to "#{matter.musician.name}", "/musicians/#{matter.musician.id}", target: blank?
         %br
 
     .top-page__matters-list__paginate
