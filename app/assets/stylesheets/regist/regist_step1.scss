@@ -1,0 +1,241 @@
+@mixin triangle-light-blue {
+  border-top: 1.8em solid transparent;
+  border-right: 0em solid transparent;
+  border-bottom: 1.8em solid transparent;
+  border-left: 1.8em dashed $light-blue;
+}
+
+@mixin triangle-blue {
+  border-top: 1.8em solid transparent;
+  border-right: 0em solid transparent;
+  border-bottom: 1.8em solid transparent;
+  border-left: 1.8em solid $blue;
+}
+
+@mixin content {
+  display: flex;
+  margin-bottom: 0.2em;
+}
+
+@mixin title {
+  font-weight: bold;
+  font-size: 0.9em;
+}
+
+@mixin required {
+  margin: auto 0 auto 0.4em;
+  padding: 1px 3px;
+  font-size: 0.6em;
+  border-radius: 3px;
+  color: #fff;
+  background-color: red;
+}
+
+@mixin input-form {
+  width: 100%;
+  height: 2em;
+  padding-left: 0.5em;
+  border-radius: 5px;
+  border: solid 1px $light-gray;
+  font-size: 0.9em;
+}
+
+@mixin select-form {
+  height: 2em;
+  background-color: #fff;
+  border: solid 1px $light-gray;
+}
+
+@mixin submit {
+  display: inline-block;
+  border-radius: 5px;
+  font-size: 0.9em;
+  text-align: center;
+  cursor: pointer;
+  padding: 0.5em 1em;
+  background: $gray;
+  color: #ffffff;
+  line-height: 1em;
+  transition: .3s;
+  border: 2px solid $gray;
+}
+
+@mixin submit-hover {
+  color: #fff;
+  background: $orange;
+  border: 2px solid $orange;
+}
+
+
+
+
+.new-regist-step1 {
+  text-align: center;
+  color: $gray;
+  &__header {
+    background-color: $very-light-gray;
+    padding: 1em 0;
+    @include shadow;
+    position: fixed;
+    width: 100%;
+  }
+  &__breadcrumb {
+    font-size: 0.9em;
+    padding: 10em 0 0 0;
+    margin-bottom: 3em;
+    display: flex;
+    justify-content:center;
+    &__step1 {
+      background-color: $light-blue;
+      color: yellow;
+      padding: 1em;
+      width: 10em;
+    }
+    &__triangle1 {
+      @include triangle-light-blue;
+      background-color: $blue;
+    }
+    &__step2 {
+      background-color: $blue;
+      color: $light-gray;
+      padding: 1em;
+      width: 10em;
+    }
+    &__triangle2 {
+      @include triangle-blue;
+      background-color: $blue;
+    }
+    &__done {
+      background-color: $blue;
+      color: $light-gray;
+      padding: 1em;
+      width: 10em;
+    }
+  }
+  &__form {
+    background-color: $very-light-gray;
+    width: 20%;
+    margin: 0 auto;
+    padding: 2em 13em;
+    &__name {
+      @include content;
+      &__title {
+        @include title;
+      }
+      &__required {
+        @include required;
+      }
+    }
+    &__name-form {
+      margin-bottom: 2em;
+      .name-form {
+        @include input-form;
+      }
+    }
+    &__name-kana {
+      @include content;
+      &__title {
+        @include title;
+      }
+      &__required {
+        @include required;
+      }
+    }
+    &__name-kana-form {
+      margin-bottom: 2em;
+      .name-kana-form {
+        @include input-form;
+      }
+    }
+    &__email {
+      @include content;
+      &__title {
+        @include title;
+      }
+      &__required {
+        @include required;
+      }
+    }
+    &__email-form {
+      margin-bottom: 2em;
+      .email-form {
+        @include input-form;
+      }
+    }
+    &__password {
+      @include content;
+      &__title {
+        @include title;
+      }
+      &__required {
+        @include required;
+      }
+    }
+    &__password-form {
+      margin-bottom: 2em;
+      .password-form {
+        @include input-form;
+      }
+    }
+    &__tel {
+      @include content;
+      &__title {
+        @include title;
+      }
+      &__required {
+        @include required;
+      }
+    }
+    &__tel-form {
+      margin-bottom: 2em;
+      .tel-form {
+        @include input-form;
+      }
+    }
+    &__birthday {
+      @include content;
+      &__title {
+        @include title;
+      }
+      &__required {
+        @include required;
+      }
+    }
+    &__birthday-form {
+      margin-bottom: 2em;
+      select {
+        width: 25%;
+        @include select-form;
+      }
+    }
+    &__status {
+      @include content;
+      &__title {
+        @include title;
+      }
+      &__required {
+        @include required;
+      }
+    }
+    &__status-form {
+      margin-bottom: 2em;
+      select {
+        width: 98%;
+        @include select-form;
+      }
+    }
+
+    &__actions {
+      .submit-button {
+        @include submit;
+      }
+      .submit-button:hover {
+        @include submit-hover;
+      }
+    }
+  }
+}
+
+
+
+
