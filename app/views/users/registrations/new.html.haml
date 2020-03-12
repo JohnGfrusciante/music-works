@@ -1,61 +1,88 @@
-%h2 会員情報入力フォーム
-= form_for(@user, url: performance_path) do |f|
-  = render "devise/shared/error_messages", resource: @user
+.new-regist-step1
+  .new-regist-step1__header
+    .new-regist-step1__header__logo
+      = link_to root_path do
+        = image_tag "mw_logo.png", alt: "Music Works logo", class: 'mw-logo'
 
-  .name
-    .name__title
-      お名前(全角)
-    .name__required
-      必須
-  = f.text_field :name, autofocus: true, autocomplete: "name", placeholder: "例)山田太郎" ,class: 'name-form'
+  .new-regist-step1__breadcrumb
+    .new-regist-step1__breadcrumb__step1
+      ① 会員情報入力
+    .new-regist-step1__breadcrumb__triangle1
 
-  .name_kana
-    .name_kana__title
-      お名前カナ(全角)
-    .name_kana__required
-      必須
-  = f.text_field :name_kana, autofocus: true, autocomplete: "name_kana", placeholder: "例)ヤマダタロウ" ,class: 'name_kana-form'
+    .new-regist-step1__breadcrumb__step2
+      ② 活動実績入力
+    -# .new-regist-step1__breadcrumb__triangle2
 
-  .email
-    .email__title
-      メールアドレス
-    .email__required
-      必須
-  = f.email_field :email, autocomplete: "email", placeholder: "PC・携帯どちらでも可"
+    .new-regist-step1__breadcrumb__done
+      ③ 登録完了
 
 
-  .password
-    .password__title
-      パスワード(半角英数字)
-    .password__required
-      必須
-  = f.password_field :password, autocomplete: "new-password", placeholder: "6文字以上の半角英数字"
+
+  .new-regist-step1__form
+    = form_for(@user, url: performance_path) do |f|
+      = render "devise/shared/error_messages", resource: @user
+
+      .new-regist-step1__form__name
+        .new-regist-step1__form__name__title
+          お名前(全角)
+        .new-regist-step1__form__name__required
+          必須
+      .new-regist-step1__form__name-form
+        = f.text_field :name, autofocus: true, autocomplete: "name", placeholder: "例)山田太郎", class: 'name-form'
+
+      .new-regist-step1__form__name-kana
+        .new-regist-step1__form__name-kana__title
+          お名前カナ(全角)
+        .new-regist-step1__form__name-kana__required
+          必須
+      .new-regist-step1__form__name-kana-form
+        = f.text_field :name_kana, autofocus: true, autocomplete: "name_kana", placeholder: "例)ヤマダタロウ", class: 'name-kana-form'
+
+      .new-regist-step1__form__email
+        .new-regist-step1__form__email__title
+          メールアドレス
+        .new-regist-step1__form__email__required
+          必須
+      .new-regist-step1__form__email-form
+        = f.email_field :email, autocomplete: "email", placeholder: "PC・携帯どちらでも可", class: 'email-form'
 
 
-  .tel
-    .tel__title
-      携帯電話の番号
-    .tel__required
-      必須
-  = f.text_field :tel, autofocus: true, autocomplete: "tel", placeholder: "携帯電話の番号を入力"
+      .new-regist-step1__form__password
+        .new-regist-step1__form__password__title
+          パスワード(半角英数字)
+        .new-regist-step1__form__password__required
+          必須
+      .new-regist-step1__form__password-form
+        = f.password_field :password, autocomplete: "new-password", placeholder: "6文字以上の半角英数字", class: 'password-form'
 
 
-  .birthday
-    .birthday__title
-      生年月日
-    .birthday__required
-      必須
-  .birthday__select-form
-    != sprintf(f.date_select(:birthday, prefix:'user', with_css_classes:'XXXXX', prompt:"--", use_month_numbers:true, start_year:Time.now.year, end_year:1900, date_separator:'%s'),'年','月')+'日'
-
-  .status
-    .status__title
-      会員情報の公開設定
-    .status__required
-      必須
-  .status__select-form
-    = f.select :status, User.statuses.keys, {promt: "---"}
+      .new-regist-step1__form__tel
+        .new-regist-step1__form__tel__title
+          携帯電話の番号
+        .new-regist-step1__form__tel__required
+          必須
+      .new-regist-step1__form__tel-form
+        = f.text_field :tel, autofocus: true, autocomplete: "tel", placeholder: "携帯電話の番号を入力", class: 'tel-form'
 
 
-  .actions
-    = f.submit "次へ"
+      .new-regist-step1__form__birthday
+        .new-regist-step1__form__birthday__title
+          生年月日
+        .new-regist-step1__form__birthday__required
+          必須
+      .new-regist-step1__form__birthday-form
+        != sprintf(f.date_select(:birthday, prefix:'user', with_css_classes:'XXXXX', prompt:"--", use_month_numbers:true, start_year:Time.now.year, end_year:1900, date_separator:'%s'),'年','月')+'日'
+
+      .new-regist-step1__form__status
+        .new-regist-step1__form__status__title
+          会員情報の公開設定
+        .new-regist-step1__form__status__required
+          必須
+      .new-regist-step1__form__status-form
+        = f.select :status, User.statuses.keys, {promt: "---"}
+
+
+      .new-regist-step1__form__actions
+        = f.submit "次のページへ", class: 'submit-button'
+
+  = render 'matters/footer'
