@@ -80,9 +80,7 @@
 
   &__top-link {
     @include link;
-    a {
-      color: #fff;
-    }
+    color: #fff;
   }
 
 
@@ -97,9 +95,7 @@
 
   &__create-artist-profile {
     @include link-orange;
-    a {
-      color: #fff;
-    }
+    color: #fff;
   }
 
 

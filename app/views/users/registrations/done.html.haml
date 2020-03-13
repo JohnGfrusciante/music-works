@@ -17,17 +17,18 @@
   %h2 会員登録が完了しました！
 
 
-  .new-regist-done__top-link
-    = link_to "TOPページへ移動する", root_path
-
+  = link_to root_path do
+    .new-regist-done__top-link
+      TOPページへ移動する
 
   .new-regist-done__annotation
     お仕事のご依頼には、アーティストプロフィールの作成が必要です。
     %br
     案件依頼の作成をご希望の方は、「アーティストプロフィール作成」のボタンをクリックしてください。
 
-  .new-regist-done__create-artist-profile
-    = link_to "アーティストプロフィール作成", new_musician_path
+  = link_to new_musician_path do
+    .new-regist-done__create-artist-profile
+      アーティストプロフィール作成
 
   .new-regist-done__footer
     = render 'matters/footer'
