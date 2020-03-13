@@ -1,6 +1,33 @@
-%h2 会員登録が完了しました！
+.new-regist-done
+  .new-regist-done__header
+    .new-regist-done__header__logo
+      = link_to root_path do
+        = image_tag "mw_logo.png", alt: "Music Works logo", class: 'mw-logo'
 
-= link_to "TOPページへ移動する", root_path
+  .new-regist-done__breadcrumb
+    .new-regist-done__breadcrumb__step1
+      ① 会員情報入力
+
+    .new-regist-done__breadcrumb__step2
+      ② 活動実績入力
+
+    .new-regist-done__breadcrumb__done
+      ③ 登録完了
+
+  %h2 会員登録が完了しました！
 
 
--# = render "users/shared/links"
+  .new-regist-done__top-link
+    = link_to "TOPページへ移動する", root_path
+
+
+  .new-regist-done__annotation
+    お仕事のご依頼には、アーティストプロフィールの作成が必要です。
+    %br
+    案件依頼の作成をご希望の方は、「アーティストプロフィール作成」のボタンをクリックしてください。
+
+  .new-regist-done__create-artist-profile
+    = link_to "アーティストプロフィール作成", new_musician_path
+
+  .new-regist-done__footer
+    = render 'matters/footer'

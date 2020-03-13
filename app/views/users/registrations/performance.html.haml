@@ -1,42 +1,76 @@
-%h2 活動実績入力フォーム
-※お仕事をご希望の方やクリエイターの方は、以下の項目(任意)をご入力ください。
-%br
-※会員登録のみ、または、お仕事のご依頼のみをご希望の方は何も入力せず、「会員登録する」のボタンをクリックしてください。
+.new-regist-step2
+  .new-regist-step2__header
+    .new-regist-step2__header__logo
+      = link_to root_path do
+        = image_tag "mw_logo.png", alt: "Music Works logo", class: 'mw-logo'
+
+  .new-regist-step2__breadcrumb
+    .new-regist-step2__breadcrumb__step1
+      ① 会員情報入力
+    -# .new-regist-step2__breadcrumb__triangle1
+
+    .new-regist-step2__breadcrumb__step2
+      ② 活動実績入力
+    .new-regist-step2__breadcrumb__triangle2
+
+    .new-regist-step2__breadcrumb__done
+      ③ 登録完了
 
 
-= form_for(@user, url: done_path) do |f|
-  = render "devise/shared/error_messages", resource: @user
+  .new-regist-step2__annotation
+    ※案件受注をご希望の方は、以下の項目(任意)をご入力ください。
+    %br
+    ※会員登録のみ、お仕事のご依頼のみをご希望の方は何も入力せず、「会員登録」のボタンをクリックしてください。
 
 
-  .prefecture
-    .prefecture__title
-      都道府県
-  .prefecture__select-form
-    = f.select :prefecture, User.prefectures.keys, {promt: "---"}
+  .new-regist-step2__form
+    = form_for(@user, url: done_path) do |f|
+      = render "devise/shared/error_messages", resource: @user
 
 
-  .introduction
-    .introduction__title
-      自己紹介
-  = f.text_area :introduction, autofocus: true, autocomplete: "introduction", placeholder: "200文字程度で自己紹介文をご入力ください" ,class: 'introduction-form'
+      .new-regist-step2__form__prefecture
+        .new-regist-step2__form__prefecture__title
+          活動地域(都道府県)
+        .new-regist-step2__form__prefecture__norequired
+          任意
+      .new-regist-step2__form__prefecture-form
+        = f.select :prefecture, User.prefectures.keys, {promt: "---"}, autofocus: true
 
-  .performance
-    .performance__title
-      活動実績
-  = f.text_area :performance, autofocus: true, autocomplete: "performance", placeholder: "これまでの活動実績をご入力ください" ,class: 'performance-form'
+      .new-regist-step2__form__introduction
+        .new-regist-step2__form__introduction__title
+          自己紹介
+        .new-regist-step2__form__introduction__norequired
+          任意
+      .new-regist-step2__form__introduction-form
+        = f.text_area :introduction, autofocus: true, autocomplete: "introduction", placeholder: "200文字程度で自己紹介文をご入力ください" ,class: 'introduction-form'
 
-  .portfolio
-    .portfolio__title
-      ポートフォリオなどの参考URL
-  = f.url_field :portfolio, autofocus: true, autocomplete: "portfolio", placeholder: "" ,class: 'portfolio-form'
+      .new-regist-step2__form__performance
+        .new-regist-step2__form__performance__title
+          活動実績
+        .new-regist-step2__form__performance__norequired
+          任意
+      .new-regist-step2__form__performance-form
+        = f.text_area :performance, autofocus: true, autocomplete: "performance", placeholder: "これまでの活動実績をご入力ください" ,class: 'performance-form'
 
-  .skill
-    .skill__title
-      スキル(複数選択可)
-  = f.collection_check_boxes :skill_ids, @skills, :id, :name, include_hidden: false do |b|
-    = b.label { b.check_box + b.text }
+      .new-regist-step2__form__portfolio
+        .new-regist-step2__form__portfolio__title
+          ポートフォリオなどの参考URL
+        .new-regist-step2__form__portfolio__norequired
+          任意
+      .new-regist-step2__form__portfolio-form
+        = f.url_field :portfolio, autofocus: true, autocomplete: "portfolio", placeholder: "" ,class: 'portfolio-form'
 
+      .new-regist-step2__form__skill
+        .new-regist-step2__form__skill__title
+          スキル(複数選択可)
+        .new-regist-step2__form__skill__norequired
+          任意
+      .new-regist-step2__form__skill-form
+        = f.collection_check_boxes :skill_ids, @skills, :id, :name, include_hidden: false do |b|
+          = b.label { b.check_box + b.text }
+          %br
 
-  .actions
-    = f.submit "会員登録する"
+      .new-regist-step2__form__actions
+        = f.submit "会員登録", class: 'submit-button'
 
+  = render 'matters/footer'

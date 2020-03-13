@@ -31,6 +31,15 @@
   background-color: red;
 }
 
+@mixin norequired {
+  margin: auto 0 auto 0.4em;
+  padding: 1px 3px;
+  font-size: 0.6em;
+  border-radius: 3px;
+  color: #fff;
+  background-color: gray;
+}
+
 @mixin input-form {
   width: 100%;
   height: 2em;
@@ -70,7 +79,7 @@
 
 
 
-.new-regist-step1 {
+.new-regist-step2 {
   text-align: center;
   color: $gray;
   &__header {
@@ -88,7 +97,7 @@
     justify-content:center;
     &__step1 {
       background-color: $light-blue;
-      color: yellow;
+      color: #fff;
       padding: 1em;
       width: 10em;
     }
@@ -97,13 +106,13 @@
       background-color: $blue;
     }
     &__step2 {
-      background-color: $blue;
-      color: $light-gray;
+      background-color: $light-blue;
+      color: yellow;
       padding: 1em;
       width: 10em;
     }
     &__triangle2 {
-      @include triangle-blue;
+      @include triangle-light-blue;
       background-color: $blue;
     }
     &__done {
@@ -113,116 +122,99 @@
       width: 10em;
     }
   }
+
+  &__annotation {
+    width: 49%;
+    margin: 0 auto 2.5em;
+    font-size: 0.8em;
+    text-align: left;
+  }
+
+
+
   &__form {
     background-color: $very-light-gray;
-    width: 20%;
+    width: 27%;
     margin: 0 auto;
     padding: 2em 13em;
-    &__name {
+    &__prefecture {
       @include content;
       &__title {
         @include title;
       }
-      &__required {
-        @include required;
+      &__norequired {
+        @include norequired;
       }
     }
-    &__name-form {
-      margin-bottom: 2em;
-      .name-form {
-        @include input-form;
-      }
-    }
-    &__name-kana {
-      @include content;
-      &__title {
-        @include title;
-      }
-      &__required {
-        @include required;
-      }
-    }
-    &__name-kana-form {
-      margin-bottom: 2em;
-      .name-kana-form {
-        @include input-form;
-      }
-    }
-    &__email {
-      @include content;
-      &__title {
-        @include title;
-      }
-      &__required {
-        @include required;
-      }
-    }
-    &__email-form {
-      margin-bottom: 2em;
-      .email-form {
-        @include input-form;
-      }
-    }
-    &__password {
-      @include content;
-      &__title {
-        @include title;
-      }
-      &__required {
-        @include required;
-      }
-    }
-    &__password-form {
-      margin-bottom: 2em;
-      .password-form {
-        @include input-form;
-      }
-    }
-    &__tel {
-      @include content;
-      &__title {
-        @include title;
-      }
-      &__required {
-        @include required;
-      }
-    }
-    &__tel-form {
-      margin-bottom: 2em;
-      .tel-form {
-        @include input-form;
-      }
-    }
-    &__birthday {
-      @include content;
-      &__title {
-        @include title;
-      }
-      &__required {
-        @include required;
-      }
-    }
-    &__birthday-form {
-      margin-bottom: 2em;
-      select {
-        width: 25%;
-        @include select-form;
-      }
-    }
-    &__status {
-      @include content;
-      &__title {
-        @include title;
-      }
-      &__required {
-        @include required;
-      }
-    }
-    &__status-form {
+    &__prefecture-form {
       margin-bottom: 2em;
       select {
         width: 98%;
         @include select-form;
+      }
+    }
+    &__introduction {
+      @include content;
+      &__title {
+        @include title;
+      }
+      &__norequired {
+        @include norequired;
+      }
+    }
+    &__introduction-form {
+      margin-bottom: 2em;
+      .introduction-form {
+        @include input-form;
+        height: 12em;
+      }
+    }
+    &__performance {
+      @include content;
+      &__title {
+        @include title;
+      }
+      &__norequired {
+        @include norequired;
+      }
+    }
+    &__performance-form {
+      margin-bottom: 2em;
+      .performance-form {
+        @include input-form;
+        height: 12em;
+      }
+    }
+    &__portfolio {
+      @include content;
+      &__title {
+        @include title;
+      }
+      &__norequired {
+        @include norequired;
+      }
+    }
+    &__portfolio-form {
+      margin-bottom: 2em;
+      .portfolio-form {
+        @include input-form;
+      }
+    }
+    &__skill {
+      @include content;
+      &__title {
+        @include title;
+      }
+      &__norequired {
+        @include norequired;
+      }
+    }
+    &__skill-form {
+      margin-bottom: 2em;
+      text-align: left;
+      font-size: 0.9em;
+      &__skill-form {
+        @include input-form;
       }
     }
 
@@ -236,7 +228,3 @@
     }
   }
 }
-
-
-
-
