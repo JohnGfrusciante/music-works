@@ -32,10 +32,13 @@ class Users::RegistrationsController < Devise::RegistrationsController
     @user.save!
     sign_in(:user, @user)
 
-    @skill_ids.each do |skill_id|
-      @tag = Tag.new(skill_id: skill_id, user_id: current_user.id)
-      @tag.save!
+    if @skill_ids.present?
+      @skill_ids.each do |skill_id|
+        @tag = Tag.new(skill_id: skill_id, user_id: current_user.id)
+        @tag.save!
+      end
     end
+
   end
 
 
