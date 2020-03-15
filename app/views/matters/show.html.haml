@@ -1,120 +1,156 @@
-案件詳細ページです。
-%br
-- if user_signed_in? and @musician_user_id.present?
-  - if current_user.musician.id == @matter.musician_id
-    = link_to "案件依頼内容を編集する", "/matters/#{@matter.id}/edit"
-    %br
+.matter-show-page
+  .matter-show-page__header
+    = render 'header'
 
 
-- if user_signed_in?
-  - if current_user.already_liked?(@matter)
-    = link_to "この仕事のブックマークを取り消す", "/matters/#{@matter.id}/likes/#{@matter.id}", method: :delete
-    %br
-  - else
-    - if @musician_user_id.present? and current_user.musician.id == @matter.musician_id
-      ※案件依頼ユーザーのためブックマークはできません。
-      %br
-    - else
-      = link_to "この仕事をブックマークする", "/matters/#{@matter.id}/likes", method: :post
-      %br
+
+  - if user_signed_in? and @musician_user_id.present?
+    - if current_user.musician.id == @matter.musician_id
+      .matter-show-page__artist-menu
+        .matter-show-page__artist-menu__matter-edit-link
+          = icon('far', 'fas fa-edit')
+          = link_to "案件内容を編集", "/matters/#{@matter.id}/edit"
+        .matter-show-page__artist-menu__matter-status
+          公開設定：
+          = @matter.status
 
 
-■案件依頼アーティスト：
-= link_to "#{@matter.musician.name}", "/musicians/#{@matter.musician.id}", target: blank?
-%br
 
-■案件名：
-= @matter.title
-%br
-
-■案件カテゴリ：
-= @matter.matter_category.name
-%br
-
-■お支払い金額：
-= @matter.reward
-円
-%br
-
-■応募受付終了日：
-= @matter.deadline
-%br
-
-■勤務地域(都道府県)：
-= @matter.prefecture
-%br
-
-■業務開始予定日：
-- if @matter.start.present?
-  = @matter.start
-- else
-  指定はありません。
-%br
-
-■業務開始終了日(希望納期)：
-= @matter.end
-%br
-
-■業務内容：
-%br
-= safe_join(@matter.content.split("\n"),tag(:br))
-%br
-
-■お支払い方法：
-- if @matter.payment.present?
-  = @matter.payment
-- else
-  指定はありません。
-%br
-
-■補足情報：
-%br
-- if @matter.supplement.present?
-  = safe_join(@matter.supplement.split("\n"),tag(:br))
-- else
-  指定はありません。
-%br
-
-- if user_signed_in? and @musician_user_id.present?
-  - if current_user.musician.id == @matter.musician_id
-    ■公開設定：
-    = @matter.status
-
-
-%br
-- if user_signed_in?
-  - if @chat_user_id.present?
-    ※既にチャットルームが存在します。
-    %br
-    = link_to "チャット質問ページへ", "/matters/#{@matter.id}/chats/#{@chat.id}/messages", method: :get
-    %br
-  - elsif @musician_user_id.present? and current_user.musician.id == @matter.musician_id
-    ※案件依頼ユーザーのためチャット質問はできません。
-    %br
-  - else
-    = link_to "案件内容をチャットで質問する", "/matters/#{@matter.id}/chats", method: :post
-    %br
-
-  - if @matter.deadline > @deadline
-    - if current_user.already_applied?(@matter)
-      ※この案件は既に応募済みです。
-      %br
-      = link_to "応募を取り消す", "/matters/#{@matter.id}/applications/#{@matter.id}", method: :delete
-      %br
-    - else
-      - if @musician_user_id.present? and current_user.musician.id == @matter.musician_id
-        ※案件依頼ユーザーのため応募できません。
-        %br
+  - if user_signed_in?
+    .matter-show-page__usermenu
+      - if current_user.already_liked?(@matter)
+        .matter-show-page__usermenu__already-liked
+          = icon('far', 'far fa-bookmark')
+          = link_to "ブックマークを外す", "/matters/#{@matter.id}/likes/#{@matter.id}", method: :delete
       - else
-        = link_to "この仕事に応募する", "/matters/#{@matter.id}/applications", method: :post
-        %br
-  - else
-    ※この案件は受付を締め切りました。
-    %br
+        - if @musician_user_id.present? and current_user.musician.id == @matter.musician_id
+          .matter-show-page__usermenu__like-annotation
+            ※案件依頼ユーザーのためブックマークはできません。
+        - else
+          .matter-show-page__usermenu__like
+            = icon('fas', 'fas fa-bookmark')
+            = link_to "案件ブックマーク", "/matters/#{@matter.id}/likes", method: :post
 
-- else
-  ※お仕事のご応募には、会員登録が必要です。
-  %br
-  = link_to "新規会員登録はこちら", '/users/sign_up'
-  %br
-= link_to "TOPページへ戻る", root_path
+
+      - if @chat_user_id.present?
+        .matter-show-page__usermenu__chat-link
+          = icon('fas', 'fas fa-comments')
+          = link_to "詳細質問チャット", "/matters/#{@matter.id}/chats/#{@chat.id}/messages", method: :get
+      - elsif @musician_user_id.present? and current_user.musician.id == @matter.musician_id
+        .matter-show-page__usermenu__chat-annotation
+          ※案件依頼ユーザーのためチャット質問はできません。
+      - else
+        .matter-show-page__usermenu__chat-link
+          = icon('fas', 'fas fa-comments')
+          = link_to "詳細質問チャット", "/matters/#{@matter.id}/chats", method: :post
+
+
+
+
+
+  .matter-show-page__upper
+    .matter-show-page__upper__left
+      .matter-show-page__upper__left__title
+        = @matter.title
+        .matter-show-page__upper__left__title__category
+          = icon('fas', 'fas fa-folder')
+          = @matter.matter_category.name
+
+    .matter-show-page__upper__right
+      .matter-show-page__upper__right__upper
+        %p
+          = icon('fas', 'fas fa-clock')
+          応募受付：
+        .matter-show-page__upper__right__upper__deadline
+          = @matter.deadline.strftime("%Y年%m月%d日")
+        %p
+          まで
+      .matter-show-page__upper__right__bottom-line
+
+      .matter-show-page__upper__right__middle
+        .matter-show-page__upper__right__middle__reward
+          = icon('fas', 'fas fa-yen-sign')
+          = @matter.reward
+        .matter-show-page__upper__right__middle__prefecture
+          = icon('fas', 'fas fa-map-marker-alt')
+          就業地域：
+          = @matter.prefecture
+      .matter-show-page__upper__right__middle__bottom-line
+
+      .matter-show-page__upper__right__lower
+        - if @matter.start.present?
+          .matter-show-page__upper__right__lower__start
+            = icon('far', 'far fa-calendar-alt')
+            業務開始予定：
+            = @matter.start.strftime("%Y年%m月%d日")
+            〜
+        .matter-show-page__upper__right__lower__end
+          = icon('far', 'far fa-calendar-alt')
+          業務終了予定(希望納期)：
+          = @matter.end.strftime("%Y年%m月%d日")
+        .matter-show-page__upper__right__lower__bottom-line
+        .matter-show-page__upper__right__lower__musician-name
+          = icon('fas', 'fas fa-user-alt')
+          = link_to "#{@matter.musician.name}", "/musicians/#{@matter.musician.id}", target: blank?
+
+
+  .matter-show-page__middle
+    .matter-show-page__middle__detail
+      .matter-show-page__middle__detail__title
+        業務内容
+      .matter-show-page__middle__detail__content
+        = safe_join(@matter.content.split("\n"),tag(:br))
+
+
+    .matter-show-page__middle__payment
+      .matter-show-page__middle__payment__title
+        お支払い方法
+      .matter-show-page__middle__payment__content
+        - if @matter.payment.present?
+          = @matter.payment
+        - else
+          指定はありません。
+
+
+    .matter-show-page__middle__supplement
+      .matter-show-page__middle__supplement__title
+        補足情報
+      .matter-show-page__middle__supplement__content
+        - if @matter.supplement.present?
+          = safe_join(@matter.supplement.split("\n"),tag(:br))
+        - else
+          情報はありません。
+
+
+
+  .matter-show-page__lower
+    - if user_signed_in?
+      - if @matter.deadline > @deadline
+        - if current_user.already_applied?(@matter)
+          .matter-show-page__lower__already-applied
+            ※この案件は既に応募済みです。
+          = link_to "/matters/#{@matter.id}/applications/#{@matter.id}", method: :delete do
+            .matter-show-page__lower__applied-cancel
+              応募を取り消す
+
+        - else
+          - if @musician_user_id.present? and current_user.musician.id == @matter.musician_id
+            .matter-show-page__lower__artist-not-apply
+              ※案件依頼ユーザーのため応募できません。
+          - else
+            = link_to "/matters/#{@matter.id}/applications", method: :post do
+              .matter-show-page__lower__apply
+                この案件に応募する
+      - else
+        .matter-show-page__lower__deadline
+          ※この案件は受付を締め切りました。
+
+    - else
+      .matter-show-page__lower__unregist-not-apply
+        ※お仕事のご応募には、会員登録が必要です。
+      = link_to '/users/sign_up' do
+        .matter-show-page__lower__regist-link
+          新規会員登録
+
+
+  = render 'footer'
