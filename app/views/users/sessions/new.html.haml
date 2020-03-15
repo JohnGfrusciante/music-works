@@ -1,18 +1,33 @@
-%h2 Log in
-%h2 Log in
-= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
-  .field
-    = f.label :email
-    %br/
-    = f.email_field :email, autofocus: true, autocomplete: "email"
-  .field
-    = f.label :password
-    %br/
-    = f.password_field :password, autocomplete: "current-password"
-  - if devise_mapping.rememberable?
-    .field
-      = f.check_box :remember_me
-      = f.label :remember_me
-  .actions
-    = f.submit "Log in"
-= render "users/shared/links"
+.login-page
+  .login-page__header
+    .login-page__header__logo
+      = link_to root_path do
+        = image_tag "mw_logo.png", alt: "Music Works logo", class: 'mw-logo'
+
+
+  .login-page__content
+    = form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
+      .login-page__content__email
+        .login-page__content__email__title
+          メールアドレス
+        .login-page__content__email__form
+          = f.email_field :email, autofocus: true, autocomplete: "email", class: 'email-form'
+
+      .login-page__content__password
+        .login-page__content__password__title
+          パスワード
+        .login-page__content__password__form
+          = f.password_field :password, autocomplete: "current-password", class: 'password-form'
+
+
+      -# - if devise_mapping.rememberable?
+      -#   .field
+      -#     = f.check_box :remember_me
+      -#     = f.label :remember_me
+
+
+      .login-page__content__actions
+        = f.submit "ログイン", class: 'submit-button'
+
+  .login-page__footer
+    = render 'matters/footer'
