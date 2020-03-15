@@ -63,6 +63,10 @@
       &__chat-list-link {
         padding: 1em;
         border-bottom: solid 1px $light-gray;
+        &__annotation {
+          font-size: 0.9em;
+          color: red;
+        }
       }
       &__chat-list-link:hover {
         @include menu-hover;
@@ -70,6 +74,10 @@
 
       &__offered-list-link {
         padding: 1em;
+        &__annotation {
+          font-size: 0.9em;
+          color: red;
+        }
       }
       &__offered-list-link:hover {
         @include menu-hover;
