@@ -25,6 +25,48 @@ $very-light-gray: #f3f3f3;
   background-repeat: no-repeat;
 }
 
+@mixin link-button-blue {
+  border-radius: 3px;
+  font-size: 0.9em;
+  text-align: center;
+  cursor: pointer;
+  padding: 0.8em 1em;
+  background: $blue;
+  line-height: 1em;
+}
+
+@mixin link-button-orange {
+  border-radius: 3px;
+  font-size: 0.9em;
+  text-align: center;
+  cursor: pointer;
+  padding: 0.8em 1em;
+  background: $orange;
+  color: #ffffff;
+  line-height: 1em;
+}
+
+@mixin submit {
+  display: inline-block;
+  border-radius: 5px;
+  font-size: 0.9em;
+  text-align: center;
+  cursor: pointer;
+  padding: 0.5em 1em;
+  background: $orange;
+  color: #ffffff;
+  line-height: 1em;
+  transition: .3s;
+  border: 2px solid $orange;
+}
+
+@mixin submit-hover {
+  color: #fff;
+  background: $blue;
+  border: 2px solid $blue;
+}
+
+
 @import "reset";
 @import "font-awesome-sprockets";
 @import "font-awesome";
@@ -34,6 +76,7 @@ $very-light-gray: #f3f3f3;
 @import "matters/search";
 @import "matters/matters_list";
 @import "matters/footer";
+@import "matters/show";
 @import "breadcrumb";
 @import "regist/regist_step1";
 @import "regist/regist_step2";

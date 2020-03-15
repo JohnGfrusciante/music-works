@@ -1,0 +1,236 @@
+@mixin title {
+  font-weight: bold;
+  font-size: 0.95em;
+  color: $blue;
+  display: inline-block;
+  border-bottom: solid 2px $blue;
+}
+
+@mixin content {
+  border-top: solid 1px $light-gray;
+  font-size: 0.9em;
+  padding-top: 0.7em;
+}
+
+@mixin menu {
+  color: $blue;
+  background-color: $very-light-gray;
+  padding: 1.5em 1em;
+  border: solid 1px $light-gray;
+  border-radius:  8px;
+  max-width: 10em;
+}
+
+@mixin annotation-gray {
+  color: $gray;
+  text-align: center;
+  font-weight: bold;
+}
+
+
+.matter-show-page {
+  &__header {
+    position: fixed;
+    top: 0;
+  }
+  &__artist-menu {
+    position: fixed;
+    top: 26em;
+    left: 2.5em;
+    @include menu;
+    &__matter-edit-link {
+      color: $blue;
+      margin-bottom: 1em;
+      font-size: 0.9em;
+      font-weight: bold;
+      a {
+        color: $blue;
+      }
+    }
+    &__matter-status {
+      font-size: 0.9em;
+    }
+  }
+  &__usermenu {
+    position: fixed;
+    top: 13em;
+    left: 2.5em;
+    @include menu;
+    a {
+      color: $blue;
+    }
+    &__like {
+      margin-bottom: 1em;
+    }
+    &__like-annotation {
+      font-size: 0.8em;
+      margin-bottom: 1em;
+      color: $gray;
+    }
+    &__already-liked {
+      margin-bottom: 1em;
+    }
+    &__chat-annotation {
+      font-size: 0.8em;
+      color: $gray;
+    }
+  }
+  &__upper {
+    padding: 1em;
+    border: solid 1px $light-gray;
+    background-color: $very-light-gray;
+    width: 60%;
+    margin: 13em auto 3em;
+    color: $gray;
+    font-size: 0.9em;
+    display: flex;
+    a {
+      color: $blue;
+    }
+    &__left {
+      display: flex;
+      margin: auto 0;
+      border-right: dotted 1px $gray;
+      &__title {
+        font-weight: bold;
+        width: 20em;
+        font-size: 1.1em;
+        text-align: center;
+        color: $blue;
+        &__category {
+          font-size: 0.8em;
+          font-weight: normal;
+          margin-top: 0.5em;
+          color: $gray;
+        }
+      }
+    }
+    &__right {
+      padding: 0 1em;
+      margin: 0 auto;
+      &__upper {
+        display: flex;
+        font-size: 0.9em;
+        &__deadline {
+          font-weight: bold;
+          font-size: 1.1em;
+          color: red;
+        }
+        p {
+          margin-top: 2px;
+        }
+      }
+      &__bottom-line {
+        @include bottom-line;
+        margin: 0.5em 0;
+      }
+      &__middle {
+        display: flex;
+        div {
+          padding-right: 0.5em;
+          margin-right: 0.5em;
+        }
+        &__reward {
+          font-weight: bold;
+          color: red;
+          border-right: dotted 1px $gray;
+        }
+        &__bottom-line {
+          @include bottom-line;
+          margin: 0.5em 0;
+        }
+      }
+      &__lower {
+        text-align: left;
+        &__start {
+          font-size: 0.9em;
+        }
+        &__end {
+          font-size: 0.9em;
+        }
+        &__bottom-line {
+          @include bottom-line;
+          margin: 0.5em 0;
+        }
+        &__musician-name {
+          font-size: 0.9em;
+        }
+      }
+    }
+  }
+  &__middle {
+    color: $gray;
+    width: 62%;
+    margin: 2em auto 0;
+    &__detail {
+      margin-bottom: 1.5em;
+      &__title {
+        @include title;
+      }
+      &__content {
+        @include content;
+      }
+    }
+    &__payment {
+      margin-bottom: 1.5em;
+      &__title {
+        @include title;
+      }
+      &__content {
+        @include content;
+      }
+    }
+    &__supplement {
+      margin-bottom: 1.5em;
+      &__title {
+        @include title;
+      }
+      &__content {
+        @include content;
+      }
+    }
+  }
+  &__lower {
+    width: 62%;
+    margin: 0 auto;
+    &__already-applied {
+      @include annotation-gray;
+      margin: 4em 0 1em;
+    }
+    &__applied-cancel {
+      @include link-button-orange;
+      width: 10em;
+      margin: 0 auto 6em;
+      background-color: red;
+    }
+
+    &__artist-not-apply {
+      @include annotation-gray;
+      margin: 5em 0;
+    }
+
+    &__apply {
+      @include link-button-orange;
+      width: 10em;
+      margin: 6em auto 6em;
+      font-size: 1em;
+    }
+
+    &__deadline {
+      @include annotation-gray;
+      margin: 5em 0;
+    }
+
+
+    &__unregist-not-apply {
+      @include annotation-gray;
+      color: $blue;
+      margin: 4em 0 1em;
+    }
+    &__regist-link {
+      @include link-button-orange;
+      width: 7em;
+      margin: 0 auto 6em;
+    }
+  }
+}
