@@ -9,6 +9,7 @@ class MypagesController < ApplicationController
     @unread_messages = @not_user_messages.where(status: 0)
     @tags = Tag.where(user_id: current_user.id)
     @unconfirm_offers = Offer.where(user_id: current_user.id, status: 0)
+    @musician_user_id = Musician.find_by(user_id: current_user)
   end
 
 
@@ -19,3 +20,4 @@ class MypagesController < ApplicationController
   end
 
 end
+
