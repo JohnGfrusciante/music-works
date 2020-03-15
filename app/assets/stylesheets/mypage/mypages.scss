@@ -1,0 +1,199 @@
+@mixin menu-hover {
+  color: #fff;
+  background-color: $orange;
+  color: $very-light-gray;
+}
+
+@mixin title {
+  color: $blue;
+  font-weight: bold;
+  border-bottom: solid 2px $blue;
+  display: inline-block;
+}
+
+@mixin content {
+  border-top: solid 1px $light-gray;
+  padding-top: 0.4em;
+}
+
+
+
+
+.mypage {
+  &__body {
+    display: flex;
+    &__menu {
+      background-color: $very-light-gray;
+      border: solid 1px $light-gray;
+      width: 20%;
+      font-size: 0.9em;
+      font-weight: bold;
+      text-align: center;
+      height: 100%;
+      text-align: left;
+      margin: 2em 0 0 1.5em;
+      a {
+        color: $blue;
+      }
+
+      &__user-edit {
+        padding: 1em;
+        border-bottom: solid 1px $light-gray;
+      }
+      &__user-edit:hover {
+        @include menu-hover;
+      }
+
+      &__liked-list-link {
+        padding: 1em;
+        border-bottom: solid 1px $light-gray;
+      }
+      &__liked-list-link:hover {
+        @include menu-hover;
+      }
+
+      &__applied-list-link {
+        padding: 1em;
+        border-bottom: solid 1px $light-gray;
+      }
+      &__applied-list-link:hover {
+        @include menu-hover;
+      }
+
+      &__chat-list-link {
+        padding: 1em;
+        border-bottom: solid 1px $light-gray;
+      }
+      &__chat-list-link:hover {
+        @include menu-hover;
+      }
+
+      &__offered-list-link {
+        padding: 1em;
+      }
+      &__offered-list-link:hover {
+        @include menu-hover;
+      }
+
+    }
+
+
+    &__user-info {
+      width: 60%;
+      margin: 1.5em auto 0;
+      color: $gray;
+      font-size: 0.9em;
+
+      &__name {
+        margin-bottom: 2em;
+        &__title {
+          @include title;
+        }
+        &__content {
+          @include content;
+        }
+      }
+
+      &__name-kana {
+        margin-bottom: 2em;
+        &__title {
+          @include title;
+        }
+        &__content {
+          @include content;
+        }
+      }
+
+      &__email {
+        margin-bottom: 2em;
+        &__title {
+          @include title;
+        }
+        &__content {
+          @include content;
+        }
+      }
+
+      &__tel {
+        margin-bottom: 2em;
+        &__title {
+          @include title;
+        }
+        &__content {
+          @include content;
+        }
+      }
+
+      &__birthday {
+        margin-bottom: 2em;
+        &__title {
+          @include title;
+        }
+        &__content {
+          @include content;
+        }
+      }
+
+      &__status {
+        margin-bottom: 2em;
+        &__title {
+          @include title;
+        }
+        &__content {
+          @include content;
+        }
+      }
+
+      &__prefecture {
+        margin-bottom: 2em;
+        &__title {
+          @include title;
+        }
+        &__content {
+          @include content;
+        }
+      }
+
+      &__introduction {
+        margin-bottom: 2em;
+        &__title {
+          @include title;
+        }
+        &__content {
+          @include content;
+        }
+      }
+
+      &__performance {
+        margin-bottom: 2em;
+        &__title {
+          @include title;
+        }
+        &__content {
+          @include content;
+        }
+      }
+
+      &__portfolio {
+        margin-bottom: 2em;
+        &__title {
+          @include title;
+        }
+        &__content {
+          @include content;
+        }
+      }
+
+      &__skill {
+        margin-bottom: 2em;
+        &__title {
+          @include title;
+        }
+        &__content {
+          @include content;
+        }
+      }
+
+    }
+  }
+}

@@ -1,122 +1,133 @@
-会員マイページ
-.breadcrumb
-  - breadcrumb :mypage
-  = breadcrumbs separator: " &rsaquo; "
-  %br
-= link_to "■会員情報編集ページへ", "/edit_user"
-%br
-= link_to "■ブックマークした案件の一覧ページへ", "/likes"
-%br
-= link_to "■応募した案件の一覧ページへ", "/applications_lists"
-%br
-= link_to "■質問を送ったチャットの一覧ページへ", "/user_chatslists"
-- if @unread_messages.present?
-  ※未読のメッセージがあります。
-%br
-= link_to "■オファーが届いた案件の一覧ページへ", "/users/#{@user.id}/offered_lists"
-- if @unconfirm_offers.present?
-  ※未確認のオファーがあります。
-%br
-%br
+.mypage
+  = render 'matters/header'
+
+  .breadcrumb
+    - breadcrumb :mypage
+    = breadcrumbs separator: " &rsaquo; "
 
 
-.name
-  .name__title
-    ■ お名前(全角)
-  .name__content
-    = @user.name
-%br
+  .mypage__body
+    .mypage__body__menu
+      = link_to "/edit_user" do
+        .mypage__body__menu__user-edit
+          = icon('fas', 'fas fa-edit')
+          会員情報編集
+
+      = link_to "/likes" do
+        .mypage__body__menu__liked-list-link
+          = icon('fas', 'fas fa-bookmark')
+          ブックマーク案件の一覧
+
+      = link_to "/applications_lists" do
+        .mypage__body__menu__applied-list-link
+          = icon('fas', 'fas fa-file')
+          応募案件の一覧
+
+      = link_to "/user_chatslists" do
+        .mypage__body__menu__chat-list-link
+          = icon('fas', 'fas fa-comments')
+          質問を送ったチャットの一覧
+          - if @unread_messages.present?
+            ※未読のメッセージがあります。
+
+      = link_to "/users/#{@user.id}/offered_lists" do
+        .mypage__body__menu__offered-list-link
+          = icon('fas', 'fas fa-envelope-open-text')
+          オファー案件の一覧
+          - if @unconfirm_offers.present?
+            ※未確認のオファーがあります。
 
 
-.name_kana
-  .name_kana__title
-    ■ お名前カナ(全角)
-  .name_kana__content
-    = @user.name_kana
-%br
-
-.email
-  .email__title
-    ■ メールアドレス
-  .email__content
-    = @user.email
-%br
+    .mypage__body__user-info
+      .mypage__body__user-info__name
+        .mypage__body__user-info__name__title
+          お名前(全角)
+        .mypage__body__user-info__name__content
+          = @user.name
 
 
-.tel
-  .tel__title
-    ■ 携帯電話の番号
-  .tel__content
-    = @user.tel
-%br
+      .mypage__body__user-info__name-kana
+        .mypage__body__user-info__name-kana__title
+          お名前カナ(全角)
+        .mypage__body__user-info__name-kana__content
+          = @user.name_kana
 
 
-.birthday
-  .birthday__title
-    ■ 生年月日
-  .birthday__content
-    = @user.birthday
-%br
+      .mypage__body__user-info__email
+        .mypage__body__user-info__email__title
+          メールアドレス
+        .mypage__body__user-info__email__content
+          = @user.email
 
 
-.status
-  .status__title
-    ■ 会員情報の公開設定
-  .status__content
-    = @user.status
-%br
+      .mypage__body__user-info__tel
+        .mypage__body__user-info__tel__title
+          携帯電話の番号
+        .mypage__body__user-info__tel__content
+          = @user.tel
 
 
+      .mypage__body__user-info__birthday
+        .mypage__body__user-info__birthday__title
+          生年月日
+        .mypage__body__user-info__birthday__content
+          = @user.birthday.strftime("%Y年%m月%d日")
 
 
-.prefecture
-  .prefecture__title
-    ■ 都道府県
-  .prefecture__content
-    = @user.prefecture
-%br
+      .mypage__body__user-info__status
+        .mypage__body__user-info__status__title
+          会員情報の公開設定
+        .mypage__body__user-info__status__content
+          = @user.status
 
 
-.introduction
-  .introduction__title
-    ■ 自己紹介
-  .introduction__content
-    - if @user.introduction.present?
-      = safe_join(@user.introduction.split("\n"),tag(:br))
-    - else
-      登録されていません。
-%br
+      .mypage__body__user-info__prefecture
+        .mypage__body__user-info__prefecture__title
+          都道府県
+        .mypage__body__user-info__prefecture__content
+          = @user.prefecture
 
 
-.performance
-  .performance__title
-    ■ 活動実績
-  .performance__content
-    - if @user.performance.present?
-      = safe_join(@user.performance.split("\n"),tag(:br))
-    - else
-      登録されていません。
-%br
+      .mypage__body__user-info__introduction
+        .mypage__body__user-info__introduction__title
+          自己紹介
+        .mypage__body__user-info__introduction__content
+          - if @user.introduction.present?
+            = safe_join(@user.introduction.split("\n"),tag(:br))
+          - else
+            登録されていません。
 
 
-.portfolio
-  .portfolio__title
-    ■ ポートフォリオなどの参考URL
-  .portfolio__content
-    - if @user.portfolio.present?
-      %a{ href: "#{@user.portfolio}", target: "_blank"} #{@user.portfolio}
-    - else
-      登録されていません。
-%br
+      .mypage__body__user-info__performance
+        .mypage__body__user-info__performance__title
+          活動実績
+        .mypage__body__user-info__performance__content
+          - if @user.performance.present?
+            = safe_join(@user.performance.split("\n"),tag(:br))
+          - else
+            登録されていません。
 
-.skill
-  .skill__title
-    ■ スキル
-  .skill__content
-    - if @tags.present?
-      - @tags.each do |tag|
-        = tag.skill.name
-        |
-    - else
-      登録されていません。
-%br
+
+      .mypage__body__user-info__portfolio
+        .mypage__body__user-info__portfolio__title
+          ポートフォリオなどの参考URL
+        .mypage__body__user-info__portfolio__content
+          - if @user.portfolio.present?
+            %a{ href: "#{@user.portfolio}", target: "_blank"} #{@user.portfolio}
+          - else
+            登録されていません。
+
+
+      .mypage__body__user-info__skill
+        .mypage__body__user-info__skill__title
+          スキル
+        .mypage__body__user-info__skill__content
+          - if @tags.present?
+            - @tags.each do |tag|
+              = tag.skill.name
+              |
+          - else
+            登録されていません。
+
+
+  = render 'matters/footer'
