@@ -20,4 +20,3 @@ class MypagesController < ApplicationController
   end
 
 end
-

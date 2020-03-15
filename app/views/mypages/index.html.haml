@@ -28,14 +28,16 @@
           = icon('fas', 'fas fa-comments')
           質問を送ったチャットの一覧
           - if @unread_messages.present?
-            ※未読のメッセージがあります。
+            .mypage__body__menu__chat-list-link__annotation
+              ※未読のメッセージがあります。
 
       = link_to "/users/#{@user.id}/offered_lists" do
         .mypage__body__menu__offered-list-link
           = icon('fas', 'fas fa-envelope-open-text')
           オファー案件の一覧
           - if @unconfirm_offers.present?
-            ※未確認のオファーがあります。
+            .mypage__body__menu__offered-list-link__annotation
+              ※未確認のオファーがあります。
 
 
     .mypage__body__user-info
