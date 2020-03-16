@@ -1,0 +1,16 @@
+.application-list-page {
+  &__title {
+    font-size: 1.1em;
+    font-weight: bold;
+    text-align: center;
+    color: $blue;
+    margin: 1em 0;
+  }
+  &__noapplication {
+    text-align: center;
+    color: $gray;
+  }
+  &__matters-list {
+    min-height: 60vh;
+  }
+}
