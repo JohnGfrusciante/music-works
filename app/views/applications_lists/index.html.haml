@@ -1,31 +1,72 @@
-応募した案件の一覧
-.breadcrumb
-  - breadcrumb :applications_list
-  = breadcrumbs separator: " &rsaquo; "
-%br
-
-%ul.applications-list
-  - @applications.each do |application|
-    %li.applications-list__content
-      .applications-list__content__title
-        = link_to "案件名：#{application.matter.title}", "/matters/#{application.matter.id}", method: :get, target: blank?
-        %br
-        案件カテゴリ：
-        = application.matter.matter_category.name
-        %br
-        お支払い金額：
-        = application.matter.reward
-        円
-        %br
-        依頼アーティスト：
-        = link_to "#{application.matter.musician.name}", "/musicians/#{application.matter.musician.id}", target: blank?
-        %br
-        応募締切日：
-        = application.matter.deadline
-        %br
-        %br
+.application-list-page
+  
+  .application-list-page__header
+    = render 'matters/header'
 
 
+  .breadcrumb
+    - breadcrumb :applications_list
+    = breadcrumbs separator: " &rsaquo; "
+  %br
 
-- if @applications.blank?
-  ※まだ応募した案件はありません。
+  .application-list-page__title
+    応募案件一覧
+
+  - if @applications.blank?
+    .application-list-page__noapplication
+      ※応募した案件はありません。
+
+
+  .application-list-page__matters-list
+    %ul
+      - @applications.each do |application|
+        %li.matters-list__content
+          .matters-list__content__left
+            .matters-list__content__left__title
+              = link_to "#{application.matter.title}", "/matters/#{application.matter.id}", method: :get, target: blank?
+              .matters-list__content__left__title__category
+                = icon('fas', 'fas fa-folder')
+                = application.matter.matter_category.name
+
+          .matters-list__content__right
+            .matters-list__content__right__upper
+              %p
+                = icon('fas', 'fas fa-clock')
+                応募受付：
+              .matters-list__content__right__upper__deadline
+                = application.matter.deadline.strftime("%Y年%m月%d日")
+              %p
+                まで
+            .matters-list__content__right__bottom-line
+
+
+            .matters-list__content__right__middle
+              .matters-list__content__right__middle__reward
+                = icon('fas', 'fas fa-yen-sign')
+                =application.matter.reward
+              .matters-list__content__right__middle__prefecture
+                = icon('fas', 'fas fa-map-marker-alt')
+                就業地域：
+                = application.matter.prefecture
+            .matters-list__content__right__middle__bottom-line
+
+
+            .matters-list__content__right__lower
+              - if application.matter.start.present?
+                .matters-list__content__right__lower__start
+                  = icon('far', 'far fa-calendar-alt')
+                  業務開始予定：
+                  = application.matter.start.strftime("%Y年%m月%d日")
+                  〜
+              .matters-list__content__right__lower__end
+                = icon('far', 'far fa-calendar-alt')
+                業務終了予定(希望納期)：
+                = application.matter.end.strftime("%Y年%m月%d日")
+              .matters-list__content__right__lower__bottom-line
+              .matters-list__content__right__lower__musician-name
+                = icon('fas', 'fas fa-user-alt')
+                = link_to "#{application.matter.musician.name}", "/musicians/#{application.matter.musician.id}", target: blank?
+        %br
+
+  = render 'matters/footer'
+
