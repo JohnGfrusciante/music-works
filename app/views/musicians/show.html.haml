@@ -1,147 +1,268 @@
-アーティストプロフィールページです。
-%br
-- if user_signed_in?
-  - if current_user.id == @musician.user_id
-    .breadcrumb
-      - breadcrumb :musician
-      = breadcrumbs separator: " &rsaquo; "
-      %br
-    = link_to "★ 案件依頼を作成する", new_matter_path
-    %br
-    = link_to "★ アーティストプロフィールを編集する", "/musicians/#{@musician.id}/edit"
-    %br
-    = link_to "★ 案件の応募結果", "/musicians/#{@musician.id}/musician_matterslists"
-    %br
-    = link_to "★ アーティスト用チャット一覧ページ", "/musician_chatslists"
-    - if @unread_messages.present?
-      ※未読のメッセージがあります。
-    %br
-    ★ ユーザースキル検索
-    = form_with(url: user_search_musician_tags_path(@musician), local: true, method: :get, class: "search-form") do |f|
-      = f.collection_select :skill_id, Skill.all, :id, :name, prompt: "スキルを選択してください"
-      = f.submit "検索"
-    %br
+.artist-page
+  .artist-page__header
+    = render 'matters/header'
+
+  .artist-page__body
+    - if user_signed_in?
+      - if current_user.id == @musician.user_id
+        .breadcrumb
+          - breadcrumb :musician
+          = breadcrumbs separator: " &rsaquo; "
+
+        = link_to new_matter_path do
+          .artist-page__body__create-matter
+            案件依頼作成
+
+        .artist-page__body__menu
+          = link_to "/musicians/#{@musician.id}/edit" do
+            .artist-page__body__menu__edit-artist-profile
+              = icon('fas', 'fas fa-edit')
+              アーティストプロフィール編集
+
+          = link_to "/musicians/#{@musician.id}/musician_matterslists" do
+            .artist-page__body__menu__application-result
+              = icon('fas', 'fas fa-inbox')
+              依頼案件の応募結果
+
+          = link_to "/musician_chatslists" do
+            .artist-page__body__menu__chat-list
+              = icon('fas', 'fas fa-comments')
+              アーティスト用チャットの一覧
+              - if @unread_messages.present?
+                .artist-page__body__menu__chat-list__annotation
+                  ※未読のメッセージがあります。
+
+          .artist-page__body__menu__user-search
+            = icon('fas', 'fas fa-search')
+            ユーザースキル検索
+            = form_with(url: user_search_musician_tags_path(@musician), local: true, method: :get, class: "search-form") do |f|
+              = f.collection_select :skill_id, Skill.all, :id, :name, prompt: "スキルを選択してください"
+              %br
+              = f.submit "検索", class: "submit-button"
+
+      - else
+        .artist-page__body__title-login
+          アーティストプロフィール
+    - else
+      .artist-page__body__title-notlogin
+        アーティストプロフィール
 
 
-.artist-image
-  - if @musician.image.present?
-    = image_tag @musician.image.url, class: '', width: '300'
-  - else
-    アーティスト写真の登録はありません。
 
-■アーティスト名：
-= @musician.name
-%br
+    .artist-page__body__artist-info
+      .artist-page__body__artist-info__artist-image
+        - if @musician.image.present?
+          .artist-page__body__artist-info__image
+            = image_tag @musician.image.url, class: 'image', width: '300'
+        - else
+          .artist-page__body__artist-info__noimage
+            アーティスト写真の登録はありません
 
-■バイオグラフィー：
-%br
-= safe_join(@musician.biography.split("\n"),tag(:br))
-%br
 
-■活動歴：
-%br
-= safe_join(@musician.activity_history.split("\n"),tag(:br))
-%br
+      .artist-page__body__artist-info__name
+        .artist-page__body__artist-info__name__title
+          アーティスト名
+        .artist-page__body__artist-info__name__content
+          = @musician.name
 
-■活動場所：
-= @musician.activity_place
-%br
+      .artist-page__body__artist-info__biography
+        .artist-page__body__artist-info__biography__title
+          バイオグラフィー
+        .artist-page__body__artist-info__biography__content
+          = safe_join(@musician.biography.split("\n"),tag(:br))
 
-■連絡用メールアドレス：
-%a{ href: "mailto:#{@musician.email}"} #{@musician.email}
-%br
+      .artist-page__body__artist-info__history
+        .artist-page__body__artist-info__history__title
+          活動歴
+        .artist-page__body__artist-info__history__content
+          = safe_join(@musician.activity_history.split("\n"),tag(:br))
 
-■アーティストHP：
-- if @musician.homepage.present?
-  %a{ href: "#{@musician.homepage}", target: "_blank"} #{@musician.homepage}
-- else
-  情報はありません。
-%br
+      .artist-page__body__artist-info__place
+        .artist-page__body__artist-info__place__title
+          活動場所
+        .artist-page__body__artist-info__place__content
+          = @musician.activity_place
 
-■YouTube：
-- if @musician.youtube.present?
-  %a{ href: "#{@musician.youtube}", target: "_blank"} #{@musician.youtube}
-- else
-  情報はありません。
-%br
+      .artist-page__body__artist-info__email
+        .artist-page__body__artist-info__email__title
+          連絡用メールアドレス
+        .artist-page__body__artist-info__email__content
+          %a{ href: "mailto:#{@musician.email}"} #{@musician.email}
 
-■Spotify：
-- if @musician.spotify.present?
-  %a{ href: "#{@musician.spotify}", target: "_blank"} #{@musician.spotify}
-- else
-  情報はありません。
-%br
+      .artist-page__body__artist-info__homepage
+        .artist-page__body__artist-info__homepage__title
+          アーティストHP
+        .artist-page__body__artist-info__homepage__content
+          - if @musician.homepage.present?
+            %a{ href: "#{@musician.homepage}", target: "_blank"} #{@musician.homepage}
+          - else
+            情報はありません。
 
-■Apple Music：
-- if @musician.apple_music.present?
-  %a{ href: "#{@musician.apple_music}", target: "_blank"} #{@musician.apple_music}
-- else
-  情報はありません。
-%br
+      .artist-page__body__artist-info__youtube
+        .artist-page__body__artist-info__youtube__title
+          YouTube
+        .artist-page__body__artist-info__youtube__content
+          - if @musician.youtube.present?
+            %a{ href: "#{@musician.youtube}", target: "_blank"} #{@musician.youtube}
+          - else
+            情報はありません。
 
-■Twitter：
-- if @musician.twitter.present?
-  %a{ href: "#{@musician.twitter}", target: "_blank"} #{@musician.twitter}
-- else
-  情報はありません。
-%br
+      .artist-page__body__artist-info__spotify
+        .artist-page__body__artist-info__spotify__title
+          Spotify
+        .artist-page__body__artist-info__spotify__content
+          - if @musician.spotify.present?
+            %a{ href: "#{@musician.spotify}", target: "_blank"} #{@musician.spotify}
+          - else
+            情報はありません。
 
-■Facebook：
-- if @musician.facebook.present?
-  %a{ href: "#{@musician.facebook}", target: "_blank"} #{@musician.facebook}
-- else
-  情報はありません。
-%br
+      .artist-page__body__artist-info__apple-music
+        .artist-page__body__artist-info__apple-music__title
+          Apple Music
+        .artist-page__body__artist-info__apple-music__content
+          - if @musician.apple_music.present?
+            %a{ href: "#{@musician.apple_music}", target: "_blank"} #{@musician.apple_music}
+          - else
+            情報はありません。
 
-■その他リンク：
-- if @musician.otherlink_title.present?
-  =@musician.otherlink_title
-  ：
-  %a{ href: "#{@musician.otherlink_url}", target: "_blank"} #{@musician.otherlink_url}
-- else
-  情報はありません。
-%br
-■Live Info：
-- if @musician.live_info.present?
-  = @musician.live_info
-- else
-  情報はありません。
-%br
-■所属事務所：
-- if @musician.office.present?
-  = @musician.office
-- else
-  情報はありません。
-%br
+      .artist-page__body__artist-info__twitter
+        .artist-page__body__artist-info__twitter__title
+          Twitter
+        .artist-page__body__artist-info__twitter__content
+          - if @musician.twitter.present?
+            %a{ href: "#{@musician.twitter}", target: "_blank"} #{@musician.twitter}
+          - else
+            情報はありません。
 
-- if @matters.present?
-  %br
-  ★このアーティストの依頼案件一覧
-  %br
-  %ul.matters-list
-    - @matters.each do |matter|
-      %li.matters-list__content
-        .matters-list__content__title
-          = link_to "案件名：#{matter.title}", "/matters/#{matter.id}", method: :get
-          - if user_signed_in?
-            - if current_user.id == @musician.user_id
-              (
-              = matter.status
-              )
-          %br
-          案件カテゴリ：
-          = matter.matter_category.name
-          %br
-          お支払い金額：
-          = matter.reward
-          円
-          %br
-          応募締切日：
-          = matter.deadline
-          %br
-          - if matter.deadline < @deadline
-            ※応募受付は終了しました。
-          %br
-          %br
+      .artist-page__body__artist-info__facebook
+        .artist-page__body__artist-info__facebook__title
+          Facebook
+        .artist-page__body__artist-info__facebook__content
+          - if @musician.facebook.present?
+            %a{ href: "#{@musician.facebook}", target: "_blank"} #{@musician.facebook}
+          - else
+            情報はありません。
 
-= link_to "TOPページへ戻る", root_path
+      .artist-page__body__artist-info__other-link
+        .artist-page__body__artist-info__other-link__title
+          その他リンク
+        .artist-page__body__artist-info__other-link__content
+          - if @musician.otherlink_title.present?
+            =@musician.otherlink_title
+            ：
+            %a{ href: "#{@musician.otherlink_url}", target: "_blank"} #{@musician.otherlink_url}
+          - else
+            情報はありません。
+
+      .artist-page__body__artist-info__live-info
+        .artist-page__body__artist-info__live-info__title
+          Live Info
+        .artist-page__body__artist-info__live-info__content
+          - if @musician.live_info.present?
+            = @musician.live_info
+          - else
+            情報はありません。
+
+      .artist-page__body__artist-info__office
+        .artist-page__body__artist-info__office__title
+          所属事務所
+        .artist-page__body__artist-info__office__content
+          - if @musician.office.present?
+            = @musician.office
+          - else
+            情報はありません。
+
+
+
+
+      - if @matters.present?
+        -# .artist-page__body__artist-info__matters-list
+        -#   ★このアーティストの依頼案件一覧
+        -#   %br
+        -#   %ul.matters-list
+        -#     - @matters.each do |matter|
+        -#       %li.matters-list__content
+        -#         .matters-list__content__title
+        -#           = link_to "案件名：#{matter.title}", "/matters/#{matter.id}", method: :get
+        -#           - if user_signed_in?
+        -#             - if current_user.id == @musician.user_id
+        -#               (
+        -#               = matter.status
+        -#               )
+        -#           %br
+        -#           案件カテゴリ：
+        -#           = matter.matter_category.name
+        -#           %br
+        -#           お支払い金額：
+        -#           = matter.reward
+        -#           円
+        -#           %br
+        -#           応募締切日：
+        -#           = matter.deadline
+        -#           %br
+        -#           - if matter.deadline < @deadline
+        -#             ※応募受付は終了しました。
+        -#           %br
+        -#           %br
+
+        .search-page__matters-list
+          %ul
+            - @matters.each do |matter|
+              - if matter.deadline > @deadline
+                %li.matters-list__content
+
+                  .matters-list__content__left
+                    .matters-list__content__left__title
+                      = link_to "#{matter.title}", "/matters/#{matter.id}", method: :get, target: blank?
+                      .matters-list__content__left__title__category
+                        = icon('fas', 'fas fa-folder')
+                        = matter.matter_category.name
+
+                  .matters-list__content__right
+                    .matters-list__content__right__upper
+                      %p
+                        = icon('fas', 'fas fa-clock')
+                        応募受付：
+                      .matters-list__content__right__upper__deadline
+                        = matter.deadline.strftime("%Y年%m月%d日")
+                      %p
+                        まで
+                    .matters-list__content__right__bottom-line
+
+
+                    .matters-list__content__right__middle
+                      .matters-list__content__right__middle__reward
+                        = icon('fas', 'fas fa-yen-sign')
+                        = matter.reward
+                      .matters-list__content__right__middle__prefecture
+                        = icon('fas', 'fas fa-map-marker-alt')
+                        就業地域：
+                        = matter.prefecture
+                    .matters-list__content__right__middle__bottom-line
+
+
+                    .matters-list__content__right__lower
+                      - if matter.start.present?
+                        .matters-list__content__right__lower__start
+                          = icon('far', 'far fa-calendar-alt')
+                          業務開始予定：
+                          = matter.start.strftime("%Y年%m月%d日")
+                          〜
+                      .matters-list__content__right__lower__end
+                        = icon('far', 'far fa-calendar-alt')
+                        業務終了予定(希望納期)：
+                        = matter.end.strftime("%Y年%m月%d日")
+                      .matters-list__content__right__lower__bottom-line
+                      .matters-list__content__right__lower__musician-name
+                        = icon('fas', 'fas fa-user-alt')
+                        = link_to "#{matter.musician.name}", "/musicians/#{matter.musician.id}", target: blank?
+                %br
+
+
+
+
+
+
+
+
+  = render 'matters/footer'

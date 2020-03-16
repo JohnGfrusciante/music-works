@@ -1,0 +1,338 @@
+@mixin artist-page-title {
+  margin-bottom: 2em;
+  text-align: center;
+  font-weight: bold;
+  color: $blue;
+  font-size: 1.2em;
+}
+
+@mixin menu-hover {
+  color: #fff;
+  background-color: $orange;
+  color: $very-light-gray;
+}
+
+@mixin title {
+  color: $blue;
+  font-weight: bold;
+  border-bottom: solid 2px $blue;
+  display: inline-block;
+}
+
+@mixin content {
+  border-top: solid 1px $light-gray;
+  padding-top: 0.4em;
+  font-size: 0.9em;
+  color: $gray;
+}
+
+
+
+
+
+.artist-page {
+  &__header {
+    position: fixed;
+    top: 0;
+  }
+  &__body {
+    &__title-login {
+      margin-top: 10em;
+      @include artist-page-title;
+    }
+    &__title-notlogin {
+      margin-top: 8em;
+      @include artist-page-title;
+    }
+
+    &__create-matter {
+      width: 16%;
+      text-align: center;
+      position: fixed;
+      top: 13em;
+      left: 1em;
+      margin: 2em 0 0 1.5em;
+      background-color: $light-blue;
+      border-radius: 8px;
+      padding: 1em;
+      color: #fff;
+      @include shadow;
+      
+    }
+    &__create-matter:hover {
+      background-color: $orange;
+    }
+
+
+    &__menu {
+      position: fixed;
+      top: 21em;
+      left: 1em;
+
+      background-color: $very-light-gray;
+      border: solid 1px $light-gray;
+      width: 18%;
+      font-size: 0.9em;
+      font-weight: bold;
+      text-align: center;
+      text-align: left;
+      margin: 2em 0 0 1.5em;
+      a {
+        color: $blue;
+      }
+
+      &__edit-artist-profile {
+        padding: 1em;
+        border-bottom: solid 1px $light-gray;
+      }
+      &__edit-artist-profile:hover {
+        @include menu-hover;
+      }
+      &__application-result {
+        padding: 1em;
+        border-bottom: solid 1px $light-gray;
+      }
+      &__application-result:hover {
+        @include menu-hover;
+      }
+      &__chat-list {
+        padding: 1em;
+        border-bottom: solid 1px $light-gray;
+        &__annotation {
+          font-size: 0.9em;
+          color: red;
+        }
+      }
+      &__chat-list:hover {
+        @include menu-hover;
+      }
+      &__user-search {
+        padding: 1em;
+        color: $blue;
+        form {
+          font-weight: normal;
+        }
+      }
+      &__user-search:hover {
+        @include menu-hover;
+        cursor: pointer;
+        select {
+          cursor: pointer;
+        }
+        .submit-button {
+          cursor: pointer;
+        }
+      }
+    }
+
+
+    &__artist-info {
+      width: 50%;
+      margin: 1em auto 0;
+
+      &__artist-image {
+        width: 90%;
+        margin: 0 auto 3em;
+        text-align: center;
+        background-color: $very-light-gray;
+        padding: 2em 0;
+        border: 1px solid $light-gray;
+        border-radius: 12px;
+      }
+      &__noimage {
+        color: $gray;
+      }
+
+      &__name {
+        margin-bottom: 2em;
+        &__title {
+          @include title;
+        }
+        &__content {
+          @include content;
+        }
+      }
+
+      &__biography {
+        margin-bottom: 2em;
+        &__title {
+          @include title;
+        }
+        &__content {
+          @include content;
+        }
+      }
+
+      &__history {
+        margin-bottom: 2em;
+        &__title {
+          @include title;
+        }
+        &__content {
+          @include content;
+        }
+      }
+
+      &__place {
+        margin-bottom: 2em;
+        &__title {
+          @include title;
+        }
+        &__content {
+          @include content;
+        }
+      }
+
+      &__email {
+        margin-bottom: 2em;
+        &__title {
+          @include title;
+        }
+        &__content {
+          @include content;
+        }
+      }
+
+      &__homepage {
+        margin-bottom: 2em;
+        &__title {
+          @include title;
+        }
+        &__content {
+          @include content;
+        }
+      }
+
+      &__youtube {
+        margin-bottom: 2em;
+        &__title {
+          @include title;
+        }
+        &__content {
+          @include content;
+        }
+      }
+
+      &__spotify {
+        margin-bottom: 2em;
+        &__title {
+          @include title;
+        }
+        &__content {
+          @include content;
+        }
+      }
+
+      &__apple-music {
+        margin-bottom: 2em;
+        &__title {
+          @include title;
+        }
+        &__content {
+          @include content;
+        }
+      }
+
+      &__twitter {
+        margin-bottom: 2em;
+        &__title {
+          @include title;
+        }
+        &__content {
+          @include content;
+        }
+      }
+
+      &__facebook {
+        margin-bottom: 2em;
+        &__title {
+          @include title;
+        }
+        &__content {
+          @include content;
+        }
+      }
+
+      &__other-link {
+        margin-bottom: 2em;
+        &__title {
+          @include title;
+        }
+        &__content {
+          @include content;
+        }
+      }
+
+      &__live-info {
+        margin-bottom: 2em;
+        &__title {
+          @include title;
+        }
+        &__content {
+          @include content;
+        }
+      }
+
+      &__office {
+        margin-bottom: 2em;
+        &__title {
+          @include title;
+        }
+        &__content {
+          @include content;
+        }
+      }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    }
+  }
+}
