@@ -283,56 +283,18 @@
         }
       }
 
+    }
+  }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+  &__matters-list {
+    &__title {
+    text-align: center;
+    margin: 3em auto 1em;
+    color: $blue;
+    font-weight: bold;
+    font-size: 1.1em;
+    border-bottom: solid 2px $blue;
+    width: 20%;
     }
   }
 }

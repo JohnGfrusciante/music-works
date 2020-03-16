@@ -175,94 +175,60 @@
 
 
 
-      - if @matters.present?
-        -# .artist-page__body__artist-info__matters-list
-        -#   ★このアーティストの依頼案件一覧
-        -#   %br
-        -#   %ul.matters-list
-        -#     - @matters.each do |matter|
-        -#       %li.matters-list__content
-        -#         .matters-list__content__title
-        -#           = link_to "案件名：#{matter.title}", "/matters/#{matter.id}", method: :get
-        -#           - if user_signed_in?
-        -#             - if current_user.id == @musician.user_id
-        -#               (
-        -#               = matter.status
-        -#               )
-        -#           %br
-        -#           案件カテゴリ：
-        -#           = matter.matter_category.name
-        -#           %br
-        -#           お支払い金額：
-        -#           = matter.reward
-        -#           円
-        -#           %br
-        -#           応募締切日：
-        -#           = matter.deadline
-        -#           %br
-        -#           - if matter.deadline < @deadline
-        -#             ※応募受付は終了しました。
-        -#           %br
-        -#           %br
+  - if @matters.present?
+    .artist-page__matters-list
+      .artist-page__matters-list__title
+        このアーティストの依頼案件
+      %ul
+        - @matters.each do |matter|
+          
+          %li.matters-list__content
+            .matters-list__content__left
+              .matters-list__content__left__title
+                = link_to "#{matter.title}", "/matters/#{matter.id}", method: :get, target: blank?
+                .matters-list__content__left__title__category
+                  = icon('fas', 'fas fa-folder')
+                  = matter.matter_category.name
 
-        .search-page__matters-list
-          %ul
-            - @matters.each do |matter|
-              - if matter.deadline > @deadline
-                %li.matters-list__content
-
-                  .matters-list__content__left
-                    .matters-list__content__left__title
-                      = link_to "#{matter.title}", "/matters/#{matter.id}", method: :get, target: blank?
-                      .matters-list__content__left__title__category
-                        = icon('fas', 'fas fa-folder')
-                        = matter.matter_category.name
-
-                  .matters-list__content__right
-                    .matters-list__content__right__upper
-                      %p
-                        = icon('fas', 'fas fa-clock')
-                        応募受付：
-                      .matters-list__content__right__upper__deadline
-                        = matter.deadline.strftime("%Y年%m月%d日")
-                      %p
-                        まで
-                    .matters-list__content__right__bottom-line
+            .matters-list__content__right
+              .matters-list__content__right__upper
+                %p
+                  = icon('fas', 'fas fa-clock')
+                  応募受付：
+                .matters-list__content__right__upper__deadline
+                  = matter.deadline.strftime("%Y年%m月%d日")
+                %p
+                  まで
+              .matters-list__content__right__bottom-line
 
 
-                    .matters-list__content__right__middle
-                      .matters-list__content__right__middle__reward
-                        = icon('fas', 'fas fa-yen-sign')
-                        = matter.reward
-                      .matters-list__content__right__middle__prefecture
-                        = icon('fas', 'fas fa-map-marker-alt')
-                        就業地域：
-                        = matter.prefecture
-                    .matters-list__content__right__middle__bottom-line
+              .matters-list__content__right__middle
+                .matters-list__content__right__middle__reward
+                  = icon('fas', 'fas fa-yen-sign')
+                  = matter.reward
+                .matters-list__content__right__middle__prefecture
+                  = icon('fas', 'fas fa-map-marker-alt')
+                  就業地域：
+                  = matter.prefecture
+              .matters-list__content__right__middle__bottom-line
 
 
-                    .matters-list__content__right__lower
-                      - if matter.start.present?
-                        .matters-list__content__right__lower__start
-                          = icon('far', 'far fa-calendar-alt')
-                          業務開始予定：
-                          = matter.start.strftime("%Y年%m月%d日")
-                          〜
-                      .matters-list__content__right__lower__end
-                        = icon('far', 'far fa-calendar-alt')
-                        業務終了予定(希望納期)：
-                        = matter.end.strftime("%Y年%m月%d日")
-                      .matters-list__content__right__lower__bottom-line
-                      .matters-list__content__right__lower__musician-name
-                        = icon('fas', 'fas fa-user-alt')
-                        = link_to "#{matter.musician.name}", "/musicians/#{matter.musician.id}", target: blank?
-                %br
-
-
-
-
-
-
+              .matters-list__content__right__lower
+                - if matter.start.present?
+                  .matters-list__content__right__lower__start
+                    = icon('far', 'far fa-calendar-alt')
+                    業務開始予定：
+                    = matter.start.strftime("%Y年%m月%d日")
+                    〜
+                .matters-list__content__right__lower__end
+                  = icon('far', 'far fa-calendar-alt')
+                  業務終了予定(希望納期)：
+                  = matter.end.strftime("%Y年%m月%d日")
+                .matters-list__content__right__lower__bottom-line
+                .matters-list__content__right__lower__musician-name
+                  = icon('fas', 'fas fa-user-alt')
+                  = link_to "#{matter.musician.name}", "/musicians/#{matter.musician.id}", target: blank?
+          %br
 
 
   = render 'matters/footer'
