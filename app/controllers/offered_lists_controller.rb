@@ -2,6 +2,7 @@ class OfferedListsController < ApplicationController
   before_action :set_offer, only: [:index]
 
   def index
+    @musician_user_id = Musician.find_by(user_id: current_user)
   end
 
   def already_confirmed
