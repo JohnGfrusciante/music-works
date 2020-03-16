@@ -1,37 +1,89 @@
-オファー案件一覧ページ
-.breadcrumb
-  - breadcrumb :offered_list
-  = breadcrumbs separator: " &rsaquo; "
-%br
-%br
+.offer-list-page
+
+  .offer-list-page__header
+    = render 'matters/header'
+
+  .breadcrumb
+    - breadcrumb :offered_list
+    = breadcrumbs separator: " &rsaquo; "
+  %br
+
+  .offer-list-page__title
+    オファー案件一覧ページ
+
+  - if @offers.blank?
+    .offer-list-page__nooffer
+      ※オファーが送られた案件はありません。
 
 
-%ul.offers-list
-  - @offers.each do |offer|
-    %li.offers-list__content
-      .offers-list__content__title
-        = link_to "案件名：#{offer.matter.title}", "/matters/#{offer.matter.id}", method: :get, target: blank?
-        %br
-        案件カテゴリ：
-        = offer.matter.matter_category.name
-        %br
-        お支払い金額：
-        = offer.matter.reward
-        円
-        %br
-        依頼アーティスト：
-        = link_to "#{offer.matter.musician.name}", "/musicians/#{offer.matter.musician.id}", target: blank?
-        %br
-        応募締切日：
-        = offer.matter.deadline
-        %br
-        .offers-list__content--confirm
-          - if offer.status == 0
-            = link_to "確認済みにする", "/users/#{offer.user.id}/offered_lists/#{offer.id}/already_confirmed", method: :put
-          - else
-            = link_to "未確認に戻す", "/users/#{offer.user.id}/offered_lists/#{offer.id}/unconfirm", method: :put
 
+
+  .offer-list-page__matters-list
+    %ul
+      - @offers.each do |offer|
+        %li.matters-list__content
+
+          .offer-confirm
+            - if offer.status == 0
+              .offer-confirm__unconfirm
+                .offer-confirm__unconfirm__text
+                  = icon('fas', 'fas fa-exclamation-triangle')
+                  未確認
+                .offer-confirm__unconfirm__confirmed-link
+                  = link_to "確認済にする", "/users/#{offer.user.id}/offered_lists/#{offer.id}/already_confirmed", method: :put
+            - else
+              .offer-confirm__confirmed
+                .offer-confirm__confirmed__text
+                  = icon('fas', 'fas fa-check-circle')
+                  確認済
+                .offer-confirm__confirmed__unconfirm-link
+                  = link_to "未確認に戻す", "/users/#{offer.user.id}/offered_lists/#{offer.id}/unconfirm", method: :put
+
+          .matters-list__content__left
+            .matters-list__content__left__title
+              = link_to "#{offer.matter.title}", "/matters/#{offer.matter.id}", method: :get, target: blank?
+              .matters-list__content__left__title__category
+                = icon('fas', 'fas fa-folder')
+                = offer.matter.matter_category.name
+
+          .matters-list__content__right
+            .matters-list__content__right__upper
+              %p
+                = icon('fas', 'fas fa-clock')
+                応募受付：
+              .matters-list__content__right__upper__deadline
+                = offer.matter.deadline.strftime("%Y年%m月%d日")
+              %p
+                まで
+            .matters-list__content__right__bottom-line
+
+
+            .matters-list__content__right__middle
+              .matters-list__content__right__middle__reward
+                = icon('fas', 'fas fa-yen-sign')
+                =offer.matter.reward
+              .matters-list__content__right__middle__prefecture
+                = icon('fas', 'fas fa-map-marker-alt')
+                就業地域：
+                = offer.matter.prefecture
+            .matters-list__content__right__middle__bottom-line
+
+
+            .matters-list__content__right__lower
+              - if offer.matter.start.present?
+                .matters-list__content__right__lower__start
+                  = icon('far', 'far fa-calendar-alt')
+                  業務開始予定：
+                  = offer.matter.start.strftime("%Y年%m月%d日")
+                  〜
+              .matters-list__content__right__lower__end
+                = icon('far', 'far fa-calendar-alt')
+                業務終了予定(希望納期)：
+                = offer.matter.end.strftime("%Y年%m月%d日")
+              .matters-list__content__right__lower__bottom-line
+              .matters-list__content__right__lower__musician-name
+                = icon('fas', 'fas fa-user-alt')
+                = link_to "#{offer.matter.musician.name}", "/musicians/#{offer.matter.musician.id}", target: blank?
         %br
 
-- if @offers.blank?
-  ※オファーが送られた案件はありません。
+  = render 'matters/footer'

@@ -1,0 +1,43 @@
+.offer-list-page {
+  &__title {
+    font-size: 1.1em;
+    font-weight: bold;
+    text-align: center;
+    color: $blue;
+    margin: 1em 0;
+  }
+  &__nooffer {
+    text-align: center;
+    color: $gray;
+  }
+  &__matters-list {
+    min-height: 60vh;
+    .offer-confirm {
+      font-size: 0.9em;
+      &__unconfirm {
+        &__text {
+          padding: 0.5em;
+          background-color: red;
+          border-radius: 4px;
+          color: #fff;
+        }
+        &__confirmed-link {
+          margin-top: 0.5em;
+          text-decoration: underline;
+        }
+      }
+      &__confirmed {
+        &__text {
+          padding: 0.5em;
+          background-color: $blue;
+          border-radius: 4px;
+          color: #fff;
+        }
+        &__unconfirm-link {
+          margin-top: 0.5em;
+          text-decoration: underline;
+        }
+      }
+    }
+  }
+}
