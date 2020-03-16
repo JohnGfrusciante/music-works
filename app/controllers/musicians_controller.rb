@@ -25,6 +25,7 @@ class MusiciansController < ApplicationController
         @unread_messages = @not_musician_messages.where(status: 0)
       end
     end
+    @musician_user_id = Musician.find_by(user_id: current_user)
   end
 
   def edit
@@ -48,3 +49,4 @@ class MusiciansController < ApplicationController
   end
 
 end
+
