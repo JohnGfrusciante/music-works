@@ -1,0 +1,133 @@
+@mixin confirm-icon {
+  display: inline-block;
+  font-size: 0.8em;
+  color: #fff;
+  padding: 0.3em 1em;
+  border-radius: 5px;
+}
+
+@mixin confirm-link {
+  font-size: 0.8em;
+  text-decoration: underline;
+  padding: 0.3em 0 0 0.6em;
+}
+
+
+
+.user-chat-message-page {
+  
+  &__title {
+    font-size: 1.1em;
+    font-weight: bold;
+    text-align: center;
+    color: $blue;
+    margin: 1em 0;
+  }
+
+  &__upper {
+    width: 85%;
+    margin: 0 auto;
+    background-color: $blue;
+    color: #fff;
+    padding: 0.8em 0;
+    display: flex;
+    justify-content: space-around;
+    font-size: 0.9em;
+    border-radius: 8px 8px 0 0;
+    a {
+      color: #fff;
+      text-decoration: underline;
+    }
+  }
+
+  .messages-list {
+    width: 85%;
+    margin: 0 auto;
+    background-color: $very-light-gray;
+    border: solid 2px $light-gray;
+    box-sizing: border-box;
+    height: 40em;
+    overflow: scroll;
+    padding: 1em 2em;
+    border-radius: 0 0 8px 8px;
+    &__content {
+      margin: 0 0 1em 0;
+      color: $gray;
+      border-bottom: dashed 1px $gray;
+
+      &__confirm {
+        margin-bottom: 0.3em;
+
+        &__unconfirm {
+          display: flex;
+          &__icon {
+            background-color: red;
+            @include confirm-icon;
+          }
+          &__confirmed-link {
+            @include confirm-link;
+            a {
+              color: $blue;
+            }
+          }
+        }
+
+        &__confirmed {
+          display: flex;
+          &__icon {
+            background-color: $blue;
+            @include confirm-icon;
+          }
+          &__unconfirm-link {
+            @include confirm-link;
+            a {
+              color: $blue;
+            }
+          }
+        }
+      }
+
+      &__name {
+        color: $blue;
+        font-weight: bold;
+      }
+      &__created-time {
+        font-size: 0.9em;
+        text-align: right;
+        margin-bottom: 0.2em;
+      }
+
+      &__lower {
+        display: flex;
+        justify-content: flex-end;
+        margin-bottom: 0.2em;
+        a {
+          font-size: 0.9em;
+          color: $blue;
+        }
+        &__delete {
+          margin-left: 0.5em;
+        }
+      }
+    }
+  }
+
+
+  &__lower {
+    &__title {
+      margin: 3em auto 0;
+      width: 60%;
+    }
+    &__form {
+      text-align: center;
+      .form-area {
+        width: 60%;
+        height: 20vh;
+        padding: 0.5em;
+        background-color: $very-light-gray;
+        border-radius: 8px;
+        border: solid 2px $light-gray;
+      }
+    }
+  }
+}

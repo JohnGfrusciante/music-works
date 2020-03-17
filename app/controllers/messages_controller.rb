@@ -6,6 +6,7 @@ class MessagesController < ApplicationController
   def index
     @message = Message.new
     @messages = Message.where(chat_id: @chat.id).order("created_at DESC")
+    @musician_user_id = Musician.find_by(user_id: current_user)
   end
 
   def create
