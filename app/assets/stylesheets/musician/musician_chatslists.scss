@@ -1,0 +1,61 @@
+.artist-chatlist-page {
+  &__title {
+    font-size: 1.1em;
+    font-weight: bold;
+    text-align: center;
+    color: $blue;
+    margin: 1em 0;
+  }
+  &__nochat {
+    text-align: center;
+    color: $gray;
+  }
+
+
+  .chat-list {
+    width: 85%;
+    margin: 2em auto 5em;
+    min-height: 80vh;
+    font-size: 0.9em;
+    &__content {
+      margin: 0 0 2em 0;
+
+      &__chat-title {
+        background-color: $blue;
+        padding: 0.5em 0 0.5em 0.5em;
+        border-radius: 8px 8px 0 0;
+        a {
+          color: #fff;
+        }
+        &__unread {
+          color: yellow;
+          font-size: 0.9em;
+        }
+      }
+      &__chat-title:hover {
+        background-color: $orange;
+      }
+
+      &__messages {
+        color: $gray;
+        background-color: $very-light-gray;
+        border:  solid 2px $light-gray;
+        height: 12em;
+        overflow: scroll;
+        padding: 0 0.5em 0.5em 0.5em;
+        border-radius: 0 0 8px 8px;
+        &__name {
+          font-weight: bold;
+          margin-top: 0.5em;
+          color: $blue;
+        }
+        &__created-time {
+          font-size: 0.9em;
+          text-align: right;
+          border-bottom: dashed 1px $gray;
+          padding-bottom: 0.2em;
+        }
+      }
+    }
+  }
+}
