@@ -79,8 +79,8 @@
 
         = f.text_area :content, autocomplete: "content", placeholder: "投稿内容を入力してください" ,class: 'form-area'
 
-        .actions
-        = f.submit "投稿する"
+        .user-chat-message-page__lower__form__actions
+          = f.submit "投稿する", class: 'submit-button'
 
 
   = render 'matters/footer'
