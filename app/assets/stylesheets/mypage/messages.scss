@@ -104,6 +104,7 @@
         a {
           font-size: 0.9em;
           color: $blue;
+          text-decoration: underline;
         }
         &__delete {
           margin-left: 0.5em;
@@ -117,6 +118,9 @@
     &__title {
       margin: 3em auto 0;
       width: 60%;
+      color: $blue;
+      font-weight: bold;
+      font-size: 1.1em;
     }
     &__form {
       text-align: center;

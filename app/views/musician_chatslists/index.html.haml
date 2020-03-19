@@ -1,37 +1,58 @@
-アーティスト用チャット一覧ページ
-.breadcrumb
-  - breadcrumb :musician_chatslists
-  = breadcrumbs separator: " &rsaquo; "
-%br
-%br
+.artist-chatlist-page
 
-%ul.artist-chatlist
-  - @chat_lists.each do |chat_list|
-    %li.artist-chatlist__content
-      .artist-chatlist__content__title
-        = link_to "案件名：#{chat_list.matter.title}", "/matters/#{chat_list.matter.id}/chats/#{chat_list.id}/reply_messages", method: :get
-        - @unread_messages.find do |unread_message|
-          - if unread_message.chat.id == chat_list.id
-            ※未読のメッセージがあります。
-        %br
-        質問者：
-        = chat_list.user.name
-        %br
-        【投稿内容】
-        %br
-        - @messages.each do |message|
-          - if message.chat_id == chat_list.id
-            - if message.user_id == current_user.id
-              = message.user.musician.name
-            - else
-              = message.user.name
-            ：
-            = message.content
-            = message.created_at.strftime("%Y年%m月%d日 %H時%M分")
-            %br
-        %br
-        %br
+  .artist-chatlist-page__header
+    = render 'matters/header'
+
+  .breadcrumb
+    - breadcrumb :musician_chatslists
+    = breadcrumbs separator: " &rsaquo; "
+  %br
+
+  .artist-chatlist-page__title
+    チャット一覧
+    %br
+    (アーティスト用)
+
+  - if @chat_lists.blank?
+    .artist-chatlist-page__nochat
+      ※チャット質問は、投稿されておりません。
 
 
-- if @chat_lists.blank?
-  ※チャット質問は、まだ投稿されておりません。
+
+
+  %ul.chat-list
+    - @chat_lists.each do |chat_list|
+      %li.chat-list__content
+
+        .chat-list__content__chat-title
+          = link_to "/matters/#{chat_list.matter.id}/chats/#{chat_list.id}/reply_messages", method: :get do
+            - @unread_messages.find do |unread_message|
+              - if unread_message.chat.id == chat_list.id
+                .chat-list__content__chat-title__unread
+                  = icon('fas', 'fas fa-exclamation-triangle')
+                  未読のメッセージがあります。
+            .chat-list__content__chat-title__matter-name
+              = icon('fas', 'fas fa-file')
+              = chat_list.matter.title
+
+            .chat-list__content__chat-title__user-name
+              = icon('far', 'far fa-user')
+              = chat_list.user.name
+
+
+        .chat-list__content__messages
+          - @messages.each do |message|
+            - if message.chat_id == chat_list.id
+              - if message.user_id == current_user.id
+                .chat-list__content__messages__name
+                  = message.user.musician.name
+              - else
+                .chat-list__content__messages__name
+                  = chat_list.user.name
+              .chat-list__content__messages__text
+                = message.content
+              .chat-list__content__messages__created-time
+                = message.created_at.strftime("%Y年%m月%d日 %H時%M分")
+
+
+  = render 'matters/footer'
