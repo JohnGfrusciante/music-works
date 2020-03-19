@@ -1,56 +1,87 @@
-アーティスト返信用チャット
-.breadcrumb
-  - breadcrumb :musician_chatpage
-  = breadcrumbs separator: " &rsaquo; "
+.artist-chat-message-page
 
-%br
-案件名：
-= @chat.matter.title
-%br
-質問ユーザー：
-= @chat.user.name
-%br
-依頼アーティスト：
-= @chat.matter.musician.name
-%br
-%br
+  .artist-chat-message-page__header
+    = render 'matters/header'
 
 
-%ul.messages-list
-  - @messages.each do |message|
-    %li.messages-list__content
-      .messages-list__content--nema
-        - if message.user_id == current_user.id
-          = message.user.musician.name
-        - else
-          = message.user.name
-      .messages-list__content--created-time
-        = message.created_at.strftime("%Y年%m月%d日 %H時%M分")
-      .messages-list__content--content
-        = safe_join(message.content.split("\n"),tag(:br))
-      - if message.user_id == current_user.id
-        .messages-list__content--edit
-          = link_to "編集", "/matters/#{@matter.id}/chats/#{@chat.id}/reply_messages/#{message.id}/edit"
-        .messages-list__content--delete
-          = link_to "削除", "/matters/#{@matter.id}/chats/#{@chat.id}/reply_messages/#{message.id}", method: :delete
-      - else
-        .messages-list__content--read
-          - if message.status == 0
-            = link_to "既読にする", "/matters/#{@matter.id}/chats/#{@chat.id}/reply_messages/#{message.id}/already_read", method: :put
+  .breadcrumb
+    - breadcrumb :musician_chatpage
+    = breadcrumbs separator: " &rsaquo; "
+  %br
+
+  .artist-chat-message-page__title
+    アーティスト返信用チャットページ
+
+  .artist-chat-message-page__upper
+    .artist-chat-message-page__upper__matter-name
+      = icon('fas', 'fas fa-file')
+      = @chat.matter.title
+    .artist-chat-message-page__upper__user-name
+      質問ユーザー：
+      = icon('far', 'far fa-user')
+      = @chat.user.name
+    .artist-chat-message-page__upper__artist-name
+      依頼アーティスト：
+      = icon('fas', 'fas fa-user-alt')
+      = link_to "#{@chat.matter.musician.name}", "/musicians/#{@chat.matter.musician.id}", target: blank?
+
+
+
+  %ul.messages-list
+    - @messages.each do |message|
+      %li.messages-list__content
+
+        - if message.user_id != current_user.id
+          .messages-list__content__confirm
+            - if message.status == 0
+              .messages-list__content__confirm__unconfirm
+                .messages-list__content__confirm__unconfirm__icon
+                  = icon('fas', 'fas fa-exclamation-triangle')
+                  未読
+                .messages-list__content__confirm__unconfirm__confirmed-link
+                  = link_to "既読にする", "/matters/#{@matter.id}/chats/#{@chat.id}/reply_messages/#{message.id}/already_read", method: :put
+            - else
+              .messages-list__content__confirm__confirmed
+                .messages-list__content__confirm__confirmed__icon
+                  = icon('fas', 'fas fa-check-circle')
+                  既読
+                .messages-list__content__confirm__confirmed__unconfirm-link
+                  = link_to "未読にする", "/matters/#{@matter.id}/chats/#{@chat.id}/reply_messages/#{message.id}/unread", method: :put
+
+        .messages-list__content__name
+          - if message.user_id == current_user.id
+            = icon('fas', 'fas fa-user-alt')
+            = message.user.musician.name
           - else
-            = link_to "未読にする", "/matters/#{@matter.id}/chats/#{@chat.id}/reply_messages/#{message.id}/unread", method: :put
-      %br
+            = icon('far', 'far fa-user')
+            = message.user.name
+
+        .messages-list__content__text
+          = safe_join(message.content.split("\n"),tag(:br))
+
+        .messages-list__content__created-time
+          = message.created_at.strftime("%Y年%m月%d日 %H時%M分")
+
+        - if message.user_id == current_user.id
+          .messages-list__content__lower
+            .messages-list__content__lower__edit
+              = link_to "編集", "/matters/#{@matter.id}/chats/#{@chat.id}/reply_messages/#{message.id}/edit"
+            .messages-list__content__lower__delete
+              = link_to "削除", "/matters/#{@matter.id}/chats/#{@chat.id}/reply_messages/#{message.id}", method: :delete
 
 
-%br
-%br
-%h2 【返信入力フォーム】
-= form_for(@message, url: "/matters/#{@matter.id}/chats/#{@chat.id}/reply_messages", method: :post) do |f|
-  = render "devise/shared/error_messages", resource: @message
 
-  = f.text_area :content, autocomplete: "content", placeholder: "" ,class: ''
+  .artist-chat-message-page__lower
+    .artist-chat-message-page__lower__title
+      投稿入力フォーム
+    .artist-chat-message-page__lower__form
+      = form_for(@message, url: "/matters/#{@matter.id}/chats/#{@chat.id}/reply_messages", method: :post) do |f|
+        = render "devise/shared/error_messages", resource: @message
 
-  .actions
-  = f.submit "投稿する"
-  %br
-  %br
+        = f.text_area :content, autocomplete: "content", placeholder: "投稿内容を入力してください" ,class: 'form-area'
+
+        .artist-chat-message-page__lower__form__actions
+          = f.submit "投稿する", class: 'submit-button'
+
+
+  = render 'matters/footer'
