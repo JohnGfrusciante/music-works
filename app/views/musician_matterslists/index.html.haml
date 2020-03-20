@@ -1,27 +1,46 @@
-案件の応募結果
-.breadcrumb
-  - breadcrumb :musician_matterslists
-  = breadcrumbs separator: " &rsaquo; "
-%br
-%br
+.application-result-page
 
-%ul.matters-list
-  - @matters.each do |matter|
-    %li.matters-list__content
-      .matters-list__content__title
-        = link_to "案件名：#{matter.title}", "/matters/#{matter.id}", method: :get, target: blank?
-        %br
-        応募結果：
-        = Application.where(matter_id: matter.id).count
-        件
-        %br
-        応募者：
-        - Application.where(matter_id: matter.id).each do |application|
-          = link_to "#{application.user.name}", "/matters/#{matter.id}/applications/#{application.id}/applied_users", target: blank?
-          |
-        %br
-        %br
+  .application-result-page__header
+    = render 'matters/header'
 
-- if @matters.blank?
-  ※まだ案件の依頼は出していません。
-  %br
+
+  .breadcrumb
+    - breadcrumb :musician_matterslists
+    = breadcrumbs separator: " &rsaquo; "
+
+  .application-result-page__title
+    応募結果一覧
+
+
+  - if @matters.blank?
+    .application-result-page__nomatters-message
+      ※まだ案件依頼を作成していません。
+
+
+  %ul.application-result-page__matters-list
+    - @matters.each do |matter|
+      %li.application-result-page__matters-list__content
+
+        = link_to "/matters/#{matter.id}", method: :get, target: blank? do
+          .application-result-page__matters-list__content__upper
+            .application-result-page__matters-list__content__upper__matter-title
+              = icon('fas', 'fas fa-file')
+              = matter.title
+
+            .application-result-page__matters-list__content__upper__result
+              応募結果：
+              = Application.where(matter_id: matter.id).count
+              件
+
+        .application-result-page__matters-list__content__applied-users
+          応募者：
+          - Application.where(matter_id: matter.id).each do |application|
+            = link_to "#{application.user.name}", "/matters/#{matter.id}/applications/#{application.id}/applied_users", target: blank?
+            |
+
+          - if Application.where(matter_id: matter.id).blank?
+            .application-result-page__matters-list__content__applied-users__noapplication-message
+              まだ応募者はいません。
+
+
+  = render 'matters/footer'
