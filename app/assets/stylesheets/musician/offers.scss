@@ -1,0 +1,190 @@
+@mixin title {
+  font-weight: bold;
+  color: $blue;
+  border-bottom: solid 2px $blue;
+  display: inline-block;
+}
+
+@mixin text {
+  border-top: solid 1px $light-gray;
+  padding-top: 0.3em;
+}
+
+@mixin offer-lower-title {
+  font-size: 1.1em;
+  font-weight: bold;
+  color: $blue;
+  border-top: solid 2px $blue;
+  border-bottom: solid 2px $blue;
+  width: 27%;
+  margin: 2em auto 1em;
+  padding: 0.3em 0;
+}
+
+
+.offer-page {
+  &__title {
+    font-size: 1.1em;
+    font-weight: bold;
+    text-align: center;
+    color: $blue;
+    margin: 1em 0;
+  }
+
+
+  &__user-content {
+    background-color: $very-light-gray;
+    border: solid 1px $light-gray;
+    padding: 1.5em 2em 0.5em;
+    color: $gray;
+    border-radius: 8px;
+    width: 50%;
+    font-size: 0.9em;
+    margin: 0 auto;
+
+    &__name {
+      margin-bottom: 1em;
+      &__title {
+        @include title;
+      }
+      &__text {
+        @include text;
+      }
+    }
+
+    &__birthday {
+      margin-bottom: 1em;
+      &__title {
+        @include title;
+      }
+      &__text {
+        @include text;
+      }
+    }
+
+    &__prefecture {
+      margin-bottom: 1em;
+      &__title {
+        @include title;
+      }
+      &__text {
+        @include text;
+      }
+    }
+
+    &__introduction {
+      margin-bottom: 1em;
+      &__title {
+        @include title;
+      }
+      &__text {
+        @include text;
+      }
+    }
+
+    &__performance {
+      margin-bottom: 1em;
+      &__title {
+        @include title;
+      }
+      &__text {
+        @include text;
+      }
+    }
+
+    &__portfolio {
+      margin-bottom: 1em;
+      &__title {
+        @include title;
+      }
+      &__text {
+        @include text;
+      }
+    }
+
+    &__skill {
+      margin-bottom: 1em;
+      &__title {
+        @include title;
+      }
+      &__text {
+        @include text;
+      }
+    }
+  }
+
+
+  &__offer-select {
+    text-align: center;
+    &__title {
+      @include offer-lower-title;
+    }
+
+    &__select-box {
+      background-color: $very-light-gray;
+      width: 27%;
+      margin: 0 auto;
+      padding: 1.5em 0;
+      border-radius: 8px;
+      border: solid 1px $light-gray;
+      &__select-form {
+        select {
+          height: 40px;
+          width: 80%;
+          background-color: #fff;
+        }
+      }
+      &__submit-button {
+        margin-top: 1em;
+        .submit-button {
+          @include submit;
+        }
+        .submit-button:hover {
+          @include submit-hover;
+        }
+      }
+    }
+  
+  }
+
+  &__offered-matters {
+    &__title {
+      @include offer-lower-title;
+      text-align: center;
+      margin-top: 3.5em;
+    }
+
+    &__matters-list {
+      width: 50%;
+      margin: 0 auto 4em;
+
+      &__content {
+        display: flex;
+        justify-content: space-between;
+        background-color: $very-light-gray;
+        border: solid 1px $light-gray;
+        margin: 0 0 1em 0;
+        padding: 1em 1.5em;
+        border-radius: 8px;
+
+        &__matter-title {
+          font-weight: bold;
+          color: $blue;
+        }
+
+        &__offer-delete {
+          font-size: 0.85em;
+          color: #fff;
+          background-color: red;
+          padding: 0.1em 0.5em;
+          border-radius: 3px;
+        }
+      }
+
+      &__nooffered-message {
+        text-align: center;
+        color: $gray;
+      }
+    }
+  }
+}
