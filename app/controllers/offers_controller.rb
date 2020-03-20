@@ -5,6 +5,7 @@ class OffersController < ApplicationController
   before_action :set_user_offered, only: [:destroy]
 
   def index
+    @musician_user_id = Musician.find_by(user_id: current_user)
   end
 
   def create

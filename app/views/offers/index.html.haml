@@ -1,67 +1,134 @@
-オファーページ
-.breadcrumb
-  - breadcrumb :offer
-  = breadcrumbs separator: " &rsaquo; "
+.offer-page
 
-.user__content
-  .user__content__name
-    ・氏名：
-    = @user.name
-  .user__content__birthday
-    ・生年月日：
-    = @user.birthday
-  .user__content__birthday
-    ・都道府県：
-    = @user.prefecture
-  .user__content__introduction
-    ・自己紹介
-    %br
-    - if @user.introduction.present?
-      = safe_join(@user.introduction.split("\n"),tag(:br))
-    - else
-      登録されていません。
-  .user__content__performance
-    ・活動実績
-    %br
-    - if @user.performance.present?
-      = safe_join(@user.performance.split("\n"),tag(:br))
-    - else
-      登録されていません。
-  .user__content__performance
-    ・ポートフォリオなどの参考URL：
-    - if @user.portfolio.present?
-      %a{ href: "#{@user.portfolio}", target: "_blank"} #{@user.portfolio}
-    - else
-      登録されていません。
+  .offer-page__header
+    = render 'matters/header'
 
-  .user__content__skill
-    ・スキル：
-    - @user.tags.each do |tag|
-      = tag.skill.name
-      |
+  .breadcrumb
+    - breadcrumb :offer
+    = breadcrumbs separator: " &rsaquo; "
 
-%br
-.offer-select
-  .offer-select__title
-    オファーを出す案件を選択してください
-  .offer-select__select-box
-    = form_with(url: "/users/#{@user.id}/offers", local: true, method: :post, class: "search-form") do |f|
-      = f.collection_select :matter_id, @matters, :id, :title, prompt: "---"
-      %br
-      = f.submit "この案件でオファーを出す"
-      %br
+  .offer-page__title
+    オファーページ
 
 
-%br
-%br
-このユーザーへのオファー済み案件
-%br
-- if @offers.present?
-  - @offers.each do |offer|
-    ・
-    = offer.matter.title
-    %br
-    = link_to "このオファーを取り消す", "/users/#{@user.id}/offers/#{offer.id}", method: :delete
-    %br
-- else
-  ※オファーを出した案件はありません。
+
+  .offer-page__user-content
+
+    .offer-page__user-content__name
+      .offer-page__user-content__name__title
+        = icon('far', 'far fa-user')
+        氏名
+      .offer-page__user-content__name__text
+        = @user.name
+
+    .offer-page__user-content__birthday
+      .offer-page__user-content__birthday__title
+        = icon('fas', 'fas fa-calendar-alt')
+        生年月日
+      .offer-page__user-content__birthday__text
+        = @user.birthday.strftime("%Y年%m月%d日")
+
+    .offer-page__user-content__prefecture
+      .offer-page__user-content__prefecture__title
+        = icon('fas', 'fas fa-map-marker-alt')
+        都道府県
+      .offer-page__user-content__prefecture__text
+        = @user.prefecture
+
+    .offer-page__user-content__introduction
+      .offer-page__user-content__introduction__title
+        = icon('fas', 'fas fa-address-card')
+        自己紹介
+      .offer-page__user-content__performance__text
+        - if @user.introduction.present?
+          = safe_join(@user.introduction.split("\n"),tag(:br))
+        - else
+          登録されていません。
+
+    .offer-page__user-content__performance
+      .offer-page__user-content__performance__title
+        = icon('fas', 'fas fa-file')
+        活動実績
+      .offer-page__user-content__performance__text
+        - if @user.performance.present?
+          = safe_join(@user.performance.split("\n"),tag(:br))
+        - else
+          登録されていません。
+
+    .offer-page__user-content__portfolio
+      .offer-page__user-content__portfolio__title
+        = icon('fas', 'fas fa-globe')
+        ポートフォリオなどの参考URL
+      .offer-page__user-content__portfolio__text
+        - if @user.portfolio.present?
+          %a{ href: "#{@user.portfolio}", target: "_blank"} #{@user.portfolio}
+        - else
+          登録されていません。
+
+    .offer-page__user-content__skill
+      .offer-page__user-content__skill__title
+        = icon('fas', 'fas fa-briefcase')
+        スキル
+      .offer-page__user-content__skill__text
+        - @user.tags.each do |tag|
+          = tag.skill.name
+          |
+
+
+
+
+
+
+
+
+
+
+
+
+
+  %br
+  .offer-page__offer-select
+    .offer-page__offer-select__title
+      オファーを出す案件を選択してください
+    .offer-page__offer-select__select-box
+      = form_with(url: "/users/#{@user.id}/offers", local: true, method: :post, class: "search-form") do |f|
+        .offer-page__offer-select__select-box__select-form
+          = f.collection_select :matter_id, @matters, :id, :title, prompt: "---", class: "select-form"
+        .offer-page__offer-select__select-box__submit-button
+          = f.submit "この案件でオファーを出す", class: "submit-button"
+
+
+
+  .offer-page__offered-matters
+    .offer-page__offered-matters__title
+      このユーザーへのオファー済み案件
+    
+    .offer-page__offered-matters__matters-list
+      - if @offers.present?
+        - @offers.each do |offer|
+          .offer-page__offered-matters__matters-list__content
+            = link_to "/matters/#{offer.matter.id}", method: :get, target: blank? do
+              .offer-page__offered-matters__matters-list__content__matter-title
+                = icon('fas', 'fas fa-file')
+                = offer.matter.title
+
+            = link_to "/users/#{@user.id}/offers/#{offer.id}", method: :delete do
+              .offer-page__offered-matters__matters-list__content__offer-delete
+                このオファーを取り消す
+
+      - else
+        .offer-page__offered-matters__matters-list__nooffered-message
+          ※オファーを出した案件はありません。
+
+
+
+
+
+
+
+
+
+
+
+
+  = render 'matters/footer'
