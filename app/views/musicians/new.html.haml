@@ -1,159 +1,156 @@
-%h2 アーティストプロフィール入力フォーム
-= form_for(@musician, url: musicians_path) do |f|
-  = render "devise/shared/error_messages", resource: @musician
+.artist-profile-create-page
 
-  .image
-    .image__title
-      ・アーティスト写真
-    .image__norequired
-      任意
-  = f.file_field :image, class: ''
-  %br
-  %br
+  .artist-profile-create-page__header
+    .artist-profile-create-page__header__logo
+      = link_to root_path do
+        = image_tag "mw_logo.png", alt: "Music Works logo", class: 'mw-logo'
 
 
-  .name
-    .name__title
-      ・アーティスト名
-    .name__required
-      必須
-  = f.text_field :name, autofocus: true, autocomplete: "name", placeholder: "アーティスト名を入力してください" ,class: ''
-  %br
-  %br
+  .artist-profile-create-page__title
+    アーティストプロフィール作成ページ
 
-  .biography
-    .biography__title
-      ・バイオグラフィー
-    .biography__required
-      必須
-  = f.text_area :biography, autofocus: true, autocomplete: "biography", placeholder: "アーティストバイオグラフィーを入力してください" ,class: ''
-  %br
-  %br
+  .artist-profile-create-page__form
+    = form_for(@musician, url: musicians_path) do |f|
+      = render "devise/shared/error_messages", resource: @musician
+
+      .artist-profile-create-page__form__image
+        .artist-profile-create-page__form__image__title
+          アーティスト写真
+        .artist-profile-create-page__form__image__norequired
+          任意
+      .artist-profile-create-page__form__image-form
+        = f.file_field :image, class: 'image-form'
 
 
-  .history
-    .history__title
-      ・活動歴
-    .history__required
-      必須
-  = f.text_area :activity_history, autofocus: true, autocomplete: "activity_history", placeholder: "活動歴を入力してください" ,class: ''
-  %br
-  %br
+      .artist-profile-create-page__form__name
+        .artist-profile-create-page__form__name__title
+          アーティスト名
+        .artist-profile-create-page__form__name__required
+          必須
+      .artist-profile-create-page__form__name-form
+        = f.text_field :name, autofocus: true, autocomplete: "name", placeholder: "アーティスト名を入力してください" ,class: 'name-form'
 
 
-  .place
-    .place__title
-      ・活動場所
-    .place__required
-      必須
-  = f.text_area :activity_place, autofocus: true, autocomplete: "activity_place", placeholder: "例）東京都渋谷を中心に活動中" ,class: ''
-  %br
-  %br
+      .artist-profile-create-page__form__biography
+        .artist-profile-create-page__form__biography__title
+          バイオグラフィー
+        .artist-profile-create-page__form__biography__required
+          必須
+      .artist-profile-create-page__form__biography-form
+        = f.text_area :biography, autofocus: true, autocomplete: "biography", placeholder: "アーティストバイオグラフィーを入力してください", class: 'biography-form'
 
 
-  .email
-    .email__title
-      問い合わせメールアドレス
-    .email__required
-      必須
-  = f.email_field :email, autocomplete: "email", placeholder: "連絡用のメールアドレスを入力してください"
-  %br
-  %br
+      .artist-profile-create-page__form__history
+        .artist-profile-create-page__form__history__title
+          活動歴
+        .artist-profile-create-page__form__history__required
+          必須
+      .artist-profile-create-page__form__history-form
+        = f.text_area :activity_history, autofocus: true, autocomplete: "activity_history", placeholder: "活動歴を入力してください", class: 'history-form'
 
 
-  .homepage
-    .homepage__title
-      ・アーティストHPリンク
-    .homepage__norequired
-      任意
-  = f.url_field :homepage, autofocus: true, autocomplete: "homepage", placeholder: "" ,class: ''
-  %br
-  %br
+      .artist-profile-create-page__form__place
+        .artist-profile-create-page__form__place__title
+          活動場所
+        .artist-profile-create-page__form__place__required
+          必須
+      .artist-profile-create-page__form__place-form
+        = f.text_area :activity_place, autofocus: true, autocomplete: "activity_place", placeholder: "例）東京都渋谷を中心に活動中", class: 'place-form'
 
 
-  .youtube
-    .youtube__title
-      ・YouTubeリンク
-    .youtube__norequired
-      任意
-  = f.url_field :youtube, autofocus: true, autocomplete: "youtube", placeholder: "" ,class: ''
-  %br
-  %br
+      .artist-profile-create-page__form__email
+        .artist-profile-create-page__form__email__title
+          問い合わせメールアドレス
+        .artist-profile-create-page__form__email__required
+          必須
+      .artist-profile-create-page__form__email-form
+        = f.email_field :email, autocomplete: "email", placeholder: "連絡用のメールアドレスを入力してください", class: 'email-form'
 
 
-  .spotify
-    .spotify__title
-      ・Spotifyリンク
-    .spotify__norequired
-      任意
-  = f.url_field :spotify, autofocus: true, autocomplete: "spotify", placeholder: "" ,class: ''
-  %br
-  %br
+      .artist-profile-create-page__form__homepage
+        .artist-profile-create-page__form__homepage__title
+          アーティストHPリンク
+        .artist-profile-create-page__form__homepage__norequired
+          任意
+      .artist-profile-create-page__form__homepage-form
+        = f.url_field :homepage, autofocus: true, autocomplete: "homepage", placeholder: "", class: 'homepage-form'
 
 
-  .apple-music
-    .apple-music__title
-      ・Apple Musicリンク
-    .apple-music__norequired
-      任意
-  = f.url_field :apple_music, autofocus: true, autocomplete: "apple_music", placeholder: "" ,class: ''
-  %br
-  %br
+      .artist-profile-create-page__form__youtube
+        .artist-profile-create-page__form__youtube__title
+          YouTubeリンク
+        .artist-profile-create-page__form__youtube__norequired
+          任意
+      .artist-profile-create-page__form__youtube-form
+        = f.url_field :youtube, autofocus: true, autocomplete: "youtube", placeholder: "", class: 'youtube-form'
 
 
-  .twitter
-    .twitter__title
-      ・Twitterリンク
-    .twitter__norequired
-      任意
-  = f.url_field :twitter, autofocus: true, autocomplete: "twitter", placeholder: "" ,class: ''
-  %br
-  %br
+      .artist-profile-create-page__form__spotify
+        .artist-profile-create-page__form__spotify__title
+          Spotifyリンク
+        .artist-profile-create-page__form__spotify__norequired
+          任意
+      .artist-profile-create-page__form__spotify-form
+        = f.url_field :spotify, autofocus: true, autocomplete: "spotify", placeholder: "", class: 'spotify-form'
 
 
-  .facebook
-    .facebook__title
-      ・Facebookリンク
-    .facebook__norequired
-      任意
-  = f.url_field :facebook, autofocus: true, autocomplete: "facebook", placeholder: "" ,class: ''
-  %br
-  %br
+      .artist-profile-create-page__form__apple-music
+        .artist-profile-create-page__form__apple-music__title
+          Apple Musicリンク
+        .artist-profile-create-page__form__apple-music__norequired
+          任意
+      .artist-profile-create-page__form__apple-music-form
+        = f.url_field :apple_music, autofocus: true, autocomplete: "apple_music", placeholder: "", class: 'apple-music-form'
 
 
-  .other-link
-    .other-link__title
-      ・その他リンク
-    .other-link__norequired
-      任意
-  = f.text_field :otherlink_title, autofocus: true, autocomplete: "otherlink_title", placeholder: "リンクのタイトルを入力" ,class: ''
-  = f.url_field :otherlink_url, autofocus: true, autocomplete: "otherlink_url", placeholder: "リンクのURLを入力" ,class: ''
-  %br
-  %br
+      .artist-profile-create-page__form__twitter
+        .artist-profile-create-page__form__twitter__title
+          Twitterリンク
+        .artist-profile-create-page__form__twitter__norequired
+          任意
+      .artist-profile-create-page__form__twitter-form
+        = f.url_field :twitter, autofocus: true, autocomplete: "twitter", placeholder: "", class: 'twitter-form'
 
 
-  .live-info
-    .live-info__title
-      ・ライブ情報
-    .live-info__norequired
-      任意
-  = f.text_field :live_info, autofocus: true, autocomplete: "live_info", placeholder: "" ,class: ''
-  %br
-  %br
+      .artist-profile-create-page__form__facebook
+        .artist-profile-create-page__form__facebook__title
+          Facebookリンク
+        .artist-profile-create-page__form__facebook__norequired
+          任意
+      .artist-profile-create-page__form__facebook-form
+        = f.url_field :facebook, autofocus: true, autocomplete: "facebook", placeholder: "", class: 'facebook-form'
 
 
-  .office
-    .office__title
-      ・所属事務所
-    .office__norequired
-      任意
-  = f.text_field :office, autofocus: true, autocomplete: "office", placeholder: "" ,class: ''
-  %br
-  %br
+      .artist-profile-create-page__form__other-link
+        .artist-profile-create-page__form__other-link__title
+          その他リンク
+        .artist-profile-create-page__form__other-link__norequired
+          任意
+      .artist-profile-create-page__form__other-link-form
+        = f.text_field :otherlink_title, autofocus: true, autocomplete: "otherlink_title", placeholder: "リンクのタイトルを入力", class: 'other-link-form-title'
+        %br
+        = f.url_field :otherlink_url, autofocus: true, autocomplete: "otherlink_url", placeholder: "リンクのURLを入力", class: 'other-link-form-url'
 
 
-  .actions
-    = f.submit "アーティストプロフィールを作成する"
+      .artist-profile-create-page__form__live-info
+        .artist-profile-create-page__form__live-info__title
+          ライブ情報
+        .artist-profile-create-page__form__live-info__norequired
+          任意
+      .artist-profile-create-page__form__live-info-form
+        = f.text_area :live_info, autofocus: true, autocomplete: "live_info", placeholder: "", class: 'live-info-form'
 
 
-= link_to "TOPページへ戻る", root_path
+      .artist-profile-create-page__form__office
+        .artist-profile-create-page__form__office__title
+          所属事務所
+        .artist-profile-create-page__form__office__norequired
+          任意
+      .artist-profile-create-page__form__office-form
+        = f.text_field :office, autofocus: true, autocomplete: "office", placeholder: "", class: 'office-form'
+
+
+      .artist-profile-create-page__form__actions
+        = f.submit "アーティストプロフィールを作成する", class: 'submit-button'
+
+  = render 'matters/footer'

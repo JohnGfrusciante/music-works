@@ -1,0 +1,61 @@
+@mixin link {
+  border-radius: 3px;
+  font-size: 0.9em;
+  text-align: center;
+  cursor: pointer;
+  padding: 0.8em 1em;
+  background: $blue;
+  line-height: 1em;
+  width: 15%;
+  margin: 0 auto 3em;
+}
+
+@mixin link-orange {
+  border-radius: 3px;
+  font-size: 0.9em;
+  text-align: center;
+  cursor: pointer;
+  padding: 0.8em 1em;
+  background: $orange;
+  color: #ffffff;
+  line-height: 1em;
+  width: 15%;
+  margin: 0 auto 2.5em;
+}
+
+
+
+.artist-profile-created-page {
+  text-align: center;
+  color: $gray;
+
+  &__header {
+    background-color: $very-light-gray;
+    padding: 1em 0;
+    @include shadow;
+    position: fixed;
+    top: 0;
+    width: 100%;
+  }
+
+  h2 {
+    margin-top: 10em;
+    margin-bottom: 3em;
+  }
+
+  &__artist-page-link {
+    @include link;
+    color: #fff;
+  }
+
+  &__create-matter-link {
+    @include link-orange;
+    color: #fff;
+  }
+
+  &__footer {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+  }
+}

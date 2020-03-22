@@ -1,3 +1,19 @@
-アーティストプロフィールの作成が完了しました！
-%br
-= link_to "TOPページへ戻る", root_path
+.artist-profile-created-page
+
+  .artist-profile-created-page__header
+    .artist-profile-created-page__header__logo
+      = link_to root_path do
+        = image_tag "mw_logo.png", alt: "Music Works logo", class: 'mw-logo'
+
+  %h2 アーティストプロフィールの作成が完了しました！
+
+  = link_to "/musicians/#{current_user.musician.id}", method: :get do
+    .artist-profile-created-page__artist-page-link
+      アーティストページへ移動する
+
+  = link_to new_matter_path do
+    .artist-profile-created-page__create-matter-link
+      案件依頼を作成する
+
+  .artist-profile-created-page__footer
+    = render 'matters/footer'
