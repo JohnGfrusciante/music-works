@@ -159,7 +159,7 @@
           Live Info
         .artist-page__body__artist-info__live-info__content
           - if @musician.live_info.present?
-            = @musician.live_info
+            = safe_join(@musician.live_info.split("\n"),tag(:br))
           - else
             情報はありません。
 
