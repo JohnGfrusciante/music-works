@@ -29,10 +29,12 @@ class MusiciansController < ApplicationController
   end
 
   def edit
+    @musician_user_id = Musician.find_by(user_id: current_user)
   end
 
   def update
     @musician = Musician.update(musician_params)
+    @musician_user_id = Musician.find_by(user_id: current_user)
   end
 
   private

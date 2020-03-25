@@ -1,6 +1,17 @@
-アーティストプロフィールの更新が完了しました。
-.breadcrumb
-  - breadcrumb :update_musician
-  = breadcrumbs separator: " &rsaquo; "
-%br
-= link_to "アーティストプロフィールを確認する", musician_path
+.artist-profile-update-page
+
+  .artist-profile-update-page__header
+    = render 'matters/header'
+
+  .breadcrumb
+    - breadcrumb :update_musician
+    = breadcrumbs separator: " &rsaquo; "
+
+  %h2 アーティストプロフィールを更新しました！
+
+  = link_to musician_path do
+    .artist-profile-update-page__artist-page-link
+      アーティストプロフィールを確認する
+
+  .artist-profile-update-page__footer
+    = render 'matters/footer'

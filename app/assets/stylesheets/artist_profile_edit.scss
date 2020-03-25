@@ -1,0 +1,347 @@
+@mixin content {
+  display: flex;
+  margin-bottom: 0.2em;
+}
+
+@mixin title {
+  font-weight: bold;
+  font-size: 0.9em;
+}
+
+@mixin required {
+  margin: auto 0 auto 0.4em;
+  padding: 1px 3px;
+  font-size: 0.6em;
+  border-radius: 3px;
+  color: #fff;
+  background-color: red;
+}
+
+@mixin norequired {
+  margin: auto 0 auto 0.4em;
+  padding: 1px 3px;
+  font-size: 0.6em;
+  border-radius: 3px;
+  color: #fff;
+  background-color: gray;
+}
+
+@mixin input-form {
+  width: 100%;
+  height: 2em;
+  padding-left: 0.5em;
+  border-radius: 5px;
+  border: solid 1px $light-gray;
+  font-size: 0.9em;
+}
+
+@mixin select-form {
+  height: 2em;
+  background-color: #fff;
+  border: solid 1px $light-gray;
+  font-size: 0.9em;
+}
+
+@mixin submit {
+  display: inline-block;
+  border-radius: 5px;
+  font-size: 0.9em;
+  text-align: center;
+  cursor: pointer;
+  padding: 0.5em 1em;
+  background: $orange;
+  color: #ffffff;
+  line-height: 1em;
+  transition: .3s;
+  border: 2px solid $orange;
+}
+
+@mixin submit-hover {
+  color: #fff;
+  background: $blue;
+  border: 2px solid $blue;
+}
+
+
+
+
+
+.artist-profile-edit-page {
+  &__title {
+    font-size: 1.1em;
+    font-weight: bold;
+    text-align: center;
+    color: $blue;
+    margin: 1em 0;
+  }
+
+
+  &__form {
+    background-color: $very-light-gray;
+    width: 27%;
+    margin: 0 auto;
+    padding: 2em 13em;
+    color: $gray;
+
+
+    &__image {
+      @include content;
+      &__title {
+        @include title;
+      }
+      &__norequired {
+        @include norequired;
+      }
+    }
+    &__image-form {
+      margin-bottom: 2em;
+      background-color: #fff;
+      padding: 1em 0 1em 0.8em;
+      border: solid 1px $light-gray;
+      border-radius: 5px;
+    }
+    
+    &__name {
+      @include content;
+      &__title {
+        @include title;
+      }
+      &__required {
+        @include required;
+      }
+    }
+    &__name-form {
+      margin-bottom: 2em;
+      .name-form {
+        @include input-form;
+      }
+    }
+
+    &__biography {
+      @include content;
+      &__title {
+        @include title;
+      }
+      &__required {
+        @include required;
+      }
+    }
+    &__biography-form {
+      margin-bottom: 2em;
+      .biography-form {
+        @include input-form;
+        height: 12em;
+      }
+    }
+
+    &__history {
+      @include content;
+      &__title {
+        @include title;
+      }
+      &__required {
+        @include required;
+      }
+    }
+    &__history-form {
+      margin-bottom: 2em;
+      .history-form {
+        @include input-form;
+        height: 12em;
+      }
+    }
+
+    &__place {
+      @include content;
+      &__title {
+        @include title;
+      }
+      &__required {
+        @include required;
+      }
+    }
+    &__place-form {
+      margin-bottom: 2em;
+      .place-form {
+        @include input-form;
+        height: 12em;
+      }
+    }
+
+    &__email {
+      @include content;
+      &__title {
+        @include title;
+      }
+      &__required {
+        @include required;
+      }
+    }
+    &__email-form {
+      margin-bottom: 2em;
+      .email-form {
+        @include input-form;
+      }
+    }
+
+    &__homepage {
+      @include content;
+      &__title {
+        @include title;
+      }
+      &__norequired {
+        @include norequired;
+      }
+    }
+    &__homepage-form {
+      margin-bottom: 2em;
+      .homepage-form {
+        @include input-form;
+      }
+    }
+
+    &__youtube {
+      @include content;
+      &__title {
+        @include title;
+      }
+      &__norequired {
+        @include norequired;
+      }
+    }
+    &__youtube-form {
+      margin-bottom: 2em;
+      .youtube-form {
+        @include input-form;
+      }
+    }
+
+    &__spotify {
+      @include content;
+      &__title {
+        @include title;
+      }
+      &__norequired {
+        @include norequired;
+      }
+    }
+    &__spotify-form {
+      margin-bottom: 2em;
+      .spotify-form {
+        @include input-form;
+      }
+    }
+
+    &__apple-music {
+      @include content;
+      &__title {
+        @include title;
+      }
+      &__norequired {
+        @include norequired;
+      }
+    }
+    &__apple-music-form {
+      margin-bottom: 2em;
+      .apple-music-form {
+        @include input-form;
+      }
+    }
+
+    &__twitter {
+      @include content;
+      &__title {
+        @include title;
+      }
+      &__norequired {
+        @include norequired;
+      }
+    }
+    &__twitter-form {
+      margin-bottom: 2em;
+      .twitter-form {
+        @include input-form;
+      }
+    }
+
+    &__facebook {
+      @include content;
+      &__title {
+        @include title;
+      }
+      &__norequired {
+        @include norequired;
+      }
+    }
+    &__facebook-form {
+      margin-bottom: 2em;
+      .facebook-form {
+        @include input-form;
+      }
+    }
+
+    &__other-link {
+      @include content;
+      &__title {
+        @include title;
+      }
+      &__norequired {
+        @include norequired;
+      }
+    }
+    &__other-link-form {
+      margin-bottom: 2em;
+      .other-link-form-title {
+        @include input-form;
+        margin-bottom: 1em;
+      }
+      .other-link-form-url {
+        @include input-form;
+      }
+    }
+
+    &__live-info {
+      @include content;
+      &__title {
+        @include title;
+      }
+      &__norequired {
+        @include norequired;
+      }
+    }
+    &__live-info-form {
+      margin-bottom: 2em;
+      .live-info-form {
+        @include input-form;
+        height: 12em;
+      }
+    }
+
+    &__office {
+      @include content;
+      &__title {
+        @include title;
+      }
+      &__norequired {
+        @include norequired;
+      }
+    }
+    &__office-form {
+      margin-bottom: 2em;
+      .office-form {
+        @include input-form;
+      }
+    }
+
+    &__actions {
+      text-align: center;
+      .submit-button {
+        @include submit;
+      }
+      .submit-button:hover {
+        @include submit-hover;
+      }
+    }
+
+  }
+}
