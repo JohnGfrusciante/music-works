@@ -2,8 +2,8 @@
 
 ## App URL
 [http://18.178.174.53](http://18.178.174.53 "http://18.178.174.53")  
-【ログイン用テストアカウント】
-email：a@gmail.com
+【ログイン用テストアカウント】  
+email：a@gmail.com  
 password：111111
 
 
