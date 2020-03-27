@@ -4,10 +4,10 @@
 [http://18.178.174.53](http://18.178.174.53 "http://18.178.174.53")  
   
 【ログイン用テストアカウント】  
-- user1
+- user1  
 email：a@gmail.com  
 password：111111  
-- user2
+- user2  
 email：b@gmail.com  
 password：111111  
 
