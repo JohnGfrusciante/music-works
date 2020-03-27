@@ -2,10 +2,14 @@
 
 ## App URL
 [http://18.178.174.53](http://18.178.174.53 "http://18.178.174.53")  
+  
 【ログイン用テストアカウント】  
+- user1
 email：a@gmail.com  
-password：111111
-
+password：111111  
+- user2
+email：b@gmail.com  
+password：111111  
 
 ## Overview
 ミュージシャンの音楽活動案件に特化したビジネスマッチングサービスです。
