@@ -12,6 +12,12 @@ password：111111
 - ユーザーは会員登録を行う事で案件に応募ができるようになります。
 - ミュージシャンは、会員登録後にアーティストプロフィールを作成する事で、案件依頼が作成できるようになります。
 
+## Development environment
+- Ruby on Rails
+- View file：haml, scss
+- Database：MySQL2
+- Deploy：AWS (EC2, S3)
+- Editor：VS Code
 
 ## Usage
 ###### ※下記項目のインデントは、それぞれ上位項目の機能の登録後、もしくは上位項目のページの表示後に使用可能という意です。
