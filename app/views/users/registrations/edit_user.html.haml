@@ -1,86 +1,125 @@
-会員情報編集フォーム
-.breadcrumb
-  - breadcrumb :edit_user
-  = breadcrumbs separator: " &rsaquo; "
-  %br
+.user-profile-edit-page
 
-= form_for(@user, url: "/update_user", method: :put) do |f|
-  = render "devise/shared/error_messages", resource: @user
+  .user-profile-edit-page__header
+    = render 'matters/header'
 
-  .name
-    .name__title
-      お名前(全角)
-    .name__required
-      必須
-  = f.text_field :name, autofocus: true, autocomplete: "name", placeholder: "例)山田太郎" ,class: 'name-form'
+  .breadcrumb
+    - breadcrumb :edit_user
+    = breadcrumbs separator: " &rsaquo; "
+    %br
 
-  .name_kana
-    .name_kana__title
-      お名前カナ(全角)
-    .name_kana__required
-      必須
-  = f.text_field :name_kana, autofocus: true, autocomplete: "name_kana", placeholder: "例)ヤマダタロウ" ,class: 'name_kana-form'
-
-  .email
-    .email__title
-      メールアドレス
-    .email__required
-      必須
-  = f.email_field :email, autocomplete: "email", placeholder: "PC・携帯どちらでも可"
+  .user-profile-edit-page__title
+    会員情報編集ページ
 
 
-  .tel
-    .tel__title
-      携帯電話の番号
-    .tel__required
-      必須
-  = f.text_field :tel, autofocus: true, autocomplete: "tel", placeholder: "携帯電話の番号を入力"
+
+  .user-profile-edit-page__form
+    = form_for(@user, url: "/update_user", method: :put) do |f|
+      = render "devise/shared/error_messages", resource: @user
+
+      .user-profile-edit-page__form__name
+        .user-profile-edit-page__form__name__title
+          お名前(全角)
+        .user-profile-edit-page__form__name__required
+          必須
+      .user-profile-edit-page__form__name-form
+        = f.text_field :name, autofocus: true, autocomplete: "name", placeholder: "例)山田太郎", class: 'name-form'
 
 
-  .birthday
-    .birthday__title
-      生年月日
-    .birthday__required
-      必須
-  .birthday__select-form
-    != sprintf(f.date_select(:birthday, prefix:'user', with_css_classes:'XXXXX', prompt:"--", use_month_numbers:true, start_year:Time.now.year, end_year:1900, date_separator:'%s'),'年','月')+'日'
-
-  .status
-    .status__title
-      会員情報の公開設定
-    .status__required
-      必須
-  .status__select-form
-    = f.select :status, User.statuses.keys, {promt: "---"}
+      .user-profile-edit-page__form__name-kana
+        .user-profile-edit-page__form__name-kana__title
+          お名前カナ(全角)
+        .user-profile-edit-page__form__name-kana__required
+          必須
+      .user-profile-edit-page__form__name-kana-form
+        = f.text_field :name_kana, autofocus: true, autocomplete: "name_kana", placeholder: "例)ヤマダタロウ", class: 'name-kana-form'
 
 
-  .prefecture
-    .prefecture__title
-      都道府県
-  .prefecture__select-form
-    = f.select :prefecture, User.prefectures.keys, {promt: "---"}
+      .user-profile-edit-page__form__email
+        .user-profile-edit-page__form__email__title
+          メールアドレス
+        .user-profile-edit-page__form__email__required
+          必須
+      .user-profile-edit-page__form__email-form
+        = f.email_field :email, autocomplete: "email", placeholder: "PC・携帯どちらでも可", class: 'email-form'
 
 
-  .introduction
-    .introduction__title
-      自己紹介
-  = f.text_area :introduction, autofocus: true, autocomplete: "introduction", placeholder: "200文字程度で自己紹介文をご入力ください" ,class: 'introduction-form'
+      .user-profile-edit-page__form__tel
+        .user-profile-edit-page__form__tel__title
+          携帯電話の番号
+        .user-profile-edit-page__form__tel__required
+          必須
+      .user-profile-edit-page__form__tel-form
+        = f.text_field :tel, autofocus: true, autocomplete: "tel", placeholder: "携帯電話の番号を入力", class: 'tel-form'
 
-  .performance
-    .performance__title
-      活動実績
-  = f.text_area :performance, autofocus: true, autocomplete: "performance", placeholder: "これまでの活動実績をご入力ください" ,class: 'performance-form'
 
-  .portfolio
-    .portfolio__title
-      ポートフォリオなどの参考URL
-  = f.url_field :portfolio, autofocus: true, autocomplete: "portfolio", placeholder: "" ,class: 'portfolio-form'
+      .user-profile-edit-page__form__birthday
+        .user-profile-edit-page__form__birthday__title
+          生年月日
+        .user-profile-edit-page__form__birthday__required
+          必須
+      .user-profile-edit-page__form__birthday-form
+        != sprintf(f.date_select(:birthday, prefix:'user', with_css_classes:'XXXXX', prompt:"--", use_month_numbers:true, start_year:Time.now.year, end_year:1900, date_separator:'%s'),'年','月')+'日'
 
-  .skill
-    .skill__title
-      スキル(複数選択可)
-  = f.collection_check_boxes :skill_ids, @skills, :id, :name, include_hidden: false do |b|
-    = b.label { b.check_box + b.text }
 
-  .actions
-    = f.submit "会員情報を更新する"
+      .user-profile-edit-page__form__status
+        .user-profile-edit-page__form__status__title
+          会員情報の公開設定
+        .user-profile-edit-page__form__status__required
+          必須
+      .user-profile-edit-page__form__status-form
+        = f.select :status, User.statuses.keys, {promt: "---"}, class: 'status-form'
+
+
+      .user-profile-edit-page__form__prefecture
+        .user-profile-edit-page__form__prefecture__title
+          都道府県
+        .user-profile-edit-page__form__prefecture__norequired
+          任意
+      .user-profile-edit-page__form__prefecture-form
+        = f.select :prefecture, User.prefectures.keys, {promt: "---"}, class: 'prefecture-form'
+
+
+      .user-profile-edit-page__form__introduction
+        .user-profile-edit-page__form__introduction__title
+          自己紹介
+        .user-profile-edit-page__form__introduction__norequired
+          任意
+      .user-profile-edit-page__form__introduction-form
+        = f.text_area :introduction, autofocus: true, autocomplete: "introduction", placeholder: "200文字程度で自己紹介文をご入力ください" ,class: 'introduction-form'
+
+
+      .user-profile-edit-page__form__performance
+        .user-profile-edit-page__form__performance__title
+          活動実績
+        .user-profile-edit-page__form__performance__norequired
+          任意
+      .user-profile-edit-page__form__performance-form
+        = f.text_area :performance, autofocus: true, autocomplete: "performance", placeholder: "これまでの活動実績をご入力ください" ,class: 'performance-form'
+
+
+      .user-profile-edit-page__form__portfolio
+        .user-profile-edit-page__form__portfolio__title
+          ポートフォリオなどの参考URL
+        .user-profile-edit-page__form__portfolio__norequired
+          任意
+      .user-profile-edit-page__form__portfolio-form
+        = f.url_field :portfolio, autofocus: true, autocomplete: "portfolio", placeholder: "" ,class: 'portfolio-form'
+
+
+      .user-profile-edit-page__form__skill
+        .user-profile-edit-page__form__skill__title
+          スキル(複数選択可)
+        .user-profile-edit-page__form__skill__norequired
+          任意
+      .user-profile-edit-page__form__skill-form
+        = f.collection_check_boxes :skill_ids, @skills, :id, :name, include_hidden: false do |b|
+          = b.label { b.check_box + b.text }
+          %br
+
+
+      .user-profile-edit-page__form__actions
+        = f.submit "会員情報を更新する", class: 'submit-button'
+
+
+  = render 'matters/footer'

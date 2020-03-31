@@ -46,6 +46,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
   def edit_user
     @user = User.find_by(id: current_user.id)
     @skills = Skill.all
+    @musician_user_id = Musician.find_by(user_id: current_user)
   end
 
   def update_user
