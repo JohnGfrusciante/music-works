@@ -1,6 +1,18 @@
-会員情報を更新しました！
-.breadcrumb
-  - breadcrumb :update_user
-  = breadcrumbs separator: " &rsaquo; "
-%br
-= link_to "会員マイページを確認する", mypages_path
+.user-profile-update-page
+
+  .user-profile-update-page__header
+    = render 'matters/header'
+
+  .breadcrumb
+    - breadcrumb :update_user
+    = breadcrumbs separator: " &rsaquo; "
+
+  %h2 会員情報を更新しました！
+
+  = link_to mypages_path do
+    .user-profile-update-page__user-page-link
+      会員マイページを確認する
+
+
+  .user-profile-update-page__footer
+    = render 'matters/footer'

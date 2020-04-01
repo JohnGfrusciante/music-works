@@ -50,6 +50,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
   end
 
   def update_user
+    @musician_user_id = Musician.find_by(user_id: current_user)
     @user = User.find_by(id: current_user.id)
     @user.update!(user_params)
     
