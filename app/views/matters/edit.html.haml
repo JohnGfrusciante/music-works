@@ -1,120 +1,122 @@
-%h2 案件依頼編集フォーム
-= form_for(@matter, url: "/matters/#{@matter.id}", method: :put) do |f|
-  = render "devise/shared/error_messages", resource: @matter
+.matter-edit-page
 
-  .title
-    .title__title
-      ・案件名
-    .title__required
-      必須
-  = f.text_field :title, autofocus: true, autocomplete: "title", placeholder: "" ,class: ''
-  %br
-  %br
+  .matter-edit-page__header
+    = render 'matters/header'
+
+  .breadcrumb
+    - breadcrumb :edit_matter
+    = breadcrumbs separator: " &rsaquo; "
 
 
-  .title
-    .category__title
-      ・案件カテゴリ
-    .category__required
-      必須
-  = f.collection_select :matter_category_id, MatterCategory.all, :id, :name, prompt: "カテゴリを選択してください"
-  %br
-  %br
+  .matter-edit-page__title
+    案件依頼編集
+
+  .matter-edit-page__form
+    = form_for(@matter, url: "/matters/#{@matter.id}", method: :put) do |f|
+      = render "devise/shared/error_messages", resource: @matter
+
+      .matter-edit-page__form__title
+        .matter-edit-page__form__title__title
+          案件名
+        .matter-edit-page__form__title__required
+          必須
+      .matter-edit-page__form__title-form
+        = f.text_field :title, autofocus: true, autocomplete: "title", placeholder: "", class: 'title-form'
 
 
-  .reward
-    .reward__title
-      ・お支払い金額
-    .reward__required
-      必須
-  = f.text_field :reward, autofocus: true, autocomplete: "reward", placeholder: "半角数字で入力してください" ,class: ''
-  円
-  %br
-  %br
+      .matter-edit-page__form__category
+        .matter-edit-page__form__category__title
+          案件カテゴリ
+        .matter-edit-page__form__category__required
+          必須
+      .matter-edit-page__form__category-form
+        = f.collection_select :matter_category_id, MatterCategory.all, :id, :name, prompt: "カテゴリを選択してください", class: 'category-form'
 
 
-  .deadline
-    .deadline__title
-      ・応募受付締切
-    .deadline__required
-      必須
-  != sprintf(f.date_select(:deadline, prefix:'matter', with_css_classes:'XXXXX', prompt:"--", use_month_numbers:true, start_year:Time.now.year, end_year:2020, date_separator:'%s'),'年','月')+'日'
-  %br
-  %br
+      .matter-edit-page__form__reward
+        .matter-edit-page__form__reward__title
+          お支払い金額
+        .matter-edit-page__form__reward__required
+          必須
+      .matter-edit-page__form__reward-form
+        = f.text_field :reward, autofocus: true, autocomplete: "reward", placeholder: "半角数字で入力してください", class: 'reward-form'
+        円
 
 
-  .prefecture
-    .prefecture__title
-      勤務地域(都道府県)
-    .prefecture__required
-      必須
-  = f.select :prefecture, Matter.prefectures.keys, {promt: "---"}
-  %br
-  %br
+      .matter-edit-page__form__deadline
+        .matter-edit-page__form__deadline__title
+          応募受付締切
+        .matter-edit-page__form__deadline__required
+          必須
+      .matter-edit-page__form__deadline-form
+        != sprintf(f.date_select(:deadline, prefix:'matter', with_css_classes:'XXXXX', prompt:"--", use_month_numbers:true, start_year:Time.now.year, end_year:2020, date_separator:'%s'),'年','月')+'日'
 
 
-  .start
-    .start__title
-      ・業務開始予定日
-    .start__norequired
-      任意
-  != sprintf(f.date_select(:start, prefix:'matter', with_css_classes:'XXXXX', prompt:"--", use_month_numbers:true, start_year:Time.now.year, end_year:2020, date_separator:'%s'),'年','月')+'日'
-  %br
-  %br
+      .matter-edit-page__form__prefecture
+        .matter-edit-page__form__prefecture__title
+          勤務地域(都道府県)
+        .matter-edit-page__form__prefecture__required
+          必須
+      .matter-edit-page__form__prefecture-form
+        = f.select :prefecture, Matter.prefectures.keys, {promt: "---"}, class: 'prefecture-form'
 
 
-  .end
-    .end__title
-      ・業務終了予定日(希望納品日)
-    .end__required
-      必須
-  != sprintf(f.date_select(:end, prefix:'matter', with_css_classes:'XXXXX', prompt:"--", use_month_numbers:true, start_year:Time.now.year, end_year:2020, date_separator:'%s'),'年','月')+'日'
-  %br
-  %br
+      .matter-edit-page__form__start
+        .matter-edit-page__form__start__title
+          業務開始予定日
+        .matter-edit-page__form__start__norequired
+          任意
+      .matter-edit-page__form__start-form
+        != sprintf(f.date_select(:start, prefix:'matter', with_css_classes:'XXXXX', prompt:"--", use_month_numbers:true, start_year:Time.now.year, end_year:2020, date_separator:'%s'),'年','月')+'日'
 
 
-  .content
-    .content__title
-      ・業務内容
-    .content__required
-      必須
-  = f.text_area :content, autofocus: true, autocomplete: "content", placeholder: "" ,class: ''
-  %br
-  %br
+      .matter-edit-page__form__end
+        .matter-edit-page__form__end__title
+          業務終了予定日(希望納品日)
+        .matter-edit-page__form__end__required
+          必須
+      .matter-edit-page__form__end-form
+        != sprintf(f.date_select(:end, prefix:'matter', with_css_classes:'XXXXX', prompt:"--", use_month_numbers:true, start_year:Time.now.year, end_year:2020, date_separator:'%s'),'年','月')+'日'
 
 
-  .payment
-    .payment__title
-      ・お支払い方法
-    .payment__norequired
-      任意
-  = f.text_field :payment, autofocus: true, autocomplete: "payment", placeholder: "" ,class: ''
-  %br
-  %br
+      .matter-edit-page__form__content
+        .matter-edit-page__form__content__title
+          業務内容
+        .matter-edit-page__form__content__required
+          必須
+      .matter-edit-page__form__content-form
+        = f.text_area :content, autofocus: true, autocomplete: "content", placeholder: "", class: 'content-form'
 
 
-  .supplement
-    .supplement__title
-      ・補足情報
-    .supplement__norequired
-      任意
-  = f.text_area :supplement, autofocus: true, autocomplete: "supplement", placeholder: "" ,class: ''
-  %br
-  %br
+      .matter-edit-page__form__payment
+        .matter-edit-page__form__payment__title
+          お支払い方法
+        .matter-edit-page__form__payment__norequired
+          任意
+      .matter-edit-page__form__payment-form
+        = f.text_field :payment, autofocus: true, autocomplete: "payment", placeholder: "", class: 'payment-form'
 
 
-  .status
-    .status__title
-      ・公開設定
-    .status__norequired
-      必須
-  = f.select :status, Matter.statuses.keys, {promt: "---"}
-  %br
-  %br
+      .matter-edit-page__form__supplement
+        .matter-edit-page__form__supplement__title
+          補足情報
+        .matter-edit-page__form__supplement__norequired
+          任意
+      .matter-edit-page__form__supplement-form
+        = f.text_area :supplement, autofocus: true, autocomplete: "supplement", placeholder: "", class: 'supplement-form'
 
 
-  .actions
-    = f.submit "案件依頼を更新する"
+      .matter-edit-page__form__status
+        .matter-edit-page__form__status__title
+          公開設定
+        .matter-edit-page__form__status__required
+          必須
+      .matter-edit-page__form__status-form
+        = f.select :status, Matter.statuses.keys, {promt: "---"}, class: 'status-form'
 
 
-= link_to "TOPページへ戻る", root_path
+      .matter-edit-page__form__actions
+        = f.submit "案件依頼を更新する", class: 'submit-button'
+
+
+  = render 'matters/footer'

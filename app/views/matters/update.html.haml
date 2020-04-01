@@ -1,5 +1,18 @@
-案件依頼内容の更新が完了しました。
-%br
-= link_to "案件依頼内容を確認する", matter_path
-%br
-= link_to "TOPページへ戻る", root_path
+.matter-update-page
+
+  .matter-update-page__header
+    = render 'matters/header'
+
+  .breadcrumb
+    - breadcrumb :update_matter
+    = breadcrumbs separator: " &rsaquo; "
+
+  %h2 案件依頼内容の更新が完了しました！
+
+  = link_to matter_path do
+    .matter-update-page__matter-show-link
+      案件依頼内容を確認する
+
+
+  .matter-update-page__footer
+    = render 'matters/footer'

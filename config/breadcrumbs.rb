@@ -66,6 +66,18 @@ crumb :create_matter do
   parent :new_matter
 end
 
+# 案件依頼編集ページ
+crumb :edit_matter do
+  link "案件依頼編集", edit_matter_path()
+  parent :musician
+end
+
+# 案件依頼編集完了ページ
+crumb :update_matter do
+  link "案件依頼編集完了", matter_path()
+  parent :edit_matter
+end
+
 # アーティストプロフィール編集ページ
 crumb :edit_musician do
   link "プロフィール編集", edit_musician_path

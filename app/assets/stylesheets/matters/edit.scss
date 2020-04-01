@@ -1,0 +1,276 @@
+@mixin content {
+  display: flex;
+  margin-bottom: 0.2em;
+}
+
+@mixin title {
+  font-weight: bold;
+  font-size: 0.9em;
+}
+
+@mixin required {
+  margin: auto 0 auto 0.4em;
+  padding: 1px 3px;
+  font-size: 0.6em;
+  border-radius: 3px;
+  color: #fff;
+  background-color: red;
+}
+
+@mixin norequired {
+  margin: auto 0 auto 0.4em;
+  padding: 1px 3px;
+  font-size: 0.6em;
+  border-radius: 3px;
+  color: #fff;
+  background-color: gray;
+}
+
+@mixin input-form {
+  width: 100%;
+  height: 2em;
+  padding-left: 0.5em;
+  border-radius: 5px;
+  border: solid 1px $light-gray;
+  font-size: 0.9em;
+}
+
+@mixin select-form {
+  height: 2em;
+  background-color: #fff;
+  border: solid 1px $light-gray;
+  font-size: 0.9em;
+}
+
+@mixin submit {
+  display: inline-block;
+  border-radius: 5px;
+  font-size: 0.9em;
+  text-align: center;
+  cursor: pointer;
+  padding: 0.5em 1em;
+  background: $orange;
+  color: #ffffff;
+  line-height: 1em;
+  transition: .3s;
+  border: 2px solid $orange;
+}
+
+@mixin submit-hover {
+  color: #fff;
+  background: $blue;
+  border: 2px solid $blue;
+}
+
+
+
+.matter-edit-page {
+  &__title {
+    font-size: 1.1em;
+    font-weight: bold;
+    text-align: center;
+    color: $blue;
+    margin: 1em 0;
+  }
+
+  &__form {
+    background-color: $very-light-gray;
+    width: 27%;
+    margin: 0 auto;
+    padding: 2em 13em;
+    color: $gray;
+
+    &__title {
+      @include content;
+      &__title {
+        @include title;
+      }
+      &__required {
+        @include required;
+      }
+    }
+    &__title-form {
+      margin-bottom: 2em;
+      .title-form {
+        @include input-form;
+      }
+    }
+
+    &__category {
+      @include content;
+      &__title {
+        @include title;
+      }
+      &__required {
+        @include required;
+      }
+    }
+    &__category-form {
+      margin-bottom: 2em;
+      select {
+        @include select-form;
+      }
+    }
+
+    &__reward {
+      @include content;
+      &__title {
+        @include title;
+      }
+      &__required {
+        @include required;
+      }
+    }
+    &__reward-form {
+      margin-bottom: 2em;
+      .reward-form {
+        @include input-form;
+        width: 60%;
+      }
+    }
+
+    &__deadline {
+      @include content;
+      &__title {
+        @include title;
+      }
+      &__required {
+        @include required;
+      }
+    }
+    &__deadline-form {
+      margin-bottom: 2em;
+      select {
+        width: 20%;
+        @include select-form;
+      }
+    }
+
+    &__prefecture {
+      @include content;
+      &__title {
+        @include title;
+      }
+      &__required {
+        @include required;
+      }
+    }
+    &__prefecture-form {
+      margin-bottom: 2em;
+      select {
+        @include select-form;
+      }
+    }
+
+    &__start {
+      @include content;
+      &__title {
+        @include title;
+      }
+      &__norequired {
+        @include norequired;
+      }
+    }
+    &__start-form {
+      margin-bottom: 2em;
+      select {
+        width: 20%;
+        @include select-form;
+      }
+    }
+
+    &__end {
+      @include content;
+      &__title {
+        @include title;
+      }
+      &__required {
+        @include required;
+      }
+    }
+    &__end-form {
+      margin-bottom: 2em;
+      select {
+        width: 20%;
+        @include select-form;
+      }
+    }
+
+    &__content {
+      @include content;
+      &__title {
+        @include title;
+      }
+      &__required {
+        @include required;
+      }
+    }
+    &__content-form {
+      margin-bottom: 2em;
+      .content-form {
+        @include input-form;
+        height: 12em;
+      }
+    }
+
+    &__payment {
+      @include content;
+      &__title {
+        @include title;
+      }
+      &__norequired {
+        @include norequired;
+      }
+    }
+    &__payment-form {
+      margin-bottom: 2em;
+      .payment-form {
+        @include input-form;
+      }
+    }
+
+    &__supplement {
+      @include content;
+      &__title {
+        @include title;
+      }
+      &__norequired {
+        @include norequired;
+      }
+    }
+    &__supplement-form {
+      margin-bottom: 2em;
+      .supplement-form {
+        @include input-form;
+        height: 12em;
+      }
+    }
+
+    &__status {
+      @include content;
+      &__title {
+        @include title;
+      }
+      &__required {
+        @include required;
+      }
+    }
+    &__status-form {
+      margin-bottom: 2em;
+      select {
+        @include select-form;
+      }
+    }
+
+    &__actions {
+      text-align: center;
+      .submit-button {
+        @include submit;
+      }
+      .submit-button:hover {
+        @include submit-hover;
+      }
+    }
+
+  }
+}
