@@ -1,3 +1,13 @@
-お仕事の応募が完了しました！
-%br
-= link_to "TOPページへ戻る", root_path
+.matter-applications-create-page
+
+  .matter-applications-create-page__header
+    = render 'matters/header'
+
+  %h2 お仕事の応募が完了しました！
+
+  = link_to matter_path(@matter) do
+    .matter-applications-create-page__matter-show-link
+      案件詳細ページに戻る
+
+  .matter-applications-create-page__footer
+    = render 'matters/footer'

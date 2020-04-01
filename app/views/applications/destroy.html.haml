@@ -1,3 +1,14 @@
-お仕事の応募を取り消しました。
-%br
-= link_to "TOPページへ戻る", root_path
+.matter-applications-destroy-page
+
+  .matter-applications-destroy-page__header
+    = render 'matters/header'
+
+  %h2 お仕事の応募を取り消しました。
+
+  = link_to matter_path(@matter) do
+    .matter-applications-destroy-page__matter-show-link
+      案件詳細ページに戻る
+
+  .matter-applications-destroy-page__footer
+    = render 'matters/footer'
+

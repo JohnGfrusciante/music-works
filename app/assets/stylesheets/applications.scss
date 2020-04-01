@@ -1,3 +1,90 @@
-// Place all the styles related to the applications controller here.
-// They will automatically be included in application.css.
-// You can use Sass (SCSS) here: http://sass-lang.com/
+@mixin link {
+  border-radius: 3px;
+  font-size: 0.9em;
+  text-align: center;
+  cursor: pointer;
+  padding: 0.8em 1em;
+  background: $blue;
+  line-height: 1em;
+  width: 15%;
+  margin: 0 auto 3em;
+}
+
+@mixin link-orange {
+  border-radius: 3px;
+  font-size: 0.9em;
+  text-align: center;
+  cursor: pointer;
+  padding: 0.8em 1em;
+  background: $orange;
+  color: #ffffff;
+  line-height: 1em;
+  width: 15%;
+  margin: 0 auto 2.5em;
+}
+
+
+
+
+.matter-applications-create-page {
+  color: $gray;
+
+  &__header {
+    position: fixed;
+    top: 0;
+  }
+
+  h2 {
+    margin-top: 13em;
+    margin-bottom: 3em;
+    text-align: center;
+  }
+
+  &__matter-show-link {
+    @include link-orange;
+    color: #fff;
+    width: 12%;
+  }
+
+  &__matter-show-link:hover {
+    background-color: $blue;
+  }
+
+  &__footer {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+  }
+}
+
+
+.matter-applications-destroy-page {
+  color: $gray;
+
+  &__header {
+    position: fixed;
+    top: 0;
+  }
+
+  h2 {
+    margin-top: 13em;
+    margin-bottom: 3em;
+    text-align: center;
+  }
+
+  &__matter-show-link {
+    @include link-orange;
+    color: #fff;
+    width: 12%;
+  }
+
+  &__matter-show-link:hover {
+    background-color: $blue;
+  }
+
+  &__footer {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+  }
+}
