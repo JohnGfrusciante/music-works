@@ -13,11 +13,13 @@ class MattersController < ApplicationController
 
   def new
     @matter = Matter.new
+    @musician_user_id = Musician.find_by(user_id: current_user)
   end
 
   def create
     @matter = Matter.new(matter_params)
     @matter.save!
+    @musician_user_id = Musician.find_by(user_id: current_user)
   end
 
   def show

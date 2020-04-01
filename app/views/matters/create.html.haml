@@ -1,6 +1,17 @@
-案件依頼の作成が完了しました！
-.breadcrumb
-  - breadcrumb :create_matter
-  = breadcrumbs separator: " &rsaquo; "
-%br
-= link_to "TOPページへ戻る", root_path
+.matter-create-page
+
+  .matter-create-page__header
+    = render 'matters/header'
+
+  .breadcrumb
+    - breadcrumb :create_matter
+    = breadcrumbs separator: " &rsaquo; "
+
+  %h2 案件依頼の作成が完了しました！
+
+  = link_to root_path do
+    .matter-create-page__top-link
+      TOPページへ戻る
+
+  .matter-create-page__footer
+    = render 'matters/footer'
